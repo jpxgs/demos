@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f0eee7" />
+    <meta name="description" content="A considered library of enduring engineering talks, operational security research, and deep-value investing sources." />
+    <title>FIELDNOTES — Signal library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <div class="signal-line" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Fieldnotes home">
+        <span class="brand-mark" aria-hidden="true">F<span>•</span></span>
+        <span><strong>FIELDNOTES</strong><small>INDEPENDENT SIGNAL LIBRARY</small></span>
+      </a>
+      <div class="header-meta"><span class="status-dot"></span><span>CURATED / NOT THE FEED</span><span class="header-index">FN—001</span></div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <p class="eyebrow">A PERSONAL RESEARCH INSTRUMENT <span>·</span> EST. 2026</p>
+        <h1>Keep the signal.<br /><em>Lose the noise.</em></h1>
+        <p class="intro-copy">A deliberately small library of talks worth revisiting, operational security research worth tracking, and investing ideas worth understanding.</p>
+        <div class="intro-rule"><span>THREE DISCIPLINES</span><span>ONE WORKING LIBRARY</span></div>
+      </section>
+
+      <section class="toolbar" aria-label="Library controls">
+        <label class="search-wrap">
+          <span class="sr-only">Search the library</span>
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="search" type="search" placeholder="Search titles, people, sources…" autocomplete="off" />
+          <kbd>/</kbd>
+        </label>
+        <div class="filters" role="group" aria-label="Filter by discipline">
+          <button class="filter is-active" data-filter="all" aria-pressed="true">ALL <span id="count-all">—</span></button>
+          <button class="filter" data-filter="talk" aria-pressed="false">TALKS <span id="count-talk">—</span></button>
+          <button class="filter" data-filter="opsec" aria-pressed="false">OPSEC <span id="count-opsec">—</span></button>
+          <button class="filter" data-filter="value" aria-pressed="false">DEEP VALUE <span id="count-value">—</span></button>
+          <button class="filter" data-filter="saved" aria-pressed="false">SAVED <span id="count-saved">—</span></button>
+        </div>
+      </section>
+
+      <section class="library-head">
+        <div><p class="eyebrow">THE INDEX / <span id="result-count">00</span> RECORDS</p><h2>Selected material</h2></div>
+        <p class="library-note">No autoplay. No infinite scroll.<br />Just material with a reason to be here.</p>
+      </section>
+      <section id="library" class="library" aria-live="polite"></section>
+      <p id="empty-state" class="empty-state" hidden>No matching records. Try a different term or filter.</p>
+    </main>
+
+    <footer class="site-footer">
+      <span>FIELDNOTES <span class="red">/</span> A SMALL SIGNAL LIBRARY</span>
+      <span>ORIGINAL SOURCES ALWAYS TAKE PRECEDENCE</span>
+      <a href="https://millzbot.vercel.app/about/" target="_blank" rel="noreferrer">BUILT BY MILLZ ↗</a>
+    </footer>
+
+    <dialog id="player" class="player-dialog" aria-label="Video player">
+      <div class="player-top"><span class="eyebrow">NOW PLAYING / <span id="player-kicker">FIELDNOTES</span></span><button id="close-player" class="icon-button" aria-label="Close player">×</button></div>
+      <div class="player-frame" id="player-frame"></div>
+      <div class="player-caption"><div><h2 id="player-title"></h2><p id="player-meta"></p></div><span class="volume-note">DEFAULT VOLUME / 50%</span></div>
+    </dialog>
+  </body>
+</html>
