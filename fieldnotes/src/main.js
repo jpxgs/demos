@@ -50,9 +50,9 @@ function getVisibleRecords() {
 
 function recordAction(record) {
   if (record.videoId) return '<button class="record-action" data-action="play">WATCH FILM ↗</button>';
-  const firstLink = record.links?.[0];
-  if (!firstLink) return '<span class="record-action">REFERENCE ONLY</span>';
-  return `<a class="record-action" href="${escapeHTML(firstLink.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(firstLink.label)} ↗</a>`;
+  const links = record.links || [];
+  if (!links.length) return '<span class="record-action">REFERENCE ONLY</span>';
+  return `<span class="source-actions">${links.map((link) => `<a class="record-action" href="${escapeHTML(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(link.label)} ↗</a>`).join("")}</span>`;
 }
 
 function renderRecord(record, index) {
