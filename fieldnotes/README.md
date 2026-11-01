@@ -91,6 +91,7 @@ The production output is written to `dist/` and can be deployed to any static ho
 - [x] Semantic controls and keyboard access
 - [x] Reduced-motion preference support
 - [x] Content separated from presentation and interaction logic
+- [x] Node-based catalogue integrity tests (unique IDs, valid destinations, and discipline coverage)
 - [ ] Automated browser tests and Lighthouse audit
 - [ ] Live RSS/API ingestion with server-side source adapters
 
