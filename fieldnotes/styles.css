@@ -51,6 +51,7 @@ kbd{font:10px var(--mono);color:var(--muted);border:1px solid var(--line);paddin
 .record-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}
 .record-action{border:0;background:transparent;padding:0;text-decoration:none;font:10px var(--mono);letter-spacing:.1em;color:var(--ink);cursor:pointer}
 .record-action:hover{color:var(--red)}
+.source-actions{display:flex;gap:12px;flex-wrap:wrap}
 .save-button{border:1px solid var(--line);background:transparent;width:29px;height:29px;display:grid;place-items:center;font-size:15px;cursor:pointer}
 .save-button[aria-pressed="true"]{border-color:var(--red);color:var(--red)}
 .empty-state{padding:60px 0;text-align:center;color:var(--muted);font:12px var(--mono)}
