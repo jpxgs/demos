@@ -1,100 +1,69 @@
-# FIELDNOTES — Signal Library
+# FIELDNOTES
 
-A lightweight, editorial research library for enduring engineering talks, operational security (OPSEC) research, and deep-value investing sources.
+A quiet, curated library for engineering talks, operational security research, and deep-value investing.
 
-<p>
-  <a href="https://signal-video.vercel.app"><strong>Live experience ↗</strong></a> ·
-  <a href="https://millzbot.vercel.app/about/">Portfolio ↗</a> ·
-  <a href="https://github.com/jpxgs/demos/tree/main/fieldnotes">Source ↗</a>
-</p>
+[Live site](https://signal-video.vercel.app) · [Portfolio](https://millzbot.vercel.app/about/) · [Source](https://github.com/jpxgs/demos/tree/main/fieldnotes)
 
-## Product thesis
+## What it is
 
-Fieldnotes is designed as an antidote to algorithmic feeds: a small, legible index of material that rewards sustained attention. The interface combines the familiarity of a video library with the restraint of an editorial research tool.
+An alternative to algorithmic feeds: a finite, source-led index of material worth returning to. Browse by discipline, search the catalogue, save references locally, and open talks in a focused player.
 
-### Product principles
+**Three collections**
+- **Talks** — software design, computing history, and AI.
+- **OPSEC** — security research, privacy, OSINT, and vulnerability intelligence.
+- **Deep Value** — shareholder letters, investment memos, filings, and valuation research.
 
-- **Curated, not infinite.** Records have an identifiable subject, creator, and primary-source destination.
-- **Source-first.** External links point to original publishers, archives, regulators, and researchers.
-- **Low-friction.** Search, discipline filters, saved records, and a focused video player.
-- **Quiet by design.** Restrained typography, technical metadata, responsive cards, and no autoplay feed.
-- **Accessible by default.** Semantic landmarks, labelled controls, keyboard search shortcut, visible focus, and reduced-motion support.
+## Design and implementation
 
-## Disciplines
-
-| Discipline | Scope |
-| --- | --- |
-| Talks | Engineering, software design, computing history, and AI |
-| OPSEC | Security research, privacy, OSINT, conference archives, and vulnerability intelligence |
-| Deep Value | Shareholder letters, investment memos, filings, valuation education, and macro data |
-
-## Architecture
+The interface pairs an editorial visual language with a lightweight, framework-free runtime. Content, presentation, and interaction logic are separated so the catalogue can be reviewed and maintained without touching the UI.
 
 ```text
 fieldnotes/
-├── index.html             # Semantic application shell
-├── styles.css             # Responsive design system and component styles
+├── index.html
+├── styles.css
 ├── src/
-│   ├── main.js            # UI state, rendering, search, saving, and playback
-│   └── records.js         # Curated content catalogue
-├── package.json           # Scripts and development dependency
-├── vite.config.js         # Static production build configuration
-└── README.md              # Product and engineering documentation
+│   ├── main.js
+│   └── records.js
+├── package.json
+├── vite.config.js
+└── README.md
 ```
-
-The application is framework-free and data-driven. Content is separated from rendering logic, state is kept intentionally small, and the production bundle is static. This keeps the runtime light and makes new sources straightforward to review.
 
 ## Run locally
 
-Requires Node.js 20 or newer.
+Requires Node.js 20+.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Build, preview, and test:
-
 ```bash
-npm run build
+npm test       # catalogue integrity checks
+npm run build  # tests, then production build
 npm run preview
-npm test
 ```
 
-The production output is written to `dist/` and can be deployed to any static host, including Vercel.
+The static production build is written to `dist/`.
 
-## Engineering decisions
+## Product details
 
-- **No framework by default:** the interaction model is simple enough that a framework would add more runtime and maintenance than value.
-- **Versioned local persistence:** saved records use a namespaced local-storage key and defensive parsing.
-- **Progressive external integration:** source destinations remain first-class links; credentials and identifying API requests belong on a server, never in browser code.
-- **Privacy-conscious playback:** YouTube's privacy-enhanced embed host is used for videos.
-- **Accessible interactions:** search is keyboard-focusable with `/`, filters expose pressed state, and video playback is isolated in a native dialog.
+- Search, discipline filters, and a saved-items view.
+- Versioned local storage; saved items remain in this browser.
+- Responsive layout, semantic controls, keyboard search shortcut, and reduced-motion support.
+- YouTube privacy-enhanced embeds. The player requests 50% volume; browser and embed policies may override programmatic volume.
+- No autoplay, infinite scroll, or account requirement.
 
-## Data and integration notes
+## Editorial scope and limitations
 
-- The catalogue is a curated snapshot, not a live Hacker News recommendation scraper or an automatically synchronized RSS reader.
-- The selection reflects talks repeatedly circulated in developer communities; individual Hacker News score histories are not currently stored in the catalogue.
-- Some talks are linked through a YouTube search rather than a fixed video ID when a canonical upload could not be confidently verified.
-- The player requests a 50% volume level where the browser and YouTube embed API permit programmatic control. Browser autoplay and volume policies may override it.
-- Saved records are local to the browser and are not synced across devices.
-- Official APIs and feeds are linked directly. Authenticated or identifying server-side integrations should be implemented behind server-side adapters.
+The catalogue is hand-curated, not a live Hacker News scraper or synchronized RSS reader. It reflects talks repeatedly circulated in developer communities, but does not store historical HN scores or recommendation counts. Where a canonical video upload could not be verified confidently, the entry links to a YouTube search instead.
 
-## Quality status
+External destinations point to original publishers and primary sources where practical. Live ingestion is intentionally not implied: authenticated or identifying integrations require server-side adapters and are not part of this static build.
 
-- [x] Responsive layout and mobile breakpoints
-- [x] Search across title, creator, year, venue, and description
-- [x] Discipline filters and saved-record filter
-- [x] Persistent saved state with guarded storage access
-- [x] Video dialog teardown on close
-- [x] External links use `noopener noreferrer`
-- [x] Semantic controls and keyboard access
-- [x] Reduced-motion preference support
-- [x] Content separated from presentation and interaction logic
-- [x] Node-based catalogue integrity tests (unique IDs, valid destinations, and discipline coverage)
-- [ ] Automated browser tests and Lighthouse audit
-- [ ] Live RSS/API ingestion with server-side source adapters
+## Quality
 
-## Provenance
+The production build runs Node-based catalogue checks for stable unique IDs, supported disciplines, valid HTTPS destinations, and catalogue coverage before Vite compiles the site. Automated browser coverage and a Lighthouse audit remain future work.
 
-The original FIELDNOTES concept began as a curated selection of talks associated with recurring Hacker News recommendations, expanded with OPSEC and deep-value research sources. The project preserves the distinction between a hand-curated library and an algorithmic feed.
+---
+
+FIELDNOTES is a curated research instrument, not a claim of exhaustive coverage.
