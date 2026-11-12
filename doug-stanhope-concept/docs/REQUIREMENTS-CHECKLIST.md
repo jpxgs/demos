@@ -23,7 +23,7 @@ Local run before that deploy: 29 unit tests passed, 1 skipped because no mailing
 | Requirement | Implemented | Tested | Verified in production | Blocked |
 | --- | --- | --- | --- | --- |
 | As simple as possible, plain and text-first | Yes. IBM Plex, warm paper, underlined links. Sections are separated by space. The header stays at the top of the page. | Browser screenshots at desktop and mobile. Axe on the page. | The live page was inspected at desktop and phone width after `58c888d`. Background `rgb(250, 248, 245)`, header border `0`. | None for the current direction. |
-| Keep the old site available | Key pages from the pre-Squarespace site and the last month before the later Squarespace redesign are saved under `archive/`. Capture dates and failures are in `docs/OLD-SITE.md`. | The archive section links to `archive/index.html`. Each saved page has a banner and a Wayback link. | Pending the next preview deploy of this change. | Pages and media that the recovery log marks as failed or left out. |
+| Keep the old site available | Key pages from the pre-Squarespace site and the last month before the later Squarespace redesign are saved under `archive/`. Capture dates and failures are in `docs/OLD-SITE.md`. | The archive section links to `archive/index.html`. Each saved page has a banner and a Wayback link. | The preview serves the archive index and the 10 April 2010 banner. That copy's stylesheet was never captured, so it is unstyled. The demo security policy blocks the old pages' inline scripts and third-party images. | Pages and media that the recovery log marks as failed or left out. |
 
 ## From the build brief
 
@@ -44,7 +44,7 @@ Local run before that deploy: 29 unit tests passed, 1 skipped because no mailing
 | --- | --- | --- | --- | --- |
 | Self-hosted label typography | IBM Plex Sans and IBM Plex Mono, Latin woff2, OFL, `font-display: swap`, only the four weights in use. Section headers are tracked uppercase. | Font files, license text, and computed font names are checked. | Confirmed on the preview host after `a8d4cce`. The four font files loaded and the computed faces were Plex Sans and Plex Mono. | None. |
 | Public-source catalogs and recent episodes | Discography, books, screen credits, a longer biography, more press links, and eight RSS episodes. Each group has a source. Dead links found while checking were left out. | Content rendering and the podcast file shape. | Confirmed on the preview host after `a8d4cce`: Mailbag, 659 episodes, Discount Meat, Grand Central, The Road Dog, Worcester. | A full retype of the official past-gigs page. The recent years were compared and left as the existing selection. |
-| Host-agnostic handoff | One zip of the site. It matches the preview. `signupMode` is `live` in both. `preview` and `off` are optional and unused. | Fresh unzip and `npm test`. The form is visible and posts to Mailchimp. | Pending the next preview deploy of this change. | A completed live signup, which needs the `REGION` field and was not sent. |
+| Host-agnostic handoff | One zip of the site. It matches the preview. `signupMode` is `live` in both. `preview` and `off` are optional and unused. | Fresh unzip and `npm test`. The form is visible and posts to Mailchimp. | On the preview the form is visible, posts to the Mailchimp address, and the region field is named `REGION`. Canonical is still `https://demostanhope.vercel.app/`. | A completed live signup, which needs the `REGION` field and was not sent. |
 
 ## Do not mark these done
 

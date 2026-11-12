@@ -8,7 +8,7 @@ Large audio, video, Flash, and files over 180 KB were left out. The lists below 
 
 ## Custom site, before Squarespace
 
-The newest homepage classified as the custom site, before Squarespace, was captured on 10 April 2010.
+The newest homepage classified as the custom site, before Squarespace, was captured on 10 April 2010. Wayback has no separate capture of `css/layout.css` or `js/scripts.js`, so this copy is the text without its original layout.
 
 | Page | Captured | Wayback |
 | --- | --- | --- |
