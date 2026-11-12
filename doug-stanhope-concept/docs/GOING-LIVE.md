@@ -20,7 +20,7 @@ Open `data/site.json`. `siteUrl` is the only place you type the public address.
 ```json
 {
   "siteUrl": "https://www.example.com",
-  "signupEnabled": true
+  "signupMode": "live"
 }
 ```
 
@@ -43,7 +43,7 @@ That writes the address into:
 - `robots.txt`
 - the short pages in `tour/`, `podcast/`, `about/`, `press/`, `recordings/`, `books/`, `journal/`, and `store/`
 
-It also rewrites the Mailchimp form address from the `mailchimp` block in the same file, and shows or hides the form based on `signupEnabled`.
+It also rewrites the Mailchimp form address from the `mailchimp` block in the same file. `live` points the form at Mailchimp. `preview` and `off` point it at `#list`, so a browser without JavaScript cannot post. `off` also hides the form.
 
 ## If you cannot run Node
 
@@ -54,7 +54,7 @@ Edit these by hand. Replace only the address. Keep the `https://` and the single
 3. `robots.txt`. The Sitemap line should be `Sitemap: https://www.example.com/sitemap.xml`.
 4. In each short page listed above, the `rel="canonical"` link should be `https://www.example.com/#dates` (or `#podcast`, `#bio`, `#press`, `#footer` for the store page). Leave the `../#...` links as they are. Those are not the public address.
 5. Leave the Mailchimp `action` on the form unless the audience ids changed. Those ids are in `data/site.json` under `mailchimp`.
-6. To hide the form, add the word `hidden` to the `<form id="mailing-list-form" ...>` tag and remove `hidden` from `<p id="signup-off"`. To show the form, do the opposite. Set the same true or false value in `data/site.json` so the two do not disagree.
+6. For `live`, the form `action` is the Mailchimp address and the form is visible. For `preview`, the form is visible and its `action` is `#list`. For `off`, add the word `hidden` to the `<form id="mailing-list-form" ...>` tag, remove `hidden` from `<p id="signup-off"`, and set the form `action` to `#list`. Set the same `signupMode` in `data/site.json`.
 
 ## Point the domain, and do not break email
 

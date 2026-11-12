@@ -15,13 +15,14 @@ Everything the site needs is in this folder. Paths start at the folder that cont
 | `js/mailchimp-form.js` | Builds the public Mailchimp form address from `data/site.json`. |
 | `js/mailing-list.js` | Asks Mailchimp for an in-page result. Without this script, the form still submits. |
 | `js/archive-search.js` | Filters the past-date list. |
-| `data/site.json` | The one public address, the Mailchimp ids, and `signupEnabled`. |
+| `data/site.json` | The one public address, the Mailchimp ids, and `signupMode` (`live`, `preview`, or `off`). |
 | `data/shows.json` | Every show, upcoming and past. |
 | `data/content.json` | Biography, albums, books, screen credits, press, podcast blurb, footer. |
 | `data/podcast.json` | The newest episode titles from the public RSS feed. |
 | `data/sources.json` | Where the public facts came from. |
 | `assets/press/` | Headshot files. Empty until the team adds approved photos. |
 | `fonts/` | IBM Plex font files and `OFL.txt`, the license. |
+| `archive/` | Saved copies of the old site. Dates and gaps are in `docs/OLD-SITE.md`. |
 | `scripts/apply-site-config.js` | Copies `data/site.json` into the page, sitemap, and robots file. |
 | `scripts/refresh-podcast.js` | Rewrites `data/podcast.json` from the RSS feed. |
 | `sitemap.xml` | Tells search engines the front page address. |

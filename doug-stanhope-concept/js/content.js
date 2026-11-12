@@ -17,10 +17,18 @@
     return typeof src === "string" && /^assets\/press\/[A-Za-z0-9._-]+$/.test(src);
   }
 
+  function usableHref(value) {
+    const http = showsApi().safeHttpUrl(value);
+    if (http) return http;
+    const text = String(value || "").trim();
+    if (!/^[A-Za-z0-9./_-]+$/.test(text) || text.includes("..") || text.includes("//")) return "";
+    return text;
+  }
+
   function linkItems(links) {
-    const { escapeHtml, safeHttpUrl } = showsApi();
+    const { escapeHtml } = showsApi();
     return (Array.isArray(links) ? links : []).map((link) => {
-      const href = safeHttpUrl(link && link.href);
+      const href = usableHref(link && link.href);
       const label = link && link.label;
       if (!href || !label) return "";
       return `<li><a href="${escapeHtml(href)}">${escapeHtml(label)}</a></li>`;

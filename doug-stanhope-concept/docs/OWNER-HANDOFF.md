@@ -26,10 +26,10 @@ The repository and the hosting project are still in the agency accounts. Until t
 ## What is deliberately not finished
 
 - No upcoming shows are listed. None were confirmed, and none were invented. The dates section says no dates are announced and points to the mailing list.
-- The on-site mailing-list form is built, including a required region, and it is switched off. No mailing-list API key is stored in the project. Visitors currently get the existing public signup page, which does not ask for a region.
+- The on-site mailing-list form is on, including a required region. It posts from the browser. No API key is stored, and none is required for that form. Until the list has a text field tagged `REGION`, Mailchimp rejects the signup and the page says so.
 - No headshot is published. The biography has a place for approved photos. Nothing is shown until a file is added.
 - Contact and booking details are not published. The footer says they have not been supplied.
-- The old website was not copied into this project. The archive section links to the Internet Archive and to the official past-gigs page. A full copy was not recovered.
+- Copies of the old site that could be saved are in `archive/`. The pages, capture dates, and anything that failed are listed in `docs/OLD-SITE.md`. The archive section links to them.
 
 ## Accounts your team will need
 
@@ -37,7 +37,7 @@ The repository and the hosting project are still in the agency accounts. Until t
 | --- | --- | --- |
 | Source repository, write access | Whoever updates shows and text | Editing and merging into the main branch is what publishes the site |
 | Hosting project | Whoever sets the mailing list up, checks previews, or rolls back | Environment variables, preview addresses, and rollback live here |
-| Mailing-list account | Whoever owns the list | An API key and a region field have to be created there |
+| Mailing-list account | Whoever owns the list | A region text field has to be created there. An API key is only for the optional server function |
 | Domain registrar | Whoever approves the finished site | The custom domain should be connected only after that approval |
 
 A developer is needed for the mailing-list environment variables if nobody on the team has the hosting project, for domain and DNS changes, for layout or code changes, and for a deployment that fails. Day-to-day show and text edits do not need a developer once repository access exists.

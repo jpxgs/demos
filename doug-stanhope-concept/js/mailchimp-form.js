@@ -47,5 +47,42 @@
     return "https://" + config.server + ".list-manage.com/subscribe/post-json?" + params.toString();
   }
 
-  return { configOk, postAction, hostedPage, botField, jsonpUrl };
+  const REGION_REJECTION = "That signup did not go through. The mailing list does not have a region field yet, so it rejected the form. It needs a text field tagged REGION.";
+  const MODE_STATUS = {
+    preview: "Preview copy: signup is not sent. On the live site this goes to the mailing list.",
+    off: "Signups are turned off on this copy."
+  };
+
+  function signupMode(site) {
+    const mode = site && site.signupMode;
+    return mode === "preview" || mode === "off" ? mode : "live";
+  }
+
+  function plainMessage(value) {
+    return String(value || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  }
+
+  function regionRejected(text) {
+    return /region|merge\s*field|merge_field|mmerge\d+/i.test(plainMessage(text));
+  }
+
+  function visitorMessage(data) {
+    const text = plainMessage(data && data.msg);
+    if (data && data.result === "success") return text || "Check your email to confirm the signup.";
+    if (regionRejected(text)) return REGION_REJECTION;
+    return text || "The mailing list did not accept the signup.";
+  }
+
+  return {
+    configOk,
+    postAction,
+    hostedPage,
+    botField,
+    jsonpUrl,
+    signupMode,
+    regionRejected,
+    visitorMessage,
+    REGION_REJECTION,
+    MODE_STATUS
+  };
 });

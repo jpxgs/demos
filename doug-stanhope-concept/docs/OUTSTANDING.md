@@ -10,4 +10,4 @@ Nothing below was invented to fill a gap. Each item stays open until the team su
 - [ ] The host the team will use for the long term, and DNS access that does not disturb email.
 - [ ] Confirmation that the audience ids in `data/site.json` are the list they want.
 
-The preview keeps `signupEnabled` set to `false` until that region field exists. The zip is built with `signupEnabled` set to `true`. Set it back to `false` before a public upload if the field is not ready.
+The preview and the zip both use `signupMode` `live`, so the form is visible. A signup still fails until the `REGION` field exists. The page says so. `preview` and `off` are optional and are not the published setting.

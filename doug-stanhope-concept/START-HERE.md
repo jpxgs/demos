@@ -2,7 +2,7 @@
 
 This folder is the whole site. Unzip it anywhere. It does not belong to a particular host, and it does not need the account that built the preview.
 
-The preview people are looking at now may hide the mailing-list form. The downloadable package is built with the form turned on. Check `signupEnabled` in `data/site.json` on the copy you have. `false` hides the form. `true` shows it. Details are in [docs/MAILING-LIST.md](docs/MAILING-LIST.md).
+The preview and this package are the same files. The mailing-list form is on. `signupMode` in `data/site.json` is `live`. Two other values, `preview` and `off`, are optional and are not used on the preview or in this package. Details are in [docs/MAILING-LIST.md](docs/MAILING-LIST.md).
 
 ## Read these in order
 
@@ -15,7 +15,8 @@ The preview people are looking at now may hide the mailing-list form. The downlo
 | Mailing list and the REGION field | [docs/MAILING-LIST.md](docs/MAILING-LIST.md) |
 | Podcast, biography, books, albums, press, sources | [docs/CONTENT-EDITING-GUIDE.md](docs/CONTENT-EDITING-GUIDE.md) |
 | Headshots | [docs/CONTENT-EDITING-GUIDE.md](docs/CONTENT-EDITING-GUIDE.md) |
-| Fonts, colors, and the license | [docs/FONTS-AND-DESIGN.md](docs/FONTS-AND-DESIGN.md) |
+| Fonts, colors, day and night, and the license | [docs/FONTS-AND-DESIGN.md](docs/FONTS-AND-DESIGN.md) |
+| Recovered copies of the old site | [docs/OLD-SITE.md](docs/OLD-SITE.md) |
 | Look at the site on your computer | [docs/PREVIEW-AND-ROLLBACK.md](docs/PREVIEW-AND-ROLLBACK.md) |
 | Publish, keep a backup, roll back | [docs/PREVIEW-AND-ROLLBACK.md](docs/PREVIEW-AND-ROLLBACK.md) |
 | Run the tests | [docs/TESTS.md](docs/TESTS.md) |
@@ -29,7 +30,7 @@ The preview people are looking at now may hide the mailing-list form. The downlo
 
 1. Unzip this folder.
 2. Open `data/site.json`. Set `siteUrl` to the public `https://` address, with no slash at the end.
-3. If the `REGION` field is not in Mailchimp yet, set `"signupEnabled": false`. After that field exists and a test signup works, set it to `true`.
+3. Leave `"signupMode": "live"` unless you have a reason to use `preview` or `off`. Those two are optional. `live` is what the preview uses.
 4. Run `node scripts/apply-site-config.js`. If Node is not available, follow the manual list in [docs/GOING-LIVE.md](docs/GOING-LIVE.md).
 5. Upload the folder so `index.html` is the front page of the domain.
 6. Point only the website DNS at the new host. Do not change mail records. [docs/GOING-LIVE.md](docs/GOING-LIVE.md) explains why.

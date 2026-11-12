@@ -8,7 +8,7 @@
 - Add a source line in `data/sources.json`.
 - Replace `data/podcast.json` with `node scripts/refresh-podcast.js`, or edit that file by hand.
 - Add a headshot file and a `headshots` entry.
-- Turn the form on or off with `signupEnabled`.
+- Leave `signupMode` on `live`, or set it to `preview` or `off` if you want the optional states.
 - Change `siteUrl` and run `node scripts/apply-site-config.js`, or follow the manual list.
 - Upload the folder to the host you already use.
 

@@ -42,6 +42,13 @@
   --mono: "IBM Plex Mono", "Courier New", Courier, monospace;
 }
 
+html[data-theme="night"] {
+  color-scheme: dark;
+  --ink: #f3efe6;
+  --muted: #c8bfb2;
+  --paper: #1c1916;
+}
+
 * { box-sizing: border-box; }
 
 html {
@@ -140,6 +147,45 @@ nav a {
   padding: 0.4rem 0;
 }
 
+.bar-end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 1.15rem;
+}
+
+.theme-toggle {
+  border: 0;
+  padding: 0.4rem 0;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+html[data-theme="night"] .theme-night,
+html:not([data-theme="night"]) .theme-day {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.theme-state {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .skip {
   position: absolute;
   left: 0.5rem;
@@ -215,7 +261,7 @@ time,
 
 .search input { width: min(100%, 18rem); }
 
-::placeholder { color: #4a4a4a; opacity: 1; }
+::placeholder { color: var(--muted); opacity: 1; }
 
 .signup { max-width: 28rem; margin-top: 0.5rem; }
 

@@ -29,6 +29,7 @@ test("podcast, bio, work, press, and footer render from the data files", () => {
   assert.match(rendered.press, /the-problem-with-charity/);
   assert.match(rendered.press, /Wikipedia — Doug Stanhope/);
   assert.match(rendered.archive, /web\.archive\.org/);
+  assert.match(rendered.archive, /archive\/index\.html/);
   assert.match(rendered.archive, /pastgigs/);
   assert.match(rendered.footer, /Contact and booking details have not been supplied/);
   assert.match(rendered.footer, /realstanhope/);

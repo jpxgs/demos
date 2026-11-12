@@ -1,6 +1,6 @@
 {
   "siteUrl": "https://demostanhope.vercel.app",
-  "signupEnabled": false,
+  "signupMode": "live",
   "mailchimp": {
     "server": "us7",
     "userId": "99a44c5b158aed2fa397e1429",

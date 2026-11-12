@@ -1,0 +1,1091 @@
+{
+  "recoveredAt": "2026-11-12",
+  "eras": [
+    {
+      "id": "2010",
+      "kind": "pre-squarespace",
+      "title": "Custom site, before Squarespace",
+      "description": "The newest homepage classified as the custom site, before Squarespace, was captured on 10 April 2010.",
+      "anchor": "20100410005005",
+      "pages": [
+        {
+          "file": "archive/2010/index.html",
+          "original": "http://dougstanhope.com:80/",
+          "timestamp": "20100410005005",
+          "captured": "10 April 2010",
+          "bytes": 21993
+        },
+        {
+          "file": "archive/2010/html/downloads.html",
+          "original": "http://www.dougstanhope.com:80/html/downloads.php",
+          "timestamp": "20100328161728",
+          "captured": "28 March 2010",
+          "bytes": 18190
+        },
+        {
+          "file": "archive/2010/html/forums.html",
+          "original": "http://www.dougstanhope.com:80/html/forums.php",
+          "timestamp": "20100325023443",
+          "captured": "25 March 2010",
+          "bytes": 9195
+        },
+        {
+          "file": "archive/2010/html/video.html",
+          "original": "http://www.dougstanhope.com:80/html/video.php",
+          "timestamp": "20100408032158",
+          "captured": "8 April 2010",
+          "bytes": 10367
+        },
+        {
+          "file": "archive/2010/html/pictures.html",
+          "original": "http://www.dougstanhope.com:80/html/pictures.php",
+          "timestamp": "20100315001753",
+          "captured": "15 March 2010",
+          "bytes": 10292
+        },
+        {
+          "file": "archive/2010/html/archive_02.html",
+          "original": "http://www.dougstanhope.com:80/html/archive_02.php",
+          "timestamp": "20100406081604",
+          "captured": "6 April 2010",
+          "bytes": 32186
+        },
+        {
+          "file": "archive/2010/html/bio.html",
+          "original": "http://www.dougstanhope.com:80/html/bio.php",
+          "timestamp": "20100323205026",
+          "captured": "23 March 2010",
+          "bytes": 12279
+        },
+        {
+          "file": "archive/2010/html/press.html",
+          "original": "http://www.dougstanhope.com:80/html/press.php",
+          "timestamp": "20100314232738",
+          "captured": "14 March 2010",
+          "bytes": 14236
+        },
+        {
+          "file": "archive/2010/html/road-dates.html",
+          "original": "http://dougstanhope.com:80/html/road-dates.php",
+          "timestamp": "20100327163718",
+          "captured": "27 March 2010",
+          "bytes": 9400
+        },
+        {
+          "file": "archive/2010/html/merchandise.html",
+          "original": "http://www.dougstanhope.com:80/html/merchandise.php",
+          "timestamp": "20100323190800",
+          "captured": "23 March 2010",
+          "bytes": 34050
+        },
+        {
+          "file": "archive/2010/html/contacts.html",
+          "original": "http://www.dougstanhope.com:80/html/contacts.php",
+          "timestamp": "20100314232218",
+          "captured": "14 March 2010",
+          "bytes": 11213
+        },
+        {
+          "file": "archive/2010/html/archive_03.html",
+          "original": "http://www.dougstanhope.com:80/html/archive_03.php",
+          "timestamp": "20100407000414",
+          "captured": "7 April 2010",
+          "bytes": 20258
+        },
+        {
+          "file": "archive/2010/html/archive.html",
+          "original": "http://www.dougstanhope.com:80/html/archive.php",
+          "timestamp": "20100404022336",
+          "captured": "4 April 2010",
+          "bytes": 5893
+        }
+      ],
+      "skipped": [
+        {
+          "url": "http://www.dougstanhope.com/css/layout.css",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/js/scripts.js",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/favicon.ico",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2010_02_21/tebow-superman.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2010_02_21/photoenforced.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2010_02_21/airport_security_screening.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2010_02_21/tunneldvd2.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2010_02_21/free-credit-report-guy.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2010_02_21/wasp.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2010_02_21/dr_drew_2.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2010_02_21/tmz.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2010_02_21/stanhope.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2010_02_21/tony_shalhoub.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/stanhope_color.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/img-stanhope-color.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/stanhope_black_white.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/img-stanhope-black-white.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/tour_posters/baby_fest-tiny.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/tour_posters/pointless_comedy-tiny.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/img-forums-jlds.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/Scripts/AC_RunActiveContent.js",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_1125/black-friday.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_1125/street-cd.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_1030/lck_photo.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_1030/finland_flying.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_1030/fin_nor_swe.gif",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_1013/ssv.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_0915/worst_show_ever.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_0915/dr_bombay.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_0915/shea_riggio_07.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_0915/shea_riggio_10.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_0915/relapse.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_0915/lock_out.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_0915/3armedbaby1.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_0915/scott-roeder.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_0915/ugly_01.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_0915/ugly_02.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2009_0915/ugly_03.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/title-doug-stanhope-set.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/img-dougs-cd-set.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/btn-order-now.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/title-doug-stanhope-street-cd.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/img-dougs-street-cd.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/title-doug-stanhope-fun-with-peds.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/img-doug-fun-with-peds.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/title-doug-stanhope-refunds.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/img-dougs-no-refunds.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/title-doug-stanhope-hero.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/img-dougs-breakout.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/title-doug-stanhope-die.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/img-dougs-die-laughing.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/title-doug-stanhope-edge.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/img-dougs-edge-off.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/title-doug-stanhope-sicko.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/img-dougs-sicko.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2010_02_05/bingo_saints_fan.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2010_02_05/saints_bus.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/images/updates/2010_02_05/millioinaire_jay.jpg",
+          "reason": "No capture in the chosen window."
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "2014",
+      "kind": "pre-redesign",
+      "title": "Previous design, before the later Squarespace redesign",
+      "description": "The newest homepage still on the previous Squarespace design was captured on 19 November 2014. The next checked month had moved to the later Squarespace design. /journal/ had no text capture in June\u2013November 2014. The journal section in this design was /baiting-journal, saved from 19 November 2014. The homepage also includes the recent journal entries.",
+      "anchor": "20141119173529",
+      "pages": [
+        {
+          "file": "archive/2014/index.html",
+          "original": "http://www.dougstanhope.com:80/",
+          "timestamp": "20141119173529",
+          "captured": "19 November 2014",
+          "bytes": 67996
+        },
+        {
+          "file": "archive/2014/tour-dates/index.html",
+          "original": "http://www.dougstanhope.com:80/tour-dates?",
+          "timestamp": "20141110170126",
+          "captured": "10 November 2014",
+          "bytes": 54725
+        },
+        {
+          "file": "archive/2014/bio/index.html",
+          "original": "http://www.dougstanhope.com:80/bio/",
+          "timestamp": "20141027132543",
+          "captured": "27 October 2014",
+          "bytes": 59126
+        },
+        {
+          "file": "archive/2014/mypodcast/index.html",
+          "original": "http://www.dougstanhope.com:80/mypodcast",
+          "timestamp": "20141119170658",
+          "captured": "19 November 2014",
+          "bytes": 142958
+        },
+        {
+          "file": "archive/2014/store/index.html",
+          "original": "http://www.dougstanhope.com:80/store",
+          "timestamp": "20141017013331",
+          "captured": "17 October 2014",
+          "bytes": 88491
+        },
+        {
+          "file": "archive/2014/past-gigs/index.html",
+          "original": "http://www.dougstanhope.com/past-gigs/",
+          "timestamp": "20141007122411",
+          "captured": "7 October 2014",
+          "bytes": 86767
+        },
+        {
+          "file": "archive/2014/archives/index.html",
+          "original": "http://www.dougstanhope.com:80/archives/",
+          "timestamp": "20141024100343",
+          "captured": "24 October 2014",
+          "bytes": 79999
+        },
+        {
+          "file": "archive/2014/business-contact/index.html",
+          "original": "http://www.dougstanhope.com:80/business-contact",
+          "timestamp": "20141018051007",
+          "captured": "18 October 2014",
+          "bytes": 58632
+        },
+        {
+          "file": "archive/2014/to-reach-doug/index.html",
+          "original": "http://www.dougstanhope.com:80/to-reach-doug",
+          "timestamp": "20141017001619",
+          "captured": "17 October 2014",
+          "bytes": 58241
+        },
+        {
+          "file": "archive/2014/stand-up/index.html",
+          "original": "http://www.dougstanhope.com:80/stand-up",
+          "timestamp": "20141017000039",
+          "captured": "17 October 2014",
+          "bytes": 64072
+        },
+        {
+          "file": "archive/2014/tv/index.html",
+          "original": "http://www.dougstanhope.com:80/tv",
+          "timestamp": "20141018043242",
+          "captured": "18 October 2014",
+          "bytes": 64549
+        },
+        {
+          "file": "archive/2014/internet/index.html",
+          "original": "http://www.dougstanhope.com:80/internet",
+          "timestamp": "20140809063817",
+          "captured": "9 August 2014",
+          "bytes": 59902
+        },
+        {
+          "file": "archive/2014/guest/index.html",
+          "original": "http://www.dougstanhope.com:80/guest/",
+          "timestamp": "20141020022252",
+          "captured": "20 October 2014",
+          "bytes": 60283
+        },
+        {
+          "file": "archive/2014/baiting-journal/index.html",
+          "original": "http://www.dougstanhope.com/baiting-journal",
+          "timestamp": "20141119170655",
+          "captured": "19 November 2014",
+          "bytes": 106732
+        }
+      ],
+      "skipped": [
+        {
+          "url": "http://www.dougstanhope.com/favicon.ico",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/display/common.css?styleId=1822281&RK=1403844996137&CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/styles/squarespace-gallery-slideshow.css?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/yui/yahoo-dom-event/yahoo-dom-event.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/yui/connection/connection_core-min.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/yui/json/json-min.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/yui/animation/animation-min.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/yui/selector/selector.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/yui/element/element.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/scripts/global.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/scripts/lightbox.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/scripts/api.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/scripts/base64.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/scripts/census.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/scripts/yui2-yui3-bridge.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/scripts/squarespace-gallery-slideshow.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/scripts/shadowbox3/shadowbox.css",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/scripts/shadowbox3/shadowbox.js",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/scripts/shadowbox3/libraries/swfobject/swfobject.js",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/scripts/videobox/mootools.js",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/scripts/videobox/swfobject.js",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/scripts/videobox/videobox.js",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/scripts/videobox/videobox.css",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/scripts/cookie-min.js",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/scripts/eu-cookie-policy.js",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/social/yt_small.jpeg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/social/fb_small.jpeg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/social/twitter_small.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/store/bhp_small.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/albums/btgoh.jpeg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/albums/liveinoslo.jpeg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/albums/acrossstreet.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/albums/edgeoff.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/albums/norefunds.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/albums/deadbeat.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/albums/dielaugh.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/albums/sicko.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/graphics/dscdp.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/images/transparent.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/post-images/2014/plaza_vegas.jpg?__SQUARESPACE_CACHEVERSION=1406012297683",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/post-images/2014/australia.png?__SQUARESPACE_CACHEVERSION=1406012182465",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/post-images/2014/ebaybanner.jpg?__SQUARESPACE_CACHEVERSION=1395722547333",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/graphics/tourheader.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/bio/storage/scripts/videobox/videobox.css",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/49.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/48.jpeg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/47.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/46.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/45.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/44.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/43.jpeg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/32.png",
+          "reason": "Larger than 180000 bytes (248644)."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep1.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/24.png",
+          "reason": "Larger than 180000 bytes (184351)."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep22.png",
+          "reason": "Larger than 180000 bytes (181492)."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep19.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep18.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep17.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep16.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep15.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep14.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep13.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep12_1.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep11.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep10_cut.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/pics/episode_9/betty_lindstrom_small.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep7.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/pics/episode6/ep6_mask.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/pics/episode_5/stanhope_becker.jpg",
+          "reason": "Larger than 180000 bytes (317212)."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/pics/episode_5/backyard_bus.jpg",
+          "reason": "Larger than 180000 bytes (392989)."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/pics/episode_5/ep5.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep4.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep3.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/pics/episode3/panorama.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/ep2.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/pics/episode2/jupiter_hotel.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/pics/episode2/bingo.jpg",
+          "reason": "Larger than 180000 bytes (290062)."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/pics/episode2/joaquin_phoenix.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/albums/bhp_cd.jpg?__SQUARESPACE_CACHEVERSION=1379483203291",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/albums/amazon_logo_small.gif?__SQUARESPACE_CACHEVERSION=1381006943830",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/albums/amazon_uk_logo_small.gif?__SQUARESPACE_CACHEVERSION=1381004730132",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/albums/itunes_logo_small.gif?__SQUARESPACE_CACHEVERSION=1381004880074",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/store/btgoh.jpeg?__SQUARESPACE_CACHEVERSION=1350454611617",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/store/liveinoslo.jpeg?__SQUARESPACE_CACHEVERSION=1303186145176",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/store/DSalbumset.jpg?__SQUARESPACE_CACHEVERSION=1271036020472",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/store/DSacrossstreet.jpg?__SQUARESPACE_CACHEVERSION=1291511945099",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/store/DSnorefunds.jpg?__SQUARESPACE_CACHEVERSION=1291512396006",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/store/DSdeadbeat.jpg?__SQUARESPACE_CACHEVERSION=1291512641992",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/store/DSedgeoff.jpg?__SQUARESPACE_CACHEVERSION=1291512816184",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/store/DSdielaugh.jpg?__SQUARESPACE_CACHEVERSION=1291513463631",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/store/DSsicko.jpg?__SQUARESPACE_CACHEVERSION=1291513070800",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/store/DSfunpedo.jpg?__SQUARESPACE_CACHEVERSION=1291513272195",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/past-gigs/storage/scripts/videobox/videobox.css",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/archives/storage/scripts/videobox/videobox.css",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/yui/get/get-min.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/yui/dragdrop/dragdrop-min.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/yui/connection/connection-min.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/universal/scripts/form-builder.js?CE=75",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/bhp_60inches.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/keynesian.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/generationsucks.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/nationalism.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/fetusporno.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/gaymarriage.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/freedom.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/vasectomies.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/atheistmorals.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/wouldbelieve.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/everydruglegal.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/excessmoderation.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/myspacepedo.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/sexandshame.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/sarahpalin.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/warondrugs.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/ftix.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/hignfy.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/standup/royalwed.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_atheist.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_nsasuicide.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_meantweet.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_realitytv.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_tvdoctors.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_americagreat.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_grandnational.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_sandy.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_londonriots.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_aig.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_bpmiracle.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_oprah.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_fearmedia.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_cafferty.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_latenight.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/wipe_royalwedding.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/stossel.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/waschera.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/greenroom.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/hellomesa.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/redeye.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/gohome.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/tv/aristocrats.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/internet/lydonhoax.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/internet/peta.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/internet/scriptanimation.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/guest/storage/scripts/videobox/videobox.css",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/drdrew.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/glass.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/rogan.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/wtf.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/fitzdog.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/keithgirl.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/stern.jpg",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/rhodes.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/whiskeybros.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/sofunny.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/smallpic.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/circus.png",
+          "reason": "No capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/2men1pod.png",
+          "reason": "No capture in the chosen window."
+        }
+      ],
+      "failures": [
+        {
+          "url": "www.dougstanhope.com/journal/",
+          "reason": "No text/html capture in the chosen window."
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/34.png",
+          "reason": "Download HTTPError"
+        },
+        {
+          "url": "http://www.dougstanhope.com/storage/tn/podcasts/33.png",
+          "reason": "Download HTTPError"
+        }
+      ]
+    }
+  ]
+}

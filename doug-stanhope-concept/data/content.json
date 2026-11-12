@@ -138,10 +138,13 @@
   "archive": {
     "paragraphs": [
       "Past dates below were transcribed from the previous version of this page. They are not ticket offers. Start times, street addresses, and ticket links were not in that list.",
-      "The official past-gigs page was opened on 12 November 2026. Its recent listings match this selection. Older years on that page were not retyped here. The old website was not copied into this project. The Internet Archive has captures of dougstanhope.com."
+      "The official past-gigs page was opened on 12 November 2026. Its recent listings match this selection. Older years on that page were not retyped here.",
+      "Two older copies of the site are saved in this package. The custom site, from before Squarespace, uses a homepage captured on 10 April 2010. The previous Squarespace design uses a homepage captured on 19 November 2014, the last checked month before the later redesign. Nearby pages use the closest capture from the same period. The list of saved pages, and anything that was not saved, is with those copies."
     ],
     "links": [
-      { "label": "Internet Archive captures of dougstanhope.com", "href": "https://web.archive.org/web/*/www.dougstanhope.com/*" },
+      { "label": "Recovered copies of the old site", "href": "archive/index.html" },
+      { "label": "10 April 2010 capture", "href": "https://web.archive.org/web/20100410005005/http://www.dougstanhope.com/" },
+      { "label": "19 November 2014 capture", "href": "https://web.archive.org/web/20141119173529/http://www.dougstanhope.com/" },
       { "label": "Official past gigs", "href": "https://www.dougstanhope.com/pastgigs" },
       { "label": "Official journal", "href": "https://www.dougstanhope.com/journal" }
     ]

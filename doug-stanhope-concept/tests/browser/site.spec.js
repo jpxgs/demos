@@ -55,14 +55,18 @@ test("homepage structure, dates, podcast, and metadata", async ({ page }, testIn
   await expect(page.locator("#bio")).toContainText("Approved headshots have not been added yet");
   await expect(page.locator("#bio img")).toHaveCount(0);
   await expect(page.locator("#press")).toContainText("Los Angeles Times");
-  await expect(page.locator("#mailing-list-form")).toHaveAttribute("action", /list-manage\.com\/subscribe\/post/);
   await expect(page.locator("#signup-region")).toHaveAttribute("name", "REGION");
-  if (site.signupEnabled === false) {
+  if (site.signupMode === "off") {
     await expect(page.locator("#mailing-list-form")).toBeHidden();
     await expect(page.locator("#signup-off")).toBeVisible();
   } else {
     await expect(page.locator("#mailing-list-form")).toBeVisible();
     await expect(page.locator("#signup-off")).toBeHidden();
+  }
+  if (site.signupMode === "live") {
+    await expect(page.locator("#mailing-list-form")).toHaveAttribute("action", /list-manage\.com\/subscribe\/post/);
+  } else {
+    await expect(page.locator("#mailing-list-form")).toHaveAttribute("action", "#list");
   }
   await expect(page.locator("#footer")).toContainText("Contact and booking");
   await expect(page.locator("#footer")).toContainText("Instagram");
@@ -91,6 +95,57 @@ test("keyboard navigation reaches the section links", async ({ page }) => {
   }
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/#archive$/);
+});
+
+test("day and night themes follow the system, then the saved choice", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "dark" });
+  const problems = await openHome(page);
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "night");
+  await expect(page.locator("[data-theme-toggle]")).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator(".theme-state")).toHaveText("Night theme on. Switch to day.");
+  await page.emulateMedia({ colorScheme: "light" });
+  await page.evaluate(() => localStorage.removeItem("theme"));
+  await page.reload();
+  await expect(page.getByRole("link", { name: "Apple Podcasts", exact: true })).toBeVisible();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "day");
+  await expect(page.locator("[data-theme-toggle]")).toHaveAttribute("aria-pressed", "false");
+  await page.locator("[data-theme-toggle]").focus();
+  await page.keyboard.press("Enter");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "night");
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "night");
+  await expect.poll(() => page.evaluate(() => localStorage.getItem("theme"))).toBe("night");
+  for (const theme of ["night", "day"]) {
+    if ((await page.locator("html").getAttribute("data-theme")) !== theme) {
+      await page.locator("[data-theme-toggle]").click();
+    }
+    await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
+    const results = await new AxeBuilder({ page }).exclude("iframe").analyze();
+    expect(results.violations, JSON.stringify(results.violations, null, 2)).toEqual([]);
+  }
+  expect(problems.consoleErrors).toEqual([]);
+  expect(problems.pageErrors).toEqual([]);
+  expect(problems.missing).toEqual([]);
+});
+
+test("preview mode shows the form and does not post", async ({ page }) => {
+  const site = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "..", "data", "site.json"), "utf8"));
+  await page.route("**/data/site.json", (route) => route.fulfill({
+    contentType: "application/json",
+    body: JSON.stringify({ ...site, signupMode: "preview" })
+  }));
+  const posted = [];
+  page.on("request", (request) => {
+    if (request.url().includes("list-manage.com")) posted.push(request.url());
+  });
+  await openHome(page);
+  await expect(page.locator("#mailing-list-form")).toBeVisible();
+  await page.locator("#signup-email").fill("preview-check@example.com");
+  await page.locator("#signup-region").selectOption("Europe");
+  await page.locator("#signup-consent").check();
+  await page.locator("#mailing-list-form button[type='submit']").click();
+  await expect(page.locator("#signup-status")).toHaveText("Preview copy: signup is not sent. On the live site this goes to the mailing list.");
+  expect(posted).toEqual([]);
 });
 
 test("accessibility scan", async ({ page }) => {

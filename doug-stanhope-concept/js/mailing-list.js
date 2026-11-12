@@ -13,17 +13,6 @@
   const submitButton = form.querySelector('button[type="submit"]');
   const bot = form.querySelector('input[name^="b_"]');
 
-  const plain = (value) => String(value || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
-
-  function messageFor(data) {
-    const text = plain(data && data.msg);
-    if (data && data.result === "success") return text || "Check your email to confirm the signup.";
-    if (/merge|region|field/i.test(text)) {
-      return "The mailing list rejected the region field. It needs a text field tagged REGION.";
-    }
-    return text || "The mailing list did not accept the signup.";
-  }
-
   function sendJsonp(baseUrl) {
     return new Promise((resolve, reject) => {
       const callbackName = "mc_cb_" + Date.now();
@@ -64,8 +53,9 @@
       const response = await fetch("data/site.json", { headers: { Accept: "application/json" }, cache: "no-cache" });
       if (response.ok) {
         const site = await response.json();
-        if (site.signupEnabled === false) {
-          status.textContent = "Signups are turned off on this copy.";
+        const mode = helper.signupMode(site);
+        if (mode !== "live") {
+          status.textContent = helper.MODE_STATUS[mode];
           return;
         }
         config = site.mailchimp;
@@ -84,7 +74,7 @@
     submitButton.textContent = "Sending";
     try {
       const data = await sendJsonp(url);
-      status.textContent = messageFor(data);
+      status.textContent = helper.visitorMessage(data);
       if (data && data.result === "success") form.reset();
     } catch {
       status.textContent = "Sending you on to the mailing list.";

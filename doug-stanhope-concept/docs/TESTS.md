@@ -13,7 +13,7 @@ npm test
 | --- | --- |
 | `tests/site.test.js` | Dates, ticket links, sold out, canceled, postponed, missing tickets, timezones, and event data. Fixtures are not real shows. |
 | `tests/content.test.js` | Biography, albums, books, press, podcast episodes, and that unsafe HTML is escaped. |
-| `tests/quality.test.js` | The public address matches `data/site.json`, the form posts to the Mailchimp address in that file, the form is hidden only when `signupEnabled` is false, fonts are woff2, and the license text is present. |
+| `tests/quality.test.js` | The public address matches `data/site.json`, the form matches `signupMode`, fonts are woff2, the day and night colors are present, and the license text is present. |
 | `tests/subscribe.test.js` | The optional `api/subscribe.js` function. One test is skipped when no API key is set. That skip means no live request was made. |
 | `tests/archive-search.test.js` | The past-date search. |
 

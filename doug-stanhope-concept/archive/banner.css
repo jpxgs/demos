@@ -1,0 +1,63 @@
+/* Banner colors match the palette in style.css.
+   Day paper #faf8f5, day ink #1c1b19, day muted #4f4b46.
+   Night paper #1c1916, night ink #f3efe6, night muted #c8bfb2. */
+
+.site-archive-banner {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  background: #faf8f5;
+  color: #1c1b19;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+
+html[data-theme="night"] .site-archive-banner {
+  background: #1c1916;
+  color: #f3efe6;
+}
+
+.site-archive-banner p {
+  margin: 0;
+}
+
+.site-archive-banner a {
+  color: inherit;
+}
+
+.site-archive-banner .theme-toggle {
+  margin-left: 0.75rem;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #4f4b46;
+  font: inherit;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+html[data-theme="night"] .site-archive-banner .theme-toggle {
+  color: #c8bfb2;
+}
+
+html[data-theme="night"] .site-archive-banner .theme-night,
+html:not([data-theme="night"]) .site-archive-banner .theme-day {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.site-archive-banner .theme-state {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

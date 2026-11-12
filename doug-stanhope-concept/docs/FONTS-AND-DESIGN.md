@@ -13,17 +13,23 @@ The files are in `fonts/`. They are Latin subsets, `woff2`, with `font-display: 
 
 The license is the SIL Open Font License. The text is `fonts/OFL.txt`. You may use the fonts on this site. Do not sell the font files by themselves.
 
+## Day and night
+
+The header has a text control, Day / Night. It is IBM Plex Mono, the same size as the navigation. The current choice is underlined.
+
+The choice is saved in the browser under the key `theme`. Before anyone chooses, the page follows the visitor's `prefers-color-scheme`. A small script in the head of `index.html` applies the choice before the first paint. The same script is on the recovered archive pages, and the banner there uses the same colors.
+
 ## Change a color
 
-Open `style.css` and edit the values under `:root`.
+Open `style.css`. Day colors are under `:root`. Night colors are under `html[data-theme="night"]`.
 
-| Name | Role | Current |
-| --- | --- | --- |
-| `--ink` | Text | `#1c1b19` |
-| `--muted` | Secondary text | `#4f4b46` |
-| `--paper` | Page background | `#faf8f5` |
+| Name | Role | Day | Night |
+| --- | --- | --- | --- |
+| `--ink` | Text | `#1c1b19` | `#f3efe6` |
+| `--muted` | Secondary text | `#4f4b46` | `#c8bfb2` |
+| `--paper` | Page background | `#faf8f5` | `#1c1916` |
 
-Keep text dark on a light background. Small label text needs strong contrast. After a change, check the page on a phone and run the browser tests if you can.
+Night is warm off-black paper and warm off-white text. Both pairings are darker or lighter than the WCAG AA threshold for normal text. If you change a color, change the matching value in `archive/banner.css` as well. The archive banner does not load `style.css`, so its six colors are copied there. Small label text needs strong contrast. After a change, check the page in both modes and run the browser tests if you can.
 
 ## Change a font
 

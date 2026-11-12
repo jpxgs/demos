@@ -38,24 +38,55 @@ test("the public form posts to the Mailchimp address in site.json", () => {
   const embed = require("../js/mailchimp-form.js");
   const html = read("index.html");
   const action = embed.postAction(site.mailchimp).replace(/&/g, "&amp;");
-  assert.match(html, new RegExp(`action="${action.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`));
   assert.match(html, /name="EMAIL"/);
   assert.match(html, /name="REGION"/);
   assert.match(html, new RegExp(`name="${embed.botField(site.mailchimp)}"`));
-  if (site.signupEnabled === false) {
+  assert.ok(["live", "preview", "off"].includes(site.signupMode), site.signupMode);
+  if (site.signupMode === "off") {
     assert.match(html, /<form id="mailing-list-form"[^>]* hidden>/);
     assert.doesNotMatch(html, /<p id="signup-off"[^>]* hidden>/);
+    assert.match(html, /action="#list"/);
   } else {
     assert.doesNotMatch(html, /<form id="mailing-list-form"[^>]* hidden>/);
     assert.match(html, /<p id="signup-off"[^>]* hidden>/);
+  }
+  if (site.signupMode === "live") {
+    assert.match(html, new RegExp(`action="${action.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`));
+  } else if (site.signupMode === "preview") {
+    assert.match(html, /action="#list"/);
+    assert.doesNotMatch(html, /<form id="mailing-list-form"[^>]*list-manage\.com/);
   }
   for (const region of mailchimp.REGIONS) {
     assert.ok(html.includes(`value="${region}"`), region);
   }
 });
 
+test("a missing region field is explained without posting in preview mode", () => {
+  const embed = require("../js/mailchimp-form.js");
+  assert.equal(embed.signupMode({ signupMode: "live" }), "live");
+  assert.equal(embed.signupMode({ signupMode: "preview" }), "preview");
+  assert.equal(embed.signupMode({ signupMode: "off" }), "off");
+  assert.equal(embed.signupMode({}), "live");
+  assert.equal(
+    embed.visitorMessage({ result: "error", msg: "0 - Please enter a value for REGION" }),
+    embed.REGION_REJECTION
+  );
+  assert.equal(
+    embed.visitorMessage({ result: "error", msg: "The merge field was not found." }),
+    embed.REGION_REJECTION
+  );
+  assert.match(
+    embed.visitorMessage({ result: "error", msg: "Too many attempts. Please try again." }),
+    /Too many attempts/
+  );
+  assert.equal(
+    embed.MODE_STATUS.preview,
+    "Preview copy: signup is not sent. On the live site this goes to the mailing list."
+  );
+});
+
 test("internal pages point back at the single page and do not keep the old Patreon URL", () => {
-  const htmlFiles = walk(root).filter((file) => file.endsWith(".html"));
+  const htmlFiles = walk(root).filter((file) => file.endsWith(".html") && !file.includes(`${path.sep}archive${path.sep}`));
   for (const file of htmlFiles) {
     const html = fs.readFileSync(file, "utf8");
     assert.doesNotMatch(html, /patreon\.com\/dougstanhope/, path.relative(root, file));
@@ -88,6 +119,28 @@ test("no secrets or unused headshot files are committed", () => {
   for (const shot of content.headshots || []) {
     assert.ok(fs.existsSync(path.join(root, shot.src)), shot.src);
   }
+});
+
+test("the theme script is inline, early, and allowed by the content security policy", () => {
+  const crypto = require("node:crypto");
+  const html = read("index.html");
+  const match = html.match(/<script id="theme-boot">([\s\S]*?)<\/script>/);
+  assert.ok(match, "theme boot script");
+  const hash = crypto.createHash("sha256").update(match[1]).digest("base64");
+  const head = html.slice(0, html.indexOf("</head>"));
+  assert.ok(head.indexOf('id="theme-boot"') < head.indexOf('rel="stylesheet"'));
+  assert.match(html, /data-theme-toggle/);
+  assert.match(html, /Day/);
+  assert.match(html, /Night/);
+  const vercel = JSON.parse(read("vercel.json"));
+  const csp = vercel.headers[0].headers.find((header) => header.key === "Content-Security-Policy").value;
+  assert.match(csp, new RegExp(`'sha256-${hash.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}'`));
+  const css = read("style.css");
+  assert.match(css, /html\[data-theme="night"\]/);
+  assert.match(css, /--paper:\s*#1c1916/);
+  assert.match(css, /--ink:\s*#f3efe6/);
+  assert.match(read("archive/banner.css"), /#1c1916/);
+  assert.match(read("archive/banner.css"), /#f3efe6/);
 });
 
 test("section order and security headers are present", () => {

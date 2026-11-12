@@ -126,8 +126,8 @@ In `data/content.json`, under `podcast`:
 
 - `summary` is the short paragraph.
 - `links` is the list of listening destinations. Each item has `label` and `href`. Use the full `https://` address.
-- `embed` is the one player. `src` must be an `https://omny.fm/...` address. `title` is the accessible name of the player.
-- `episodes` is the short list under the player. `url` is optional. `text` is the note.
+- `embed` is optional. Leave it out. The page does not show a player unless this object is present. To add one, set `src` to an `https://omny.fm/...` address and `title` to the accessible name of that player. Any other host is ignored.
+- `episodes` is the short list of recent episodes. `url` is optional. `text` is the note.
 - `notes` is the sentence that says the list is partial.
 
 Do not add a second player. The listening links are the main promotion.

@@ -39,22 +39,27 @@ let html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 html = html.replace(/rel="canonical" href="[^"]*"/, `rel="canonical" href="${origin}/"`);
 html = html.replace(/property="og:url" content="[^"]*"/, `property="og:url" content="${origin}/"`);
 html = html.replace(
-  /action="https:\/\/[^"]*list-manage\.com\/subscribe\/post\?[^"]*"/,
-  `action="${action.replace(/&/g, "&amp;")}"`
-);
-html = html.replace(
   /href="https:\/\/[^"]*list-manage\.com\/subscribe\?[^"]*"/,
   `href="${page.replace(/&/g, "&amp;")}"`
 );
 html = html.replace(/name="b_[a-zA-Z0-9_]+"/, `name="${bot}"`);
-const signupOn = site.signupEnabled !== false;
+const mode = site.signupMode;
+if (mode !== "live" && mode !== "preview" && mode !== "off") {
+  console.error("data/site.json signupMode must be live, preview, or off.");
+  process.exit(1);
+}
+const formAction = mode === "live" ? action.replace(/&/g, "&amp;") : "#list";
+html = html.replace(
+  /(<form id="mailing-list-form"\b[^>]*?)\saction="[^"]*"/,
+  `$1 action="${formAction}"`
+);
 html = html.replace(/<form id="mailing-list-form"([^>]*)>/, (match, attrs) => {
   const cleaned = attrs.replace(/\s+hidden\b/g, "");
-  return `<form id="mailing-list-form"${cleaned}${signupOn ? "" : " hidden"}>`;
+  return `<form id="mailing-list-form"${cleaned}${mode === "off" ? " hidden" : ""}>`;
 });
 html = html.replace(/<p id="signup-off"([^>]*)>/, (match, attrs) => {
   const cleaned = attrs.replace(/\s+hidden\b/g, "");
-  return `<p id="signup-off"${cleaned}${signupOn ? " hidden" : ""}>`;
+  return `<p id="signup-off"${cleaned}${mode === "off" ? "" : " hidden"}>`;
 });
 write("index.html", html);
 

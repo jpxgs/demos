@@ -120,7 +120,7 @@ No live call was made. The unit test that would ping Mailchimp skips when the th
 
 ## Content and headshots
 
-`data/content.json` is escaped on the way into the page. `data/podcast.json` is the newest RSS sample. `node scripts/refresh-podcast.js` rewrites it from the public feed. There is no build step, so a refresh is a committed file, not a request on each page view. `data/sources.json` is the source list rendered at the end of Press. Podcast embed hosts, if an embed is added again, are limited to `omny.fm`. The current page does not embed a player. The feed links are the episode list. Headshot `src` must match `assets/press/{filename}` and must have alt text. External or path-traversal sources are dropped. `Person.image` is added only for a headshot that passes those rules.
+`data/content.json` is escaped on the way into the page. `data/podcast.json` is the newest RSS sample. `node scripts/refresh-podcast.js` rewrites it from the public feed. There is no build step, so a refresh is a committed file, not a request on each page view. `data/sources.json` is the source list rendered at the end of Press. The page does not embed a player. Listening links and the recent episode list are the podcast section. To add one player, set `podcast.embed` in `data/content.json` to an object with `src` (an `https://omny.fm/...` address) and `title` (the accessible name). Any other host is ignored. The optional preview header already allows `frame-src https://omny.fm`. Do not add a second player. Headshot `src` must match `assets/press/{filename}` and must have alt text. External or path-traversal sources are dropped. `Person.image` is added only for a headshot that passes those rules.
 
 `data/site.json` is the only place for the public origin and the public Mailchimp ids. `node scripts/apply-site-config.js` copies them into the page, sitemap, robots file, and old paths. `tests/quality.test.js` fails if those copies drift. The page script also reads `site.json` for Event and Person URLs.
 
@@ -161,16 +161,16 @@ The workflow `.github/workflows/doug-stanhope-checks.yml` runs the unit tests, i
 - `tests/quality.test.js` covers canonicals, regions, old paths, secrets, and header presence.
 - `tests/browser/site.spec.js` covers render, order, keyboard tab order, axe, overflow, the Mailchimp form action, and screenshots.
 
-Latest local run before this handoff: 29 unit tests passed, 1 skipped (no Mailchimp credentials, no live request), 8 browser tests passed. Re-run them rather than trusting this paragraph after further edits.
+Latest local run before this handoff: 32 unit tests passed, 1 skipped (no Mailchimp credentials, no live request), 12 browser tests passed. Re-run them rather than trusting this paragraph after further edits.
 
 ## Known limitations
 
 - No upcoming show can be marked complete, or verified in Google's rich results, until a real date is supplied with a time, timezone, venue, city, country, and preferably a street address and ticket URL.
 - The mailing list form posts to Mailchimp from the browser. A live signup was not completed. The audience still needs a `REGION` text field or Mailchimp will reject the post. `api/subscribe.js` and `vercel.json` are optional. `vercel.json` only matters on a Vercel-style preview host.
-- Headshots, a public booking contact, and a working Herald Scotland essay URL were not available. The essay was removed rather than left on the publication homepage. One candidate URL resolved to a different article and was not used.
+- Headshots and a public booking contact were not available. The Herald essay is linked at its working article URL.
 - All Things Comedy returned a bot challenge to a scripted fetch. The address is the one already used by the show's public listings. Apple, Spotify, Patreon, Omny, and the RSS feed were fetched directly. Patreon ` /dougstanhope` returns 404 and is not used.
-- The Internet Archive's CDX API lists captures of the old domain, including 1999, 2016, and 2025–2026. A full page download was rate-limited and was not reviewed, so no old page was copied into this repository.
-- The embedded player is Omny's. Its internal controls are outside this page's accessibility scan. The iframe itself has a title and stays within the viewport.
+- Recovered old-site pages, their capture dates, and the downloads that failed are listed in `docs/OLD-SITE.md`. The copy is not the whole historical site.
+- There is no embedded player. The accessibility scan covers the page itself. An Omny player is added only if `podcast.embed.src` is an `https://omny.fm/` address.
 - JavaScript is required for dates, biography, press, and the footer links, because those come from the JSON files. Headings, the mailing-list fallback, and a short `noscript` list do not.
 - Country codes on the transcribed archive are a normalization of text that was already on the page, not a new research pass.
 - Repository and hosting access have not been transferred. Editing docs do not make the team able to publish until that access exists.

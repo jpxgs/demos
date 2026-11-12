@@ -10,7 +10,7 @@ That person is already on the list. That is a success, not a second signup.
 
 ## The form says it is turned off
 
-`signupEnabled` in `data/site.json` is `false`, or the form tag in `index.html` still has `hidden`. Set the flag to `true` and run `node scripts/apply-site-config.js`.
+`signupMode` in `data/site.json` is `off`, or the form tag in `index.html` still has `hidden`. The preview uses `live`. Set `signupMode` to `live` and run `node scripts/apply-site-config.js`.
 
 ## A date I added does not show under Tour dates
 

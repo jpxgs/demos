@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script id="theme-boot">(function(){var key="theme";function preferred(){try{var saved=localStorage.getItem(key);if(saved==="day"||saved==="night")return saved;}catch(e){}try{if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)return "night";}catch(e){}return "day";}function paint(theme){document.documentElement.setAttribute("data-theme",theme);var meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute("content",theme==="night"?"#1c1916":"#faf8f5");var night=theme==="night";var buttons=document.querySelectorAll("[data-theme-toggle]");for(var i=0;i<buttons.length;i++){buttons[i].setAttribute("aria-pressed",night?"true":"false");var state=buttons[i].querySelector(".theme-state");if(state)state.textContent=night?"Night theme on. Switch to day.":"Day theme on. Switch to night.";}}paint(preferred());document.addEventListener("DOMContentLoaded",function(){paint(preferred());});document.addEventListener("click",function(event){var node=event.target;var button=node&&node.closest?node.closest("[data-theme-toggle]"):null;if(!button)return;var next=document.documentElement.getAttribute("data-theme")==="night"?"day":"night";try{localStorage.setItem(key,next);}catch(e){}paint(next);});})();</script>
+  <meta name="robots" content="noindex">
+  <title>Page not in the archive — Doug Stanhope</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main class="wrap">
+    <h1>This page was not included</h1>
+    <p>The recovered copy keeps the main sections only. Large media and the rest of the old site were not saved.</p>
+    <p><a href="index.html">All recovered pages</a></p>
+  </main>
+</body>
+</html>

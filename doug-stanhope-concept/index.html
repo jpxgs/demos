@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Doug Stanhope</title>
   <meta name="description" content="Doug Stanhope. Tour dates, The Doug Stanhope Podcast, mailing list, biography, and press.">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#faf8f5">
+  <script id="theme-boot">(function(){var key="theme";function preferred(){try{var saved=localStorage.getItem(key);if(saved==="day"||saved==="night")return saved;}catch(e){}try{if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)return "night";}catch(e){}return "day";}function paint(theme){document.documentElement.setAttribute("data-theme",theme);var meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute("content",theme==="night"?"#1c1916":"#faf8f5");var night=theme==="night";var buttons=document.querySelectorAll("[data-theme-toggle]");for(var i=0;i<buttons.length;i++){buttons[i].setAttribute("aria-pressed",night?"true":"false");var state=buttons[i].querySelector(".theme-state");if(state)state.textContent=night?"Night theme on. Switch to day.":"Day theme on. Switch to night.";}}paint(preferred());document.addEventListener("DOMContentLoaded",function(){paint(preferred());});document.addEventListener("click",function(event){var node=event.target;var button=node&&node.closest?node.closest("[data-theme-toggle]"):null;if(!button)return;var next=document.documentElement.getAttribute("data-theme")==="night"?"day":"night";try{localStorage.setItem(key,next);}catch(e){}paint(next);});})();</script>
   <link rel="canonical" href="https://demostanhope.vercel.app/">
   <meta property="og:title" content="Doug Stanhope">
   <meta property="og:description" content="Tour dates, The Doug Stanhope Podcast, mailing list, biography, and press.">
@@ -21,15 +22,18 @@
     <div class="wrap bar">
       <a class="skip" href="#dates">Skip to dates</a>
       <h1><a href="#top">Doug Stanhope</a></h1>
-      <nav aria-label="Sections">
-        <a href="#dates">Dates</a>
-        <a href="#podcast">Podcast</a>
-        <a href="#list">List</a>
-        <a href="#bio">Bio</a>
-        <a href="#work">Work</a>
-        <a href="#press">Press</a>
-        <a href="#archive">Archive</a>
-      </nav>
+      <div class="bar-end">
+        <nav aria-label="Sections">
+          <a href="#dates">Dates</a>
+          <a href="#podcast">Podcast</a>
+          <a href="#list">List</a>
+          <a href="#bio">Bio</a>
+          <a href="#work">Work</a>
+          <a href="#press">Press</a>
+          <a href="#archive">Archive</a>
+        </nav>
+        <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false"><span class="theme-day">Day</span> / <span class="theme-night">Night</span><span class="theme-state">Day theme on. Switch to night.</span></button>
+      </div>
     </div>
   </header>
   <main class="wrap" id="top">
@@ -55,8 +59,8 @@
     <section id="list">
       <h2>No. 03 — Mailing list</h2>
       <p>Tour announcements and news by email. A region is required. The form sends the signup directly to the mailing list. That list needs a text field tagged REGION, or the signup is rejected.</p>
-      <p id="signup-off">The mailing list form is turned off on this copy.</p>
-      <form id="mailing-list-form" class="signup" method="post" action="https://us7.list-manage.com/subscribe/post?u=99a44c5b158aed2fa397e1429&amp;id=e2b49520e8" hidden>
+      <p id="signup-off" hidden>The mailing list form is turned off on this copy.</p>
+      <form id="mailing-list-form" class="signup" method="post" action="https://us7.list-manage.com/subscribe/post?u=99a44c5b158aed2fa397e1429&amp;id=e2b49520e8">
         <label for="signup-email">Email address</label>
         <input id="signup-email" name="EMAIL" type="email" autocomplete="email" required>
         <label for="signup-region">Region</label>

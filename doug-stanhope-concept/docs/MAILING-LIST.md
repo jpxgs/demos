@@ -2,18 +2,19 @@
 
 The form on the page posts email and region to Mailchimp from the visitor's browser. No server is required. `api/subscribe.js` is an optional upgrade, described at the end.
 
-## The on/off switch
+## The form mode
 
-`data/site.json` has `signupEnabled`.
+`data/site.json` has `signupMode`. The preview and the downloadable package both use `live`. The other two values are optional.
 
-- `true` shows the form.
-- `false` hides the form and shows the sentence "The mailing list form is turned off on this copy."
+- `live` shows the form and sends it to Mailchimp.
+- `preview` shows the same form, including the region field, and checks that the fields are filled in. Submitting it does not contact Mailchimp. The page says: "Preview copy: signup is not sent. On the live site this goes to the mailing list."
+- `off` hides the form and shows "The mailing list form is turned off on this copy."
 
-The preview is published with `false` so visitors cannot reach the live list before the `REGION` field exists. The downloadable zip is built with `true`.
+The form does not need an API key. It posts from the visitor's browser. An API key is only for the optional server function at the end of this page.
 
-If you are about to publish and the `REGION` field is not ready, set `"signupEnabled": false`, run `node scripts/apply-site-config.js`, and upload. After a test signup works, set it to `true`, run the script again, and upload.
+If Mailchimp does not have a text field tagged `REGION`, a live signup is rejected. The page then says: "That signup did not go through. The mailing list does not have a region field yet, so it rejected the form. It needs a text field tagged REGION."
 
-Without Node, add or remove the word `hidden` as described in `docs/GOING-LIVE.md`, and set the same value in `data/site.json`.
+After you change `signupMode`, run `node scripts/apply-site-config.js`. Without Node, follow the manual list in `docs/GOING-LIVE.md`.
 
 ## Create the REGION field in Mailchimp
 
@@ -54,7 +55,7 @@ Confirm that audience is the one you want before you rely on it. Those ids are p
 
 ## Confirm a test signup
 
-1. Set `signupEnabled` to `true` and apply the config.
+1. Confirm `signupMode` is `live` and apply the config.
 2. Open the page.
 3. Use an inbox you can read. Choose a region. Check the consent box. Submit.
 4. In Mailchimp, open the audience and find that address. The region field should show the words you chose.
@@ -69,9 +70,10 @@ This package has not completed that live test. Do it once before you announce th
 | --- | --- |
 | Check your email, or Mailchimp's own confirmation sentence | The signup was accepted and is waiting on the confirmation email. |
 | Already subscribed, or a similar sentence | The address was already on the list. |
-| The mailing list rejected the region field | The `REGION` tag does not exist yet, or the tag is spelled differently. |
+| That signup did not go through. The mailing list does not have a region field yet | The `REGION` tag does not exist yet, or the tag is spelled differently. |
+| Preview copy: signup is not sent | `signupMode` is `preview`. Nothing was sent. |
 | Sending you on to the mailing list | The in-page check failed. The browser then opens Mailchimp's own form page. |
-| The mailing list form is turned off on this copy | `signupEnabled` is `false`. |
+| The mailing list form is turned off on this copy | `signupMode` is `off`. |
 | The browser's own "fill in this field" message | Email, region, or consent was left blank. |
 
 ## Consent and spam
