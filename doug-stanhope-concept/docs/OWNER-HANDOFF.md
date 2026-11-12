@@ -27,7 +27,7 @@ The handoff of source files does not itself transfer ownership of third-party ac
 
 1. **Tour data:** confirmed future dates, show times, venue names, full addresses, timezone offsets and exact ticket URLs.
 2. **Mailing list:** identify the provider, configure `MAILING_LIST_WEBHOOK_URL` and optional `MAILING_LIST_WEBHOOK_TOKEN` in Vercel, map the email and region fields in the provider's webhook/automation, and confirm consent, privacy-policy wording and double-opt-in behavior.
-3. **Biography and press materials:** approved biography text, official headshots and permission to publish them.
+3. **Biography and press materials:** approved biography text if the team prefers wording other than the official-source summary, official high-resolution headshots and permission to publish them.
 4. **Press links:** exact article URLs, rather than general publisher homepages.
 5. **Legacy archive:** source records or verified Wayback Machine captures for any older tour, podcast, journal or press material to be migrated.
 
