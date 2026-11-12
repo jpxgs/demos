@@ -11,6 +11,7 @@ doug-stanhope-concept/
 ├── data/
 │   └── shows.json
 ├── js/
+│   ├── archive-search.js
 │   └── site.js
 ├── docs/
 │   ├── OWNER-HANDOFF.md
@@ -23,6 +24,7 @@ doug-stanhope-concept/
 - `index.html` — page structure and editorial content that changes infrequently.
 - `style.css` — typography, spacing, color, responsive behavior and focus states.
 - `data/shows.json` — source of truth for confirmed upcoming shows.
+- `js/archive-search.js` — filters the historical tour archive by year, city, venue or text.
 - `js/site.js` — renders upcoming dates and creates Schema.org Event JSON-LD from complete event records.
 - `docs/OWNER-HANDOFF.md` — ownership, accounts and scope overview.
 - `docs/CONTENT-EDITING-GUIDE.md` — step-by-step editing instructions.
