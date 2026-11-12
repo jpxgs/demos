@@ -38,17 +38,18 @@ This is a compatibility target, not a claim that every historical browser or phy
 Run with Node.js 18 or newer:
 
 ```bash
-node --test tests/site.test.js
+node --test
 ```
 
 The tests exercise:
-1. Empty show list.
-2. Valid future show and ticket link rendering.
-3. Schema.org Event JSON-LD generation.
-4. Rejection of unsafe ticket URL schemes.
-5. Graceful fallback for malformed JSON shape and failed requests.
-6. Stable display of the venue's calendar date regardless of the visitor's timezone.
-7. Rejection of timestamps without an explicit timezone offset.
+1. Archive search initialization, filtering, result counts and missing-control fallback.
+2. Empty show list.
+3. Valid future show and ticket link rendering.
+4. Schema.org Event JSON-LD generation.
+5. Rejection of unsafe ticket URL schemes.
+6. Graceful fallback for malformed JSON shape and failed requests.
+7. Stable display of the venue's calendar date regardless of the visitor's timezone.
+8. Rejection of timestamps without an explicit timezone offset.
 
 ## Manual release checklist
 
