@@ -8,10 +8,13 @@ A deliberately simple, text-first static website built with plain HTML, CSS, JSO
 doug-stanhope-concept/
 ├── index.html
 ├── style.css
+├── api/
+│   └── subscribe.js
 ├── data/
 │   └── shows.json
 ├── js/
 │   ├── archive-search.js
+│   ├── mailing-list.js
 │   └── site.js
 ├── docs/
 │   ├── OWNER-HANDOFF.md
@@ -26,6 +29,8 @@ doug-stanhope-concept/
 - `data/shows.json` — source of truth for confirmed upcoming shows.
 - `js/archive-search.js` — filters the historical tour archive by year, city, venue or text.
 - `js/site.js` — renders upcoming dates and creates Schema.org Event JSON-LD from complete event records.
+- `js/mailing-list.js` — enables the signup form only when its server-side provider connection is configured.
+- `api/subscribe.js` — validates email, region and consent, then forwards the signup to a team-configured HTTPS webhook.
 - `docs/OWNER-HANDOFF.md` — ownership, accounts and scope overview.
 - `docs/CONTENT-EDITING-GUIDE.md` — step-by-step editing instructions.
 
@@ -65,9 +70,9 @@ The site can be hosted by any static host. For Vercel, import the repository and
 
 Do not connect or change the canonical custom domain until the team approves the site and hosting arrangement.
 
-## Integrations awaiting team input
+## Mailing-list integration
 
-- Mailing-list provider, signup form/endpoint and exact region-field specification.
+The form and secure webhook adapter are included. To activate them, configure `MAILING_LIST_WEBHOOK_URL` and optionally `MAILING_LIST_WEBHOOK_TOKEN` as protected Vercel environment variables, then map the JSON fields to the team's provider. See [the editing guide](docs/CONTENT-EDITING-GUIDE.md). The form remains hidden until the provider endpoint is configured.
 - Approved biography copy and official headshots.
 - Confirmed future show dates, individual ticket URLs and full venue addresses.
 - Exact article URLs for press links.
