@@ -48,7 +48,7 @@ Run the dependency-free JavaScript checks with Node.js 18 or newer:
 node --test
 ```
 
-The tests cover the archive search, empty show list, valid future events, unsafe ticket URLs, malformed data, venue-local date display, timezone validation, and generated Event structured data. See [the compatibility and test checklist](docs/COMPATIBILITY-AND-TESTING.md) for the manual browser/device matrix. Automated tests do not replace a final visual check on physical devices.
+The tests cover archive search, show rendering and Event structured data, unsafe ticket URLs, malformed data, venue-local date display, timezone validation, and mailing-list endpoint configuration, region/consent validation and secure webhook forwarding. See [the compatibility and test checklist](docs/COMPATIBILITY-AND-TESTING.md) for the manual browser/device matrix. Automated tests do not replace a final visual check on physical devices.
 
 ## Compatibility
 
