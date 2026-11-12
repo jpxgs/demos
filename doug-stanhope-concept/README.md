@@ -1,15 +1,18 @@
-# Doug Stanhope — Concept Site 001
+# Doug Stanhope — site rebuild
 
-A standalone, responsive static-site concept, stored as its own folder inside the demos repository.
+Minimal, text-first static website. No runtime framework or third-party client scripts.
 
-## Preview
-Open `index.html` in a browser, or import this repository into Vercel and set the Root Directory to `doug-stanhope-concept`.
+## Structure
+- `/` home
+- `/tour/` searchable historical tour archive
+- `/recordings/`, `/books/`, `/podcast/`, `/journal/`, `/press/`, `/store/`, `/about/`
+- Shared typography and layout in `/style.css`
 
-## Before public launch
-- Confirm authorization to reproduce Doug Stanhope site copy, photographs, video, podcast material, logos, and other assets.
-- Replace visual placeholders with approved/licensed photography.
-- Populate tour dates and episode/archive data from verified official sources.
-- Connect ticketing, podcast embeds, social links, analytics, and any CMS only after approval.
-- Update metadata, canonical URL, legal/privacy details, and accessibility QA.
+## Content integrity
+Tour entries currently transcribed from the official source for 2022–2026. Older years are not represented yet. Podcast and journal sections are partial transcriptions. Source gaps are not filled by inference.
 
-This is a design draft, not an official Doug Stanhope website. It contains no migrated third-party content.
+## Deployment
+Import the repository into Vercel and set the Root Directory to `doug-stanhope-concept`. Static output; no build command required.
+
+## Release gate
+Complete and cross-check remaining content migrations, verify external transaction/listening destinations, run link/accessibility/content QA, and obtain client approval. Do not point the canonical domain or promote to production without explicit authorization.
