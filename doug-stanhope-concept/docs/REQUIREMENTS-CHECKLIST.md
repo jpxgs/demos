@@ -2,7 +2,7 @@
 
 Status words mean what they say. A feature that is built but waiting on data is not marked complete.
 
-Production was opened at `https://demostanhope.vercel.app/` after commit `53fb459a6eb00a3b59084f5ce51b0e221088edaa` was deployed. Chromium at 1280×800 and 390×844 showed the section order, the empty date state, the podcast links and player, the hidden signup form, the biography, and the archive search. There were no console errors and no failed same-origin requests. `GET /api/subscribe/` returned `{"configured":false}`. `POST` returned 503. The response included the content security policy. GitHub's test workflow and the hosting check both succeeded on the merge.
+Production was opened at `https://demostanhope.vercel.app/` after commit `58c888dab109ca8e102e51596ca659d0e1522539` was deployed. Chromium at 1280×800 and 390×844 showed the section order, the empty date state, the podcast links and recent episodes, the hidden signup form with the off notice, the work catalogs, and the warm paper background. Computed type was IBM Plex Sans and IBM Plex Mono. The header had no border. There were no console errors and no failed same-origin requests. Canonical was `https://demostanhope.vercel.app/`.
 
 Local run before that deploy: 29 unit tests passed, 1 skipped because no mailing-list credentials were present, 8 browser tests passed on Chromium at 1280×800 and 390×844.
 
@@ -22,7 +22,7 @@ Local run before that deploy: 29 unit tests passed, 1 skipped because no mailing
 
 | Requirement | Implemented | Tested | Verified in production | Blocked |
 | --- | --- | --- | --- | --- |
-| As simple as possible, plain and text-first | Yes. One serif, black on white, underlined links. Borders and a sticky header are only there to group and navigate. | Browser screenshots at desktop and mobile. Axe on the page, excluding the third-party player. | The live page was inspected at desktop and phone width. | None for the current direction. Later design notes were never sent. |
+| As simple as possible, plain and text-first | Yes. IBM Plex, warm paper, underlined links. Sections are separated by space. The header stays at the top of the page. | Browser screenshots at desktop and mobile. Axe on the page. | The live page was inspected at desktop and phone width after `58c888d`. Background `rgb(250, 248, 245)`, header border `0`. | None for the current direction. |
 | Keep the old site available | The archive links to the Internet Archive calendar and the official past-gigs page. The old pages were not copied. | The archive links render. | Those links are on the live archive section. No old page was copied into the site. | A reviewed copy of the old pages. A download of a capture was rate-limited and was not saved. |
 
 ## From the build brief
@@ -44,7 +44,7 @@ Local run before that deploy: 29 unit tests passed, 1 skipped because no mailing
 | --- | --- | --- | --- | --- |
 | Self-hosted label typography | IBM Plex Sans and IBM Plex Mono, Latin woff2, OFL, `font-display: swap`, only the four weights in use. Section headers are tracked uppercase. | Font files, license text, and computed font names are checked. | Confirmed on the preview host after `a8d4cce`. The four font files loaded and the computed faces were Plex Sans and Plex Mono. | None. |
 | Public-source catalogs and recent episodes | Discography, books, screen credits, a longer biography, more press links, and eight RSS episodes. Each group has a source. Dead links found while checking were left out. | Content rendering and the podcast file shape. | Confirmed on the preview host after `a8d4cce`: Mailbag, 659 episodes, Discount Meat, Grand Central, The Road Dog, Worcester. | A full retype of the official past-gigs page. The recent years were compared and left as the existing selection. |
-| Host-agnostic handoff | One zip of the site. `data/site.json` is the only public address. The form posts to Mailchimp without a server. `vercel.json` is optional preview config. `signupEnabled` is false on the preview and true in the zip. | Fresh unzip, `npm test`, and a local static server. The form's hidden state follows the flag. | Pending the next preview deploy of this change. | A completed live signup, which needs the `REGION` field and was not sent. |
+| Host-agnostic handoff | One zip of the site. `data/site.json` is the only public address. The form posts to Mailchimp without a server. `vercel.json` is optional preview config. `signupEnabled` is false on the preview and true in the zip. | Fresh unzip, `npm test`, and a local static server. The form's hidden state follows the flag. | The preview at `58c888d` hides the form and shows the off notice. The zip from that commit has the form on and passed the file tests. | A completed live signup, which needs the `REGION` field and was not sent. |
 
 ## Do not mark these done
 
