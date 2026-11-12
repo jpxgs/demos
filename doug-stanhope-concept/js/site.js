@@ -50,16 +50,23 @@
   }
 
   if (contentApi) {
-    fetch("./data/content.json", { headers: { Accept: "application/json" }, cache: "no-cache" })
-      .then((response) => {
-        if (!response.ok) throw new Error("Content request failed");
-        return response.json();
+    Promise.all([
+      fetch("./data/content.json", { headers: { Accept: "application/json" }, cache: "no-cache" }),
+      fetch("./data/podcast.json", { headers: { Accept: "application/json" }, cache: "no-cache" }),
+      fetch("./data/sources.json", { headers: { Accept: "application/json" }, cache: "no-cache" })
+    ])
+      .then(async ([contentResponse, feedResponse, sourceResponse]) => {
+        if (!contentResponse.ok) throw new Error("Content request failed");
+        const content = await contentResponse.json();
+        const feed = feedResponse.ok ? await feedResponse.json() : null;
+        const sources = sourceResponse.ok ? await sourceResponse.json() : [];
+        return contentApi.renderAll(content, feed, sources);
       })
-      .then((content) => {
-        const rendered = contentApi.renderAll(content);
+      .then((rendered) => {
         const mounts = {
           "podcast-body": rendered.podcast,
           "bio-body": rendered.bio,
+          "work-body": rendered.work,
           "press-body": rendered.press,
           "archive-intro": rendered.archive,
           "footer-body": rendered.footer
@@ -71,7 +78,7 @@
         replaceJsonLd("profile-jsonld", rendered.person);
       })
       .catch(() => {
-        ["podcast-body", "bio-body", "press-body", "archive-intro", "footer-body"].forEach((id) => {
+        ["podcast-body", "bio-body", "work-body", "press-body", "archive-intro", "footer-body"].forEach((id) => {
           unavailable(document.getElementById(id), "This section is temporarily unavailable.");
         });
       });

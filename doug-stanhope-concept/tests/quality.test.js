@@ -79,7 +79,25 @@ test("no secrets or unused headshot files are committed", () => {
 test("section order and security headers are present", () => {
   const html = read("index.html");
   const ids = [...html.matchAll(/<section id="([^"]+)"/g)].map((match) => match[1]);
-  assert.deepEqual(ids, ["dates", "podcast", "list", "bio", "press", "archive"]);
+  assert.deepEqual(ids, ["dates", "podcast", "list", "bio", "work", "press", "archive"]);
+  for (const file of [
+    "fonts/ibm-plex-sans-400.woff2",
+    "fonts/ibm-plex-sans-600.woff2",
+    "fonts/ibm-plex-mono-400.woff2",
+    "fonts/ibm-plex-mono-500.woff2"
+  ]) {
+    const bytes = fs.readFileSync(path.join(root, file));
+    assert.equal(bytes.subarray(0, 4).toString(), "wOF2", file);
+  }
+  assert.match(read("fonts/OFL.txt"), /SIL Open Font License/);
+  assert.match(read("style.css"), /font-display:\s*swap/);
+  assert.doesNotMatch(html, /fonts\.googleapis|fonts\.gstatic/);
+  const podcast = JSON.parse(read("data/podcast.json"));
+  assert.equal(podcast.episodeCount > 0, true);
+  for (const episode of podcast.episodes) {
+    assert.match(episode.url, /^https:\/\//);
+    assert.match(episode.date, /^\d{4}-\d{2}-\d{2}$/);
+  }
   const vercel = JSON.parse(read("vercel.json"));
   const headers = vercel.headers[0].headers.map((header) => header.key);
   for (const key of ["Content-Security-Policy", "X-Content-Type-Options", "Referrer-Policy", "X-Frame-Options"]) {

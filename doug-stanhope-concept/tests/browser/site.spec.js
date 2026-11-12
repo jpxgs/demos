@@ -27,7 +27,7 @@ async function openHome(page) {
     if (response.status() >= 400) missing.push(url.pathname + " " + response.status());
   });
   await page.goto("/");
-  await expect(page.getByRole("link", { name: "Apple Podcasts" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Apple Podcasts", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "2026" })).toBeVisible();
   return { consoleErrors, pageErrors, missing };
 }
@@ -37,7 +37,7 @@ test("homepage structure, dates, podcast, and metadata", async ({ page }, testIn
   await expect(page).toHaveTitle("Doug Stanhope");
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://demostanhope.vercel.app/");
   const ids = await page.locator("main > section").evaluateAll((nodes) => nodes.map((node) => node.id));
-  expect(ids).toEqual(["dates", "podcast", "list", "bio", "press", "archive"]);
+  expect(ids).toEqual(["dates", "podcast", "list", "bio", "work", "press", "archive"]);
   await expect(page.locator("#upcoming-shows")).toContainText("No dates announced");
   await expect(page.locator("#upcoming-shows a")).toHaveAttribute("href", "#list");
   await expect(page.locator('script#event-jsonld')).toHaveCount(0);
@@ -45,9 +45,12 @@ test("homepage structure, dates, podcast, and metadata", async ({ page }, testIn
   expect(profile["@graph"][0]["@type"]).toBe("Person");
   expect(profile["@graph"].some((item) => item["@type"] === "Event")).toBe(false);
   await expect(page.getByRole("link", { name: "Patreon" })).toHaveAttribute("href", "https://www.patreon.com/stanhopepodcast");
-  await expect(page.locator("#podcast iframe")).toBeVisible();
-  const box = await page.locator("#podcast iframe").boundingBox();
-  expect(box.width).toBeLessThanOrEqual(page.viewportSize().width);
+  await expect(page.getByRole("link", { name: /Doug's Mailbag/ })).toBeVisible();
+  await expect(page.locator("#work")).toContainText("Discount Meat");
+  const bodyFont = await page.locator("body").evaluate((node) => getComputedStyle(node).fontFamily);
+  const labelFont = await page.locator("#dates h2").evaluate((node) => getComputedStyle(node).fontFamily);
+  expect(bodyFont).toContain("IBM Plex Sans");
+  expect(labelFont).toContain("IBM Plex Mono");
   await expect(page.locator("#bio")).toContainText("Approved headshots have not been added yet");
   await expect(page.locator("#bio img")).toHaveCount(0);
   await expect(page.locator("#press")).toContainText("Los Angeles Times");
@@ -73,7 +76,7 @@ test("homepage structure, dates, podcast, and metadata", async ({ page }, testIn
 
 test("keyboard navigation reaches the section links", async ({ page }) => {
   await page.goto("/");
-  const names = ["Skip to dates", "Doug Stanhope", "Dates", "Podcast", "List", "Bio", "Press", "Archive"];
+  const names = ["Skip to dates", "Doug Stanhope", "Dates", "Podcast", "List", "Bio", "Work", "Press", "Archive"];
   for (const name of names) {
     await page.keyboard.press("Tab");
     await expect(page.getByRole("link", { name, exact: true })).toBeFocused();

@@ -72,25 +72,49 @@
     }).join("");
   }
 
-  function renderCatalog(items) {
-    const { escapeHtml } = showsApi();
-    return (Array.isArray(items) ? items : []).map((item) => {
-      if (!item || !item.title) return "";
-      const detail = item.detail ? ` <span class="fine">(${escapeHtml(item.detail)})</span>` : "";
-      return `<li>${escapeHtml(item.title)}${detail}</li>`;
-    }).join("");
+  function formatIsoDate(iso) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || "")) return "";
+    const [year, month, day] = iso.split("-").map(Number);
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      timeZone: "UTC"
+    }).format(new Date(Date.UTC(year, month - 1, day, 12)));
   }
 
-  function renderPodcast(content) {
+  function renderCatalog(items) {
+    const { escapeHtml } = showsApi();
+    const rows = (Array.isArray(items) ? items : []).map((item) => {
+      if (!item || !item.title) return "";
+      const detail = item.detail ? `<span class="detail">${escapeHtml(item.detail)}</span>` : "";
+      return `<li><span>${escapeHtml(item.title)}</span>${detail}</li>`;
+    }).join("");
+    return rows ? `<ul class="catalog">${rows}</ul>` : "";
+  }
+
+  function renderPodcast(content, feed) {
+    const { escapeHtml } = showsApi();
     const podcast = content.podcast || {};
     const links = linkItems(podcast.links);
+    const sourceEpisodes = feed && Array.isArray(feed.episodes) ? feed.episodes : podcast.episodes;
+    const episodes = (sourceEpisodes || []).map((episode) => ({
+      title: episode.title,
+      url: episode.url,
+      text: episode.text,
+      date: formatIsoDate(episode.date) || episode.date
+    }));
+    const feedNote = feed && feed.episodeCount
+      ? `<p class="fine">The public RSS feed listed ${escapeHtml(String(feed.episodeCount))} episodes on ${escapeHtml(formatIsoDate(feed.retrieved) || feed.retrieved)}.</p>`
+      : "";
     return [
       paragraphs(podcast.summary),
       links ? `<ul class="group">${links}</ul>` : "",
       renderEmbed(podcast.embed),
+      feedNote,
       paragraphs(podcast.notes),
-      "<h3>Selected episodes</h3>",
-      renderEpisodes(podcast.episodes)
+      "<h3>Recent episodes</h3>",
+      renderEpisodes(episodes)
     ].join("");
   }
 
@@ -102,21 +126,33 @@
     ].join("");
   }
 
-  function renderPress(content) {
+  function renderWork(content) {
+    const { escapeHtml } = showsApi();
+    const blocks = [
+      ["Discography", content.discography],
+      ["Books", content.books],
+      ["Screen and radio", content.appearances]
+    ];
+    const lists = blocks.map(([heading, items]) => {
+      const list = renderCatalog(items);
+      if (!list) return "";
+      return `<h3>${escapeHtml(heading)}</h3>${list}`;
+    }).join("");
+    return lists + paragraphs(content.catalogNote);
+  }
+
+  function renderPress(content, sources) {
     const groups = Array.isArray(content.press) ? content.press : [];
     const press = groups.map((group) => {
       const links = linkItems(group.links);
       if (!group.heading || !links) return "";
       return `<h3>${showsApi().escapeHtml(group.heading)}</h3><ul>${links}</ul>`;
     }).join("");
-    const recordings = renderCatalog(content.recordings);
-    const books = renderCatalog(content.books);
-    return [
-      press,
-      recordings ? `<h3>Recordings</h3><ul>${recordings}</ul>` : "",
-      books ? `<h3>Books</h3><ul>${books}</ul>` : "",
-      paragraphs(content.catalogNote)
-    ].join("");
+    const sourceLinks = linkItems((Array.isArray(sources) ? sources : []).map((source) => ({
+      label: source.title,
+      href: source.href
+    })));
+    return press + (sourceLinks ? `<h3>Sources</h3><ul>${sourceLinks}</ul>` : "");
   }
 
   function renderArchiveIntro(content) {
@@ -148,11 +184,12 @@
     return { "@context": "https://schema.org", "@graph": [person] };
   }
 
-  function renderAll(content) {
+  function renderAll(content, feed, sources) {
     return {
-      podcast: renderPodcast(content),
+      podcast: renderPodcast(content, feed),
       bio: renderBio(content),
-      press: renderPress(content),
+      work: renderWork(content),
+      press: renderPress(content, sources),
       archive: renderArchiveIntro(content),
       footer: renderFooter(content),
       person: personGraph(content)

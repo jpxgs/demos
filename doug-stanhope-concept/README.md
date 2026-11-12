@@ -8,7 +8,10 @@ A single text-first page. Shows and editorial copy live in JSON. One server func
 index.html                 shell, form, canonical URL
 style.css
 data/shows.json            shows, including the transcribed past dates
-data/content.json          biography, podcast, press, footer
+data/content.json          biography, catalogs, press, footer
+data/podcast.json          newest podcast episodes from the public RSS feed
+data/sources.json          where each public fact came from
+fonts/                     IBM Plex, SIL Open Font License
 api/subscribe.js           mailing-list endpoint
 api/mailchimp.js
 js/shows.js                dates, tickets, Event data

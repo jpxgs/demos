@@ -1,0 +1,92 @@
+[
+  {
+    "id": "wikipedia",
+    "title": "Wikipedia — Doug Stanhope",
+    "href": "https://en.wikipedia.org/wiki/Doug_Stanhope",
+    "retrieved": "2026-11-12",
+    "note": "Summary, early career, Strathmore Press Award, discography table, books table, and the screen and radio credits."
+  },
+  {
+    "id": "wikidata",
+    "title": "Wikidata Q1251875",
+    "href": "https://www.wikidata.org/wiki/Q1251875",
+    "retrieved": "2026-11-12",
+    "note": "Birth date 25 March 1967. The biography uses the year, which the Wikipedia article also gives."
+  },
+  {
+    "id": "rss",
+    "title": "The Doug Stanhope Podcast RSS",
+    "href": "https://rss.libsyn.com/shows/623910/destinations/5490435.xml",
+    "retrieved": "2026-11-12",
+    "note": "Channel description, episode count, and the eight newest titles, dates, and links in data/podcast.json."
+  },
+  {
+    "id": "apple",
+    "title": "Apple Podcasts listing",
+    "href": "https://podcasts.apple.com/us/podcast/the-doug-stanhope-podcast/id610821246",
+    "retrieved": "2026-11-12",
+    "note": "Show name and listening link."
+  },
+  {
+    "id": "billboard",
+    "title": "Billboard — Comedy Albums chart history",
+    "href": "https://www.billboard.com/artist/doug-stanhope/chart-history/gig/",
+    "retrieved": "2026-11-12",
+    "note": "The chart positions printed in the discography are the ones Wikipedia attributes to Billboard. This chart page answered."
+  },
+  {
+    "id": "chortle",
+    "title": "Chortle — Stanhope is critics' choice",
+    "href": "https://www.chortle.co.uk/news/2002/08/22/1623/stanhope_is_critics_choice",
+    "retrieved": "2026-11-12",
+    "note": "Contemporary report of the 2002 Strathmore Press Award."
+  },
+  {
+    "id": "guardian-portrait",
+    "title": "The Guardian — Portrait of the artist",
+    "href": "https://www.theguardian.com/culture/2012/mar/06/doug-stanhope-comedian",
+    "retrieved": "2026-11-12",
+    "note": "Gives birthplace and year: Worcester, Massachusetts, 1967."
+  },
+  {
+    "id": "new-yorker",
+    "title": "The New Yorker — Miles from Where the Action Is",
+    "href": "https://www.newyorker.com/culture/culture-desk/doug-stanhope-miles-from-where-the-action-is",
+    "retrieved": "2026-11-12",
+    "note": "Cited by Wikipedia for residence in Bisbee, Arizona."
+  },
+  {
+    "id": "herald",
+    "title": "The Herald — No laughing matter",
+    "href": "https://www.heraldscotland.com/news/13801297.no-laughing-matter-comic-doug-stanhope-tells-saved-man-jumping-off-edinburgh-bridge/",
+    "retrieved": "2026-11-12",
+    "note": "A working Herald article. The older essay URL no longer resolves and is not linked."
+  },
+  {
+    "id": "deadline",
+    "title": "Deadline — No Place Like Home premiere",
+    "href": "https://deadline.com/2016/08/doug-stanhopes-johnny-depp-stand-up-special-seeso-premiere-date-1201807330/",
+    "retrieved": "2026-11-12",
+    "note": "Premiere report cited by the Wikipedia discography for No Place Like Home."
+  },
+  {
+    "id": "guardian-2006",
+    "title": "The Guardian — If You're Offended, Then You're Not Listening",
+    "href": "https://www.theguardian.com/stage/2006/jul/31/comedy.edinburgh2006",
+    "retrieved": "2026-11-12"
+  },
+  {
+    "id": "official",
+    "title": "Official site",
+    "href": "https://www.dougstanhope.com/",
+    "retrieved": "2026-11-12",
+    "note": "Store, past gigs, journal, and the social links repeated in the footer. The past-gigs page was open on this date. This archive was not retyped from it."
+  },
+  {
+    "id": "imdb",
+    "title": "IMDb — nm0970268",
+    "href": "https://www.imdb.com/name/nm0970268/",
+    "retrieved": "2026-11-12",
+    "note": "Name page recorded on Wikidata. Screen credits on this site are taken from Wikipedia, not from an IMDb scrape."
+  }
+]

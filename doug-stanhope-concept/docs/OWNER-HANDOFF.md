@@ -4,7 +4,7 @@ This is the operating overview for the site owner. Exact editing steps are in [C
 
 ## What the site is
 
-One text-first page. Visitors get, in this order: tour dates, the podcast, the mailing list, a short biography and headshot area, press and other material, then an archive of past dates and pointers to the older site. The footer has contact, booking, the store, and social links.
+One text-first page. Visitors get, in this order: tour dates, the podcast, the mailing list, a short biography and headshot area, albums and books, press, then an archive of past dates and pointers to the older site. The footer has contact, booking, the store, and social links. Labels use a monospace face. Body text uses a plain sans. Both are self-hosted.
 
 There is no separate tour page, store page, or admin screen. Older addresses such as `/podcast/` and `/press/` only send people back to the matching part of the front page.
 

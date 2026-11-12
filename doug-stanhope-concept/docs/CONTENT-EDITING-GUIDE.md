@@ -11,6 +11,9 @@ The site folder is `doug-stanhope-concept/`. Paths below are inside that folder 
 | Add, change, or cancel a show | `data/shows.json` |
 | Change a ticket link | `data/shows.json`, field `ticketUrl` |
 | Biography | `data/content.json`, field `bio` |
+| Albums, books, and screen credits | `data/content.json`, fields `discography`, `books`, and `appearances` |
+| Source list | `data/sources.json` |
+| Recent podcast episodes | `data/podcast.json`, refreshed with the command below |
 | Headshots | an image in `assets/press/`, plus an entry in `data/content.json` `headshots` |
 | Podcast links, player, episode notes | `data/content.json`, field `podcast` |
 | Press, recordings, books | `data/content.json`, fields `press`, `recordings`, `books` |
@@ -107,6 +110,14 @@ In `data/content.json`, under `podcast`:
 - `notes` is the sentence that says the list is partial.
 
 Do not add a second player. The listening links are the main promotion.
+
+Recent episode titles come from the public RSS feed, not from this section. From this folder, run:
+
+```bash
+node scripts/refresh-podcast.js
+```
+
+That rewrites `data/podcast.json`. Read the new titles, then commit the file. The site does not fetch the feed on each visit.
 
 ## Press and other links
 

@@ -12,6 +12,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://demostanhope.vercel.app/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/ibm-plex-mono-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -24,6 +26,7 @@
         <a href="#podcast">Podcast</a>
         <a href="#list">List</a>
         <a href="#bio">Bio</a>
+        <a href="#work">Work</a>
         <a href="#press">Press</a>
         <a href="#archive">Archive</a>
       </nav>
@@ -40,17 +43,17 @@
       </ul>
     </noscript>
     <section id="dates">
-      <h2>Tour dates</h2>
+      <h2>No. 01 — Tour dates</h2>
       <div id="upcoming-shows">
         <p class="empty">No dates announced. <a href="#list">Join the list</a> for news.</p>
       </div>
     </section>
     <section id="podcast">
-      <h2>Podcast</h2>
+      <h2>No. 02 — Podcast</h2>
       <div id="podcast-body"></div>
     </section>
     <section id="list">
-      <h2>Mailing list</h2>
+      <h2>No. 03 — Mailing list</h2>
       <p>Tour announcements and news by email. A region is required. The form on this page appears when the mailing-list connection is turned on.</p>
       <p id="signup-fallback">The on-site form is not connected yet. You can join the existing list on <a href="https://dougstanhope.us7.list-manage.com/subscribe?u=99a44c5b158aed2fa397e1429&amp;id=e2b49520e8">the list signup page</a>. That form asks for a postal address, not a region.</p>
       <form id="mailing-list-form" class="signup" hidden>
@@ -78,15 +81,19 @@
       </form>
     </section>
     <section id="bio">
-      <h2>About</h2>
+      <h2>No. 04 — About</h2>
       <div id="bio-body"></div>
     </section>
+    <section id="work">
+      <h2>No. 05 — Work</h2>
+      <div id="work-body"></div>
+    </section>
     <section id="press">
-      <h2>Press</h2>
+      <h2>No. 06 — Press</h2>
       <div id="press-body"></div>
     </section>
     <section id="archive">
-      <h2>Archive</h2>
+      <h2>No. 07 — Archive</h2>
       <div id="archive-intro"></div>
       <div class="search" role="search">
         <label for="q">Search past dates</label>
@@ -98,7 +105,7 @@
   </main>
   <footer>
     <div class="wrap" id="footer">
-      <h2>Contact</h2>
+      <h2>No. 08 — Contact</h2>
       <div id="footer-body"></div>
     </div>
   </footer>

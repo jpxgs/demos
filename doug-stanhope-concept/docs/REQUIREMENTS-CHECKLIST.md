@@ -38,6 +38,13 @@ Local run before that deploy: 29 unit tests passed, 1 skipped because no mailing
 | Metadata, canonical, sitemap, robots, headers | Yes. Canonical is the host that actually serves the site. | `tests/quality.test.js` | Canonical and the security headers were on the live response. | Move the canonical only when the custom domain is connected |
 | Do not create a new hosting project or change the domain | No project or domain settings were changed by this work | Not a test | The same project, demostanhope, served the commit. | None |
 
+## Follow-up: type and public records
+
+| Item | Implemented | Tested | Verified in production | Blocked |
+| --- | --- | --- | --- | --- |
+| Self-hosted label typography | IBM Plex Sans and IBM Plex Mono, Latin woff2, OFL, `font-display: swap`, only the four weights in use. Section headers are tracked uppercase. | Font files, license text, and computed font names are checked. | Pending this deploy. | None. |
+| Public-source catalogs and recent episodes | Discography, books, screen credits, a longer biography, more press links, and eight RSS episodes. Each group has a source. Dead links found while checking were left out. | Content rendering and the podcast file shape. | Pending this deploy. | A full retype of the official past-gigs page. The recent years were compared and left as the existing selection. |
+
 ## Do not mark these done
 
 - Ticket links on real dates

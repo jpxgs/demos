@@ -2,8 +2,10 @@
   "siteUrl": "https://demostanhope.vercel.app",
   "listUrl": "https://dougstanhope.us7.list-manage.com/subscribe?u=99a44c5b158aed2fa397e1429&id=e2b49520e8",
   "bio": [
-    "Doug Stanhope is an American stand-up comedian and writer whose work combines social commentary, personal narrative, and confrontational satire. He began performing stand-up in Las Vegas in 1990, won the 1995 San Francisco International Comedy Competition, and received the Strathmore Press Award at the 2002 Edinburgh Festival Fringe. His television and radio appearances have included Comedy Central, British television, and the Howard Stern Show.",
-    "His recorded work includes Oslo: Burning the Bridge to Nowhere, filmed in an abandoned factory in Oslo, along with a catalog of stand-up albums and specials. He hosts The Doug Stanhope Podcast and has written several books, including Digging Up Mother: A Love Story and This Is Not Fame. His official archive documents live performances across North America, Europe, Asia and Australia."
+    "Doug Stanhope is an American stand-up comedian, author, actor, and podcast host. His stand-up material is made of vulgar, confrontational observations about everyday life.",
+    "He was born in Worcester, Massachusetts, in 1967. He began stand-up in 1990, at an open-mic night in a Las Vegas bar, and in 1995 won the San Francisco International Comedy Competition. In August 2002 he received the Strathmore Press Award for his week at the Edinburgh Festival Fringe.",
+    "He lives in Bisbee, Arizona. On 16 February 2013 he started The Doug Stanhope Podcast, recorded from home there. The public feed describes it as conversations with people he meets on the road and at home in Bisbee.",
+    "His books are Fun with Pedophiles: The Best of Baiting (Shake The Baby Press, 2006), Digging Up Mother: A Love Story and This Is Not Fame (Grand Central Publishing, 2016 and 2017), and No Encore for the Donkey (2020)."
   ],
   "headshots": [],
   "podcast": {
@@ -17,59 +19,55 @@
       { "label": "Patreon", "href": "https://www.patreon.com/stanhopepodcast" },
       { "label": "RSS", "href": "https://rss.libsyn.com/shows/623910/destinations/5490435.xml" }
     ],
-    "embed": {
-      "title": "The Doug Stanhope Podcast, episode 559, Flaming Buttholes",
-      "src": "https://omny.fm/shows/the-doug-stanhope-podcast/559-flaming-buttholes/embed"
-    },
-    "episodes": [
-      {
-        "title": "Episode 559 — Flaming Buttholes",
-        "date": "August 5, 2024",
-        "url": "https://omny.fm/shows/the-doug-stanhope-podcast/559-flaming-buttholes",
-        "text": "A special hair-of-the-dog podcast with JD Pinkus, Michael Ivins, Jules Kean, Chad Shank, and Andy Andrist."
-      },
-      {
-        "title": "Episode 558 — Gay Wedding",
-        "date": "July 29, 2024",
-        "url": "https://omny.fm/shows/the-doug-stanhope-podcast/558-gay-wedding",
-        "text": "After crashing cousin Nancy's wedding, Doug and Bingo sit down with Derrick to recount the weekend."
-      },
-      {
-        "title": "Episode 557 — Couch Surfing",
-        "date": "July 29, 2024",
-        "url": "https://omny.fm/shows/the-doug-stanhope-podcast/557-couch-surfing",
-        "text": "A road-trip account following Doug's couch-surfing trip from Bisbee to Kansas City."
-      },
-      {
-        "title": "Episode 556 — Medical Mystery",
-        "date": "July 29, 2024",
-        "url": "https://omny.fm/shows/the-doug-stanhope-podcast/556-medical-mystery-an-emergency-mini-podcast",
-        "text": "An emergency mini-podcast about a medical mystery."
-      },
-      {
-        "title": "Episode 153 — Doug & Chad Chat Up The Ladies",
-        "date": "July 17, 2016",
-        "text": "Doug and Chad Shank talk DUI's, dine-and-dash, and what's in a name with Patty “Patch” Waits and Sarah Hylander. Recorded July 17, 2016 at the Fun House. Produced and edited by Ggreg Chaille."
-      },
-      {
-        "title": "Episode 152 — Before The Tour Begins",
-        "date": "July 17, 2016",
-        "text": "Doug sets a few things straight about the upcoming tour and talking shit about his friends. Recorded July 17, 2016 at the Fun House with Chad Shank, Brett Erickson, Kristine Levine, and Ggreg Chaille."
-      },
-      {
-        "title": "Episode 151 — 4th of July Aftermath",
-        "date": "July 3, 2016",
-        "text": "Doug attempts to piece together the events of the extended holiday weekend. Also, Police Beat with Chad Shank. Recorded July 3, 2016 at the Fun House with Castle Rock Kenny and Ggreg Chaille."
-      }
-    ],
     "notes": [
-      "Selected episodes are a partial transcription from the previous page. They are not a current episode list."
+      "Recent episodes are the newest items in the public RSS feed. Titles and dates are what that feed returned on the date above."
     ]
   },
+  "discography": [
+    { "title": "The Great White Stanhope", "detail": "1998 · CD" },
+    { "title": "Sicko", "detail": "1999 · CD" },
+    { "title": "Something to Take the Edge Off", "detail": "2000 · CD" },
+    { "title": "ACID Bootleg", "detail": "2001 · bootleg" },
+    { "title": "Die Laughing", "detail": "2002 · CD" },
+    { "title": "Word of Mouth", "detail": "2002 · DVD" },
+    { "title": "Deadbeat Hero", "detail": "2004 · CD, DVD" },
+    { "title": "Morbid Obscenity (The Unbookables)", "detail": "2006 · CD" },
+    { "title": "No Refunds", "detail": "2007 · DVD; CD issued 2008" },
+    { "title": "From Across the Street", "detail": "2009 · CD" },
+    { "title": "Oslo: Burning the Bridge to Nowhere", "detail": "2011 · CD, DVD, digital · Comedy Albums No. 1" },
+    { "title": "Before Turning the Gun on Himself", "detail": "2012 · CD, DVD · Comedy Albums No. 1" },
+    { "title": "Beer Hall Putsch", "detail": "2013 · CD, DVD, digital · Comedy Albums No. 1" },
+    { "title": "No Place Like Home", "detail": "2016 · CD, digital · Comedy Albums No. 1" },
+    { "title": "Popov Vodka Presents: An Evening with Doug Stanhope", "detail": "2017 · digital · Comedy Albums No. 1" },
+    { "title": "The Dying of a Last Breed", "detail": "2020 · digital" },
+    { "title": "Discount Meat", "detail": "2024 · digital" }
+  ],
+  "books": [
+    { "title": "Fun with Pedophiles: The Best of Baiting", "detail": "2006 · Shake The Baby Press · ISBN 9780615135427" },
+    { "title": "Digging Up Mother: A Love Story", "detail": "2016 · Grand Central Publishing · ISBN 9780306824395" },
+    { "title": "This Is Not Fame: A \"From What I Re-Memoir\"", "detail": "2017 · Grand Central Publishing · ISBN 9780306825743" },
+    { "title": "No Encore for the Donkey", "detail": "2020 · independently published · ISBN 9798842252916" }
+  ],
+  "appearances": [
+    { "title": "Invasion of the Hidden Cameras", "detail": "2002 · Fox · hidden-camera series" },
+    { "title": "The Man Show", "detail": "2003–2004 · co-host, seasons 5 and 6" },
+    { "title": "The Aristocrats", "detail": "Film appearance" },
+    { "title": "Girls Gone Wild: America Uncovered", "detail": "2005 · host" },
+    { "title": "SIRIUS Satellite Radio", "detail": "2005 · hosted a radio show" },
+    { "title": "Louie", "detail": "2011 · FX · season 2, “Eddie,” as Eddie Mack" },
+    { "title": "The Road Dog", "detail": "2023 · produced and starred" }
+  ],
+  "catalogNote": [
+    "Albums, books, and screen credits follow the English Wikipedia article, retrieved 12 November 2026. Chart lines are the Comedy Albums positions that article attributes to Billboard. A Vimeo page cited for the 2017 special returned 404 and is not linked."
+  ],
   "press": [
     {
       "heading": "Articles",
       "links": [
+        {
+          "label": "Stanhope is critics' choice — Chortle",
+          "href": "https://www.chortle.co.uk/news/2002/08/22/1623/stanhope_is_critics_choice"
+        },
         {
           "label": "Doug Stanhope laughs in the face of self-destruction — Los Angeles Times",
           "href": "https://www.latimes.com/entertainment/la-et-cm-doug-stanhope-comedian--20141016-story.html"
@@ -85,6 +83,10 @@
         {
           "label": "Louie: “Come On, God” / “Eddie” — The A.V. Club",
           "href": "https://www.avclub.com/louie-come-on-god-eddie-1798169241"
+        },
+        {
+          "label": "Doug Stanhope's stand-up special gets a Seeso premiere date — Deadline",
+          "href": "https://deadline.com/2016/08/doug-stanhopes-johnny-depp-stand-up-special-seeso-premiere-date-1201807330/"
         }
       ]
     },
@@ -101,6 +103,14 @@
       "heading": "Interviews",
       "links": [
         {
+          "label": "Portrait of the artist — The Guardian",
+          "href": "https://www.theguardian.com/culture/2012/mar/06/doug-stanhope-comedian"
+        },
+        {
+          "label": "If You're Offended, Then You're Not Listening — The Guardian",
+          "href": "https://www.theguardian.com/stage/2006/jul/31/comedy.edinburgh2006"
+        },
+        {
           "label": "Doug Stanhope: The ESQ&A — Esquire",
           "href": "https://www.esquire.com/entertainment/interviews/a25343/doug-stanhope-interview-1113/"
         },
@@ -115,39 +125,22 @@
         {
           "label": "On The Road with Doug Stanhope — Sydney Morning Herald",
           "href": "https://www.smh.com.au/entertainment/music/on-the-road-with-doug-stanhope-20141029-11dl15.html"
+        },
+        {
+          "label": "Doug Stanhope, Miles from Where the Action Is — The New Yorker",
+          "href": "https://www.newyorker.com/culture/culture-desk/doug-stanhope-miles-from-where-the-action-is"
+        },
+        {
+          "label": "No laughing matter — The Herald",
+          "href": "https://www.heraldscotland.com/news/13801297.no-laughing-matter-comic-doug-stanhope-tells-saved-man-jumping-off-edinburgh-bridge/"
         }
       ]
     }
   ],
-  "recordings": [
-    { "title": "The Great White Stanhope", "detail": "1998" },
-    { "title": "Sicko", "detail": "1999" },
-    { "title": "Something to Take the Edge Off", "detail": "2000" },
-    { "title": "Die Laughing", "detail": "2002" },
-    { "title": "Deadbeat Hero", "detail": "2004" },
-    { "title": "No Refunds", "detail": "2007" },
-    { "title": "From Across the Street", "detail": "2009" },
-    { "title": "Oslo: Burning the Bridge to Nowhere", "detail": "2011" },
-    { "title": "Before Turning the Gun on Himself…", "detail": "2012" },
-    { "title": "Beer Hall Putsch", "detail": "2013" },
-    { "title": "No Place Like Home", "detail": "2016" },
-    { "title": "An Evening with Doug Stanhope", "detail": "2017" },
-    { "title": "The Dying of a Last Breed", "detail": "2020" },
-    { "title": "Discount Meat", "detail": "2024" }
-  ],
-  "books": [
-    { "title": "Fun with Pedophiles: The Best of Baiting", "detail": "2006" },
-    { "title": "Digging Up Mother: A Love Story", "detail": "2016" },
-    { "title": "This Is Not Fame", "detail": "2017" },
-    { "title": "No Encore for the Donkey", "detail": "2022, audiobook" }
-  ],
-  "catalogNote": [
-    "Recordings and books are a working index carried over from the previous page. Release details and purchase links are added only after they are checked."
-  ],
   "archive": {
     "paragraphs": [
       "Past dates below were transcribed from the previous version of this page. They are not ticket offers. Start times, street addresses, and ticket links were not in that list.",
-      "The old website was not copied into this project. The Internet Archive has captures of dougstanhope.com. The official past-gigs list and journal remain on the current official site."
+      "The official past-gigs page was opened on 12 November 2026. Its recent listings match this selection. Older years on that page were not retyped here. The old website was not copied into this project. The Internet Archive has captures of dougstanhope.com."
     ],
     "links": [
       { "label": "Internet Archive captures of dougstanhope.com", "href": "https://web.archive.org/web/*/www.dougstanhope.com/*" },
@@ -172,9 +165,12 @@
   ],
   "sameAs": [
     "https://www.dougstanhope.com/",
+    "https://en.wikipedia.org/wiki/Doug_Stanhope",
+    "https://www.wikidata.org/wiki/Q1251875",
     "https://podcasts.apple.com/us/podcast/the-doug-stanhope-podcast/id610821246",
     "https://open.spotify.com/show/7LKSoVj2FBt6YTqHfaCX2p",
     "https://www.patreon.com/stanhopepodcast",
+    "https://www.imdb.com/name/nm0970268/",
     "https://www.instagram.com/realstanhope/",
     "https://x.com/DougStanhope",
     "https://www.facebook.com/officialstanhope/",

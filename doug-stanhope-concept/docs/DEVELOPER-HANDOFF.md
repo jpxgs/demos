@@ -8,18 +8,23 @@ The page is one document. The order is fixed in `index.html` and covered by `tes
 
 1. Header. The name and a compact section nav. It stays visible while scrolling so the long archive does not hide the rest of the page.
 2. Tour dates. This is the action most visitors need. With no confirmed shows, the section says none are announced and links to the list. It does not show sample dates.
-3. Podcast. Second, because it is the standing public work and was required to be prominent. Promotion is a short paragraph, text links, and one player.
+3. Podcast. Second, because it is the standing public work and was required to be prominent. Promotion is a short paragraph, text links, and the newest titles from the public RSS file.
 4. Mailing list. Next, including the empty-dates call to action. Region and consent are on the form. The form stays hidden until the server is configured.
 5. About. Biography, then headshots. Photos exist only in this section.
-6. Press. Articles, essays, interviews, then the recordings and books indexes. Those catalogs are reference material, so they sit with press instead of above the dates.
-7. Archive. Past dates transcribed from the previous page, plus links to the Internet Archive and the official past-gigs and journal pages.
-8. Footer. Contact and booking, store, and social links.
+6. Work. Discography, books, and screen credits, as a ruled list.
+7. Press. Articles and interviews, then the source list.
+8. Archive. Past dates transcribed from the previous page, plus links to the Internet Archive and the official past-gigs and journal pages. The official past-gigs page was opened on 12 November 2026 and was not retyped.
+9. Footer. Contact and booking, store, and social links.
 
 Smooth scrolling is on, and it is turned off for `prefers-reduced-motion`. A light border groups the podcast links and separates show rows. There is no hero, illustration, gradient, or icon set.
 
+## Type
+
+Body text and the name use IBM Plex Sans, weights 400 and 600. Labels, navigation, section headers, dates, and catalog details use IBM Plex Mono, weights 400 and 500. Section headers are letterspaced uppercase, written as `No. 01 — Tour dates`. Dates use tabular figures. The files in `fonts/` are Latin `woff2` subsets with `font-display: swap`. The license is the SIL Open Font License, copied in `fonts/OFL.txt`. The page does not request a font from another host. The regular sans and the medium mono are preloaded.
+
 ## Why there is no CMS
 
-A free git-based editor was considered and not added. The content that changes is two JSON files. A browser editor such as Decap would still commit to the same repository, and it needs an OAuth application plus an auth endpoint that this hosting setup does not provide. That is more machinery than the content volume, and it is a second thing to transfer. Editing the JSON in the repository, with preview deployments, is the workflow. Revisit a CMS only if the team later refuses the file workflow. The question to ask them is in `docs/CLIENT-REQUEST.md`.
+A free git-based editor was considered and not added. The content that changes is the JSON in `data/`. A browser editor such as Decap would still commit to the same repository, and it needs an OAuth application plus an auth endpoint that this hosting setup does not provide. That is more machinery than the content volume, and it is a second thing to transfer. Editing the JSON in the repository, with preview deployments, is the workflow. Revisit a CMS only if the team later refuses the file workflow. The question to ask them is in `docs/CLIENT-REQUEST.md`.
 
 ## Layout
 
@@ -35,7 +40,10 @@ doug-stanhope-concept/
   api/subscribe.js        HTTP handler
   api/mailchimp.js        validation, request building, response mapping
   data/shows.json         every show, past and future
-  data/content.json       biography, podcast, press, footer
+  data/content.json       biography, catalogs, press, footer
+  data/podcast.json       newest podcast episodes from the RSS feed
+  data/sources.json       public sources for the added facts
+  fonts/                  IBM Plex woff2 files and the OFL text
   js/shows.js             show rules, HTML, Event objects
   js/content.js           editorial HTML and Person data
   js/site.js              loads the JSON files
@@ -112,7 +120,7 @@ No live call was made. The unit test that would ping Mailchimp skips when the th
 
 ## Content and headshots
 
-`data/content.json` is escaped on the way into the page. Podcast embed hosts are limited to `omny.fm`. Headshot `src` must match `assets/press/{filename}` and must have alt text. External or path-traversal sources are dropped. `Person.image` is added only for a headshot that passes those rules.
+`data/content.json` is escaped on the way into the page. `data/podcast.json` is the newest RSS sample. `node scripts/refresh-podcast.js` rewrites it from the public feed. There is no build step, so a refresh is a committed file, not a request on each page view. `data/sources.json` is the source list rendered at the end of Press. Podcast embed hosts, if an embed is added again, are limited to `omny.fm`. The current page does not embed a player. The feed links are the episode list. Headshot `src` must match `assets/press/{filename}` and must have alt text. External or path-traversal sources are dropped. `Person.image` is added only for a headshot that passes those rules.
 
 `siteUrl` in that file is the origin used for the Person URL. The HTML canonical, Open Graph URL, sitemap, and robots file are still written by hand. `tests/quality.test.js` fails if they drift.
 

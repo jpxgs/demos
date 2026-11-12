@@ -7,21 +7,26 @@ const path = require("node:path");
 const content = require("../js/content.js");
 
 const data = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "content.json"), "utf8"));
+const feed = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "podcast.json"), "utf8"));
+const sources = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "sources.json"), "utf8"));
 
-test("podcast, bio, press, and footer render from content.json", () => {
-  const rendered = content.renderAll(data);
+test("podcast, bio, work, press, and footer render from the data files", () => {
+  const rendered = content.renderAll(data, feed, sources);
   assert.match(rendered.podcast, /Apple Podcasts/);
   assert.match(rendered.podcast, /https:\/\/www\.patreon\.com\/stanhopepodcast/);
   assert.doesNotMatch(rendered.podcast, /patreon\.com\/dougstanhope/);
-  assert.match(rendered.podcast, /omny\.fm/);
-  assert.match(rendered.podcast, /Selected episodes are a partial transcription/);
-  assert.match(rendered.bio, /1995 San Francisco International Comedy Competition/);
+  assert.match(rendered.podcast, /Mailbag/);
+  assert.match(rendered.podcast, /659 episodes/);
+  assert.doesNotMatch(rendered.podcast, /omny\.fm/);
+  assert.match(rendered.bio, /Worcester, Massachusetts/);
   assert.match(rendered.bio, /Approved headshots have not been added yet/);
   assert.doesNotMatch(rendered.bio, /<img/);
+  assert.match(rendered.work, /Discount Meat/);
+  assert.match(rendered.work, /Grand Central Publishing/);
+  assert.match(rendered.work, /The Road Dog/);
   assert.match(rendered.press, /louie-come-on-god-eddie-1798169241/);
   assert.match(rendered.press, /the-problem-with-charity/);
-  assert.match(rendered.press, /Discount Meat/);
-  assert.match(rendered.press, /Digging Up Mother/);
+  assert.match(rendered.press, /Wikipedia — Doug Stanhope/);
   assert.match(rendered.archive, /web\.archive\.org/);
   assert.match(rendered.archive, /pastgigs/);
   assert.match(rendered.footer, /Contact and booking details have not been supplied/);
