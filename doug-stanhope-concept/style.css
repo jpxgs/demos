@@ -27,3 +27,14 @@ footer{display:flex;justify-content:space-between;gap:20px;padding:24px 0 32px;b
 .ticket-link{font:10px/1.5 "Courier New",monospace;text-transform:uppercase;letter-spacing:.05em;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
 .show-note{grid-column:1/-1;color:var(--muted);font-size:11px}
 @media(max-width:620px){.show-entry{grid-template-columns:92px 1fr}.show-entry>div{grid-template-columns:1fr}.ticket-link{margin-top:4px}}
+
+/* Featured podcast link */
+.hero-feature{margin:28px 0 0;font:11px/1.6 "Courier New",monospace;text-transform:uppercase;letter-spacing:.06em}
+.hero-feature a{display:inline-block;border-bottom:1px solid var(--ink);padding-bottom:4px}
+.hero-feature a:hover{border-color:var(--accent)}
+.show-entry{grid-template-columns:132px 1fr}
+.show-entry>div{display:grid;grid-template-columns:1fr auto;gap:4px 18px;align-items:baseline}
+.show-entry p{margin:0}
+.ticket-link{font:10px/1.5 "Courier New",monospace;text-transform:uppercase;letter-spacing:.05em;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.show-note{grid-column:1/-1;color:var(--muted);font-size:11px}
+@media(max-width:620px){.show-entry{grid-template-columns:92px 1fr}.show-entry>div{grid-template-columns:1fr}.ticket-link{margin-top:4px}}
