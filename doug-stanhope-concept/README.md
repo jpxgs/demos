@@ -40,10 +40,10 @@ See [the content editing guide](docs/CONTENT-EDITING-GUIDE.md). Add a confirmed 
 Run the dependency-free JavaScript checks with Node.js 18 or newer:
 
 ```bash
-node --test tests/site.test.js
+node --test
 ```
 
-The tests cover the empty show list, valid future events, unsafe ticket URLs, malformed data, venue-local date display, timezone validation, and generated Event structured data. See [the compatibility and test checklist](docs/COMPATIBILITY-AND-TESTING.md) for the manual browser/device matrix. Automated tests do not replace a final visual check on physical devices.
+The tests cover the archive search, empty show list, valid future events, unsafe ticket URLs, malformed data, venue-local date display, timezone validation, and generated Event structured data. See [the compatibility and test checklist](docs/COMPATIBILITY-AND-TESTING.md) for the manual browser/device matrix. Automated tests do not replace a final visual check on physical devices.
 
 ## Compatibility
 
