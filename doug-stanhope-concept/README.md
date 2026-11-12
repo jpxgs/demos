@@ -41,7 +41,11 @@ Run the dependency-free JavaScript checks with Node.js 18 or newer:
 node --test tests/site.test.js
 ```
 
-The tests cover the empty show list, valid future events, unsafe ticket URLs, malformed data, and generated Event structured data. They do not replace a final visual check in real browsers and devices.
+The tests cover the empty show list, valid future events, unsafe ticket URLs, malformed data, venue-local date display, timezone validation, and generated Event structured data. See [the compatibility and test checklist](docs/COMPATIBILITY-AND-TESTING.md) for the manual browser/device matrix. Automated tests do not replace a final visual check on physical devices.
+
+## Compatibility
+
+The site uses standard HTML, CSS and browser JavaScript without a framework or third-party runtime dependency. It is intended for current evergreen browsers on Windows, macOS, iOS, iPadOS, Android and ChromeOS. See the compatibility checklist for the supported browser families and manual checks.
 
 ## Local preview
 
