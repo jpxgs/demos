@@ -5,8 +5,9 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const vm = require("node:vm");
 
+const path = require("node:path");
 const scriptSource = fs.readFileSync(
-  new URL("../js/site.js", `file://${__filename}`),
+  path.join(__dirname, "..", "js", "site.js"),
   "utf8"
 );
 
