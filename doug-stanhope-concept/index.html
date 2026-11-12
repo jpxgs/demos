@@ -698,35 +698,6 @@ An emergency mini-podcast about a medical mystery.</p>
 <span>DOUG STANHOPE</span><a href="#top">Back to top ↑</a>
     </footer>
     <script src="./js/site.js" defer></script>
-    <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const search = document.querySelector("#q");
-    const years = [...document.querySelectorAll(".archive-year")];
-    const count = document.querySelector("#count");
-
-    function filterArchive() {
-      const term = search.value.trim().toLowerCase();
-      let visibleEntries = 0;
-
-      years.forEach((year) => {
-        let yearMatches = 0;
-        year.querySelectorAll(".entry").forEach((entry) => {
-          const matches = !term ||
-            year.dataset.year.includes(term) ||
-            entry.textContent.toLowerCase().includes(term);
-          entry.hidden = !matches;
-          if (matches) yearMatches += 1;
-        });
-        year.hidden = yearMatches === 0;
-        visibleEntries += yearMatches;
-      });
-
-      count.textContent = visibleEntries + " entries";
-    }
-
-    search.addEventListener("input", filterArchive);
-    filterArchive();
-  });
-</script>
+    <script src="./js/archive-search.js" defer></script>
   </body>
 </html>
