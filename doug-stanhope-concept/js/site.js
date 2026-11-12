@@ -28,7 +28,7 @@
 
   const safeHttpUrl = (value) => {
     try {
-      const url = new URL(String(value), window.location.href);
+      const url = new URL(String(value));
       return ["http:", "https:"].includes(url.protocol) ? url.href : null;
     } catch {
       return null;
@@ -37,15 +37,29 @@
 
   const parseDate = (value) => {
     if (typeof value !== "string" || !value.trim()) return null;
+    const isoWithOffset = /^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$/i;
+    if (!isoWithOffset.test(value)) return null;
+
+    const calendarDate = new Date(value.slice(0, 10) + "T00:00:00Z");
+    if (!Number.isFinite(calendarDate.getTime()) ||
+        calendarDate.toISOString().slice(0, 10) !== value.slice(0, 10)) {
+      return null;
+    }
+
     const timestamp = Date.parse(value);
     return Number.isFinite(timestamp) ? new Date(timestamp) : null;
   };
 
-  const formatDate = (date) => new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric"
-  }).format(date);
+  // Display the venue's calendar date, not the visitor's local date.
+  const formatDate = (isoDate) => {
+    const venueDate = new Date(isoDate.slice(0, 10) + "T12:00:00Z");
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      timeZone: "UTC"
+    }).format(venueDate);
+  };
 
   const isCompleteEvent = (event) =>
     Boolean(
@@ -91,12 +105,11 @@
       event.location?.address?.addressRegion
     ].filter(Boolean).join(" — ");
 
-    const date = parseDate(event.startDate);
     const ticketUrl = safeHttpUrl(event.ticketUrl);
 
     return `
       <article class="entry show-entry">
-        <time class="meta" datetime="${escapeHtml(event.startDate)}">${escapeHtml(formatDate(date))}</time>
+        <time class="meta" datetime="${escapeHtml(event.startDate)}">${escapeHtml(formatDate(event.startDate))}</time>
         <div>
           <p>${escapeHtml(venue || event.name)}</p>
           ${event.note ? `<p class="show-note">${escapeHtml(event.note)}</p>` : ""}
