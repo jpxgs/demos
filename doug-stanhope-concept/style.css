@@ -540,3 +540,84 @@ footer a {
     break-inside: avoid;
   }
 }
+
+
+/* Mailing-list signup */
+.signup-form {
+  max-width: 440px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+}
+
+.signup-form label {
+  display: block;
+  margin: 12px 0 5px;
+  font: 10px/1.5 "Courier New", Courier, monospace;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.signup-form input[type="email"],
+.signup-form select {
+  display: block;
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font: 14px Arial, Helvetica, sans-serif;
+}
+
+.signup-form select {
+  appearance: auto;
+}
+
+.signup-form .signup-consent {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font: 12px/1.5 Arial, Helvetica, sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.signup-form .signup-consent input {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.signup-form button {
+  min-height: 42px;
+  margin-top: 12px;
+  padding: 8px 18px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  font: 10px "Courier New", Courier, monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.signup-form button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.signup-form button:disabled {
+  opacity: .55;
+  cursor: wait;
+}
+
+.signup-trap {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
