@@ -69,13 +69,18 @@ The podcast is highlighted near the top of the page and has its own section. Upd
 
 ## Mailing-list signup
 
-The mailing-list form is not connected yet. Before adding a live signup form, the team needs to identify its existing provider and supply:
-- The provider's approved signup form, embed code or endpoint.
-- The exact region field name, available options and whether it is required.
-- Consent wording, privacy-policy URL and confirmation behavior.
-- A test list or safe test mode, if available.
+The page includes an email field, region selector, consent checkbox and a provider-neutral server-side webhook adapter. The form stays hidden until the adapter confirms that a provider webhook is configured. Until then, visitors see a link to the existing official signup page.
 
-Do not put private API keys, passwords or secret tokens in HTML, JavaScript, JSON or this repository. A provider-approved public form is preferred. If the provider requires a server-side secret, the integration needs a secure server-side function and environment-variable configuration.
+To activate it:
+1. Confirm the existing mailing-list provider and select an approved automation/webhook destination in that provider.
+2. Configure `MAILING_LIST_WEBHOOK_URL` in the Vercel project's Production and Preview environments as appropriate.
+3. If the webhook requires authentication, configure `MAILING_LIST_WEBHOOK_TOKEN` as a protected environment variable.
+4. Configure the provider automation to accept JSON fields `email`, `region`, `consent` and `source`, map `region` to its region/custom field, and apply the provider's normal confirmation/double-opt-in process.
+5. Test with a dedicated internal address and verify that both email and region arrive correctly before enabling the signup form publicly.
+
+The API never exposes the webhook URL or token in browser code. The current region choices are North America, UK and Ireland, Europe, Australia and New Zealand, Asia, and Other. Change the choices in both `index.html` and `api/subscribe.js` if the provider requires different region segments.
+
+Do not put private API keys, passwords or secret tokens in HTML, JavaScript, JSON or this repository. The generic adapter is a transport layer; it does not guess the team's provider or claim a subscriber has been added until the provider returns a successful response.
 
 ## Bio and headshots
 
