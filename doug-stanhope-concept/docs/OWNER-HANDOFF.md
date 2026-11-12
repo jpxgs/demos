@@ -1,50 +1,47 @@
-# Website handoff — Doug Stanhope
+# Site handoff
 
-## What is being delivered
+This is the operating overview for the site owner. Exact editing steps are in [CONTENT-EDITING-GUIDE.md](CONTENT-EDITING-GUIDE.md). Technical detail is in [DEVELOPER-HANDOFF.md](DEVELOPER-HANDOFF.md).
 
-A lightweight, text-first website and its complete source files. The site is built with standard HTML, CSS, JSON and browser JavaScript. It does not require a proprietary CMS, paid framework, database or build system.
+## What the site is
 
-The intent is for Doug's team to own the files and handle ordinary content changes independently after handoff.
+One text-first page. Visitors get, in this order: tour dates, the podcast, the mailing list, a short biography and headshot area, press and other material, then an archive of past dates and pointers to the older site. The footer has contact, booking, the store, and social links.
 
-## How ownership works
+There is no separate tour page, store page, or admin screen. Older addresses such as `/podcast/` and `/press/` only send people back to the matching part of the front page.
 
-The website files are portable. They can be kept in the team's Git repository and hosted through Vercel or another static hosting provider. The team should control the hosting account, domain registration and DNS, source repository, mailing-list provider and any other third-party accounts used by the site.
+The page is served from the existing hosting project. The public address in use now is `https://demostanhope.vercel.app/`. The custom domain is not connected.
 
-The handoff of source files does not itself transfer ownership of third-party accounts, domains, mailing lists, images, fonts or other materials. Those should remain under the team's control and be supplied or licensed for use as appropriate.
+## What your team can change
 
-## What the site supports
+Ordinary updates are edits to two files:
 
-- A minimal, single-page presentation with section navigation.
-- A prominent podcast link and dedicated podcast information section.
-- A data-driven upcoming-show list.
-- An individual ticket link for each show record when the exact ticket URL is supplied.
-- Schema.org Event structured data generated from complete event records.
-- A provider-neutral mailing-list signup form with email, region and consent fields, activated only after a team-owned webhook is configured.
-- A historical tour archive and editorial sections for recordings, books, journal, press, store and biography.
-- Routine text and show updates through clearly identified source files.
+| Change | File |
+| --- | --- |
+| Shows, ticket links, cancellations | `doug-stanhope-concept/data/shows.json` |
+| Biography, headshots, podcast links, press, footer links | `doug-stanhope-concept/data/content.json` |
 
-## What still needs team input before full integration
+Publishing those edits requires write access to the source repository. The hosting project publishes the main branch on its own. A change on any other branch gets a preview address first.
 
-1. **Tour data:** confirmed future dates, show times, venue names, full addresses, timezone offsets and exact ticket URLs.
-2. **Mailing list:** identify the provider, configure `MAILING_LIST_WEBHOOK_URL` and optional `MAILING_LIST_WEBHOOK_TOKEN` in Vercel, map the email and region fields in the provider's webhook/automation, and confirm consent, privacy-policy wording and double-opt-in behavior.
-3. **Biography and press materials:** approved biography text if the team prefers wording other than the official-source summary, official high-resolution headshots and permission to publish them.
-4. **Press links:** exact article URLs, rather than general publisher homepages.
-5. **Legacy archive:** source records or verified Wayback Machine captures for any older tour, podcast, journal or press material to be migrated.
+The repository and the hosting project are still in the agency accounts. Until those are transferred, or your team is invited in, your team cannot publish on its own.
 
-No fictional show data, generic headshots or guessed article links should be published to fill these gaps.
+## What is deliberately not finished
 
-## Scope boundary
+- No upcoming shows are listed. None were confirmed, and none were invented. The dates section says no dates are announced and points to the mailing list.
+- The on-site mailing-list form is built, including a required region, and it is switched off. No mailing-list API key is stored in the project. Visitors currently get the existing public signup page, which does not ask for a region.
+- No headshot is published. The biography has a place for approved photos. Nothing is shown until a file is added.
+- Contact and booking details are not published. The footer says they have not been supplied.
+- The old website was not copied into this project. The archive section links to the Internet Archive and to the official past-gigs page. A full copy was not recovered.
 
-This is a source-file handoff. It is not an ongoing managed website, a hosted CMS, or a commitment to provide indefinite maintenance. The team can make ordinary content changes using the included guide. New functionality, complex integrations, design changes, troubleshooting beyond routine edits, and ongoing content work should be separately agreed.
+## Accounts your team will need
 
-## Deployment and domain
+| Access | Who needs it | Why |
+| --- | --- | --- |
+| Source repository, write access | Whoever updates shows and text | Editing and merging into the main branch is what publishes the site |
+| Hosting project | Whoever sets the mailing list up, checks previews, or rolls back | Environment variables, preview addresses, and rollback live here |
+| Mailing-list account | Whoever owns the list | An API key and a region field have to be created there |
+| Domain registrar | Whoever approves the finished site | The custom domain should be connected only after that approval |
 
-The source can be deployed as a static site. The Vercel project should be controlled by the team or explicitly transferred to their account. The canonical domain should only be connected after the team approves the finished site and confirms its hosting and DNS access.
+A developer is needed for the mailing-list environment variables if nobody on the team has the hosting project, for domain and DNS changes, for layout or code changes, and for a deployment that fails. Day-to-day show and text edits do not need a developer once repository access exists.
 
 ## Security
 
-Do not store passwords, API keys, private tokens or mailing-list credentials in the source repository. If a provider requires a secret credential, it must be stored as a protected environment variable and used server-side. Prefer provider-approved public signup embeds when available.
-
-## Included operating instructions
-
-See [CONTENT-EDITING-GUIDE.md](CONTENT-EDITING-GUIDE.md) for routine editing, show updates, local preview and publishing.
+Do not put API keys, passwords, or private tokens in the repository, in a page, or in chat. The mailing-list key belongs only in the hosting project's environment variables.

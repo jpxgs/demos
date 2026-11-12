@@ -1,104 +1,196 @@
-# Content editing guide — Doug Stanhope website
+# Content editing guide
 
-This is a static website. There is no database or admin dashboard. The source files are the editable product; the team maintains the site by editing the relevant files and publishing those changes through the connected Git repository or another static host.
+Edits are made in data files, then published through the source repository. There is no login screen for content.
+
+The site folder is `doug-stanhope-concept/`. Paths below are inside that folder unless they start with `doug-stanhope-concept/`.
 
 ## Quick reference
 
-| Task | File |
+| Task | Where |
 | --- | --- |
-| Add, remove or change upcoming shows and ticket links | `data/shows.json` |
-| Edit biography, podcast links, books, recordings, journal, press and store copy | `index.html` |
-| Change typography, spacing, colors or layout | `style.css` |
-| Change how show dates display or how Event data is generated | `js/site.js` |
+| Add, change, or cancel a show | `data/shows.json` |
+| Change a ticket link | `data/shows.json`, field `ticketUrl` |
+| Biography | `data/content.json`, field `bio` |
+| Headshots | an image in `assets/press/`, plus an entry in `data/content.json` `headshots` |
+| Podcast links, player, episode notes | `data/content.json`, field `podcast` |
+| Press, recordings, books | `data/content.json`, fields `press`, `recordings`, `books` |
+| Social, store, and contact links | `data/content.json`, fields `social` and `contact` |
+| Public mailing-list link used before the form is connected | `data/content.json` field `listUrl`, and the same address in `index.html` |
+| Layout or behavior | a developer. Do not edit `style.css` or the scripts for a content change |
 
-## Add or update a show
+Keep JSON valid. Use straight quotes. Put a comma between items, and do not put a comma after the last item.
 
-Open `data/shows.json`. It contains a JSON array; each show is one object. Add a comma between objects, but not after the last object.
+## Add a show
 
-Use this template, replacing every example value with confirmed details:
+Open `data/shows.json`. It is a list. Add one object per performance. This example is not a real show. Replace every value.
 
 ```json
 {
-  "name": "Doug Stanhope at Example Theatre",
-  "startDate": "2027-03-18T20:00:00-07:00",
-  "endDate": "2027-03-18T22:00:00-07:00",
+  "id": "2099-03-18-example-theatre",
+  "name": "Doug Stanhope",
+  "date": "2099-03-18",
+  "endDate": "",
+  "displayDate": "",
+  "startTime": "20:00",
+  "endTime": "",
+  "timezone": "America/Los_Angeles",
   "venue": "Example Theatre",
-  "ticketUrl": "https://tickets.example.com/event",
-  "note": "",
+  "city": "Example City",
+  "region": "CA",
+  "country": "US",
+  "address": "123 Main Street",
+  "postalCode": "90000",
+  "ticketUrl": "https://tickets.example.com/this-show",
   "status": "scheduled",
-  "location": {
-    "name": "Example Theatre",
-    "address": {
-      "streetAddress": "123 Main Street",
-      "addressLocality": "Example City",
-      "addressRegion": "CA",
-      "postalCode": "90000",
-      "addressCountry": "US"
-    }
-  }
+  "notes": ""
 }
 ```
 
-The example is a template only, not a real event.
-
 Rules:
-- Use an ISO 8601 date/time with the venue's local UTC offset.
-- Link directly to that performance's ticket page, not a venue homepage or general ticketing homepage.
-- Include the venue's full postal address. Google Event data needs a meaningful location.
-- Use `status: "scheduled"` only for confirmed shows. Remove cancelled events or set `status: "cancelled"`.
-- Do not publish tentative dates.
-- For separately ticketed performances on consecutive nights, use one record per performance unless the ticket provider sells the run as one event.
 
-The site sorts future dates automatically, displays the ticket link for each record, and generates Schema.org Event structured data from complete records.
+- `id` is a short slug: lowercase letters, numbers, and hyphens. It must be unique. A safe pattern is the date plus the city, such as `2099-03-18-example-city`.
+- `date` is the venue's calendar date, `YYYY-MM-DD`.
+- `startTime` is 24-hour local time, `HH:MM`. If the start time is unknown, leave `startTime` and `timezone` empty. The show can still be listed. It will not be sent to Google as an event until the time and timezone exist.
+- `timezone` is an IANA name, such as `America/New_York` or `Europe/London`. Do not write `PST` or `GMT-8` here. The page calculates the offset, including daylight saving.
+- `endDate` and `endTime` are optional. Leave them as empty strings for a single performance with no known end.
+- `displayDate` is optional. Use it only for a range that should read the way it was announced, such as `June 2–3`. Otherwise leave it empty and the page formats `date`.
+- `ticketUrl` must be the direct ticket page for that performance, starting with `https://`. Do not link a venue homepage. If there is no ticket link yet, use `""`. The page then says "No ticket link yet" instead of inventing one.
+- `address` is the street address. `region` is the state, province, or region. `country` is a country code such as `US`, or a country name when that is what you have.
+- `status` is one of `scheduled`, `sold out`, `canceled`, or `postponed`.
+- `notes` is short public text. Leave it empty when there is nothing to add.
 
-## Edit the rest of the page
+The page lists future dates first, soonest at the top. Past dates move into the archive on their own. Do not add a show that is not confirmed.
 
-Open `index.html` in a code editor. Find the relevant section by its ID:
-- `podcast` — podcast description and listening links
-- `recordings` and `books` — catalog entries
-- `journal` — selected journal entries
-- `press` — articles, essays, interviews and biography
-- `store` — store catalog and official store links
-- `about` — introduction and social links
+## Change a ticket link
 
-Keep HTML tags balanced. Use exact destination URLs. Do not link an article title to a publisher homepage. Use approved wording and official assets only.
+In that show's object, replace `ticketUrl`. Publish. The link on the page and the event data use the same value.
+
+## Cancel or postpone a show
+
+Do not delete a show that was already announced unless it should disappear entirely.
+
+- Canceled: set `"status": "canceled"`. The date stays visible with the word Canceled. The ticket link stays visible when `ticketUrl` is set, and the event data is marked canceled.
+- Postponed: set `"status": "postponed"`. Update `date`, `startTime`, and `ticketUrl` when the new details exist.
+- Sold out: set `"status": "sold out"`. Keep the ticket link if the box office still has a page.
+
+A show whose date is in the past leaves the tour-dates section and appears in the archive. Past archive rows do not offer tickets.
+
+## Biography
+
+In `data/content.json`, `bio` is a list of paragraphs. Edit the sentences. Do not add a fact that has not been checked. The page does not interpret HTML in these paragraphs.
+
+## Headshots
+
+1. Put the approved file in `assets/press/`. Use a plain filename such as `press-01.jpg`. JPEG or WebP is appropriate. Do not add a stock photo or an unapproved image.
+2. Add an object to `headshots` in `data/content.json`:
+
+```json
+{
+  "src": "assets/press/press-01.jpg",
+  "alt": "Doug Stanhope, head and shoulders, facing the camera",
+  "credit": "Photo: photographer name",
+  "width": 1200,
+  "height": 1600
+}
+```
+
+`alt` is required. `credit` is the line under the photo. `width` and `height` are the pixel size of the file. Until this list has a valid entry, the page says that approved headshots have not been added.
 
 ## Podcast
 
-The podcast is highlighted near the top of the page and has its own section. Update its listening destinations in the Podcast section when official links change. Do not add an embed unless the provider and embed are approved.
+In `data/content.json`, under `podcast`:
 
-## Mailing-list signup
+- `summary` is the short paragraph.
+- `links` is the list of listening destinations. Each item has `label` and `href`. Use the full `https://` address.
+- `embed` is the one player. `src` must be an `https://omny.fm/...` address. `title` is the accessible name of the player.
+- `episodes` is the short list under the player. `url` is optional. `text` is the note.
+- `notes` is the sentence that says the list is partial.
 
-The page includes an email field, region selector, consent checkbox and a provider-neutral server-side webhook adapter. The form stays hidden until the adapter confirms that a provider webhook is configured. Until then, visitors see a link to the existing official signup page.
+Do not add a second player. The listening links are the main promotion.
 
-To activate it:
-1. Confirm the existing mailing-list provider and select an approved automation/webhook destination in that provider.
-2. Configure `MAILING_LIST_WEBHOOK_URL` in the Vercel project's Production and Preview environments as appropriate.
-3. If the webhook requires authentication, configure `MAILING_LIST_WEBHOOK_TOKEN` as a protected environment variable.
-4. Configure the provider automation to accept JSON fields `email`, `region`, `consent` and `source`, map `region` to its region/custom field, and apply the provider's normal confirmation/double-opt-in process.
-5. Test with a dedicated internal address and verify that both email and region arrive correctly before enabling the signup form publicly.
+## Press and other links
 
-The API never exposes the webhook URL or token in browser code. The current region choices are North America, UK and Ireland, Europe, Australia and New Zealand, Asia, and Other. Change the choices in both `index.html` and `api/subscribe.js` if the provider requires different region segments.
+`press` is a list of groups. Each group has `heading` and `links`. Link an article to its own address, not to the publication's homepage.
 
-Do not put private API keys, passwords or secret tokens in HTML, JavaScript, JSON or this repository. The generic adapter is a transport layer; it does not guess the team's provider or claim a subscriber has been added until the provider returns a successful response.
+`recordings` and `books` are lists of `{ "title", "detail" }`. `social` and `contact.links` use `{ "label", "href" }`.
 
-## Bio and headshots
+`contact.text` is the footer sentence. It currently says contact and booking details have not been supplied. Replace that sentence when a public contact or booking address is approved, and add the address as a link. Do not publish a private inbox.
 
-The homepage contains a concise biography based on the official press bio and a press-materials reference. The site is ready to host approved high-resolution headshots in `assets/press/`. Add only images supplied or approved by the team; use descriptive filenames, preserve original resolution, add useful alt text and confirm the permitted usage. Do not substitute stock or AI-generated images.
+`siteUrl` is the public site address without a trailing slash. Leave it as `https://demostanhope.vercel.app` until the custom domain is intentionally connected. When it changes, a developer also updates the canonical link in `index.html`, `sitemap.xml`, and `robots.txt`.
 
-## Preview and publish
+## How signups work
 
-1. Review the changed files.
-2. Validate `data/shows.json` as JSON.
-3. Check every date, venue, ticket URL and address against approved show information.
-4. Preview on desktop and mobile.
-5. Click every changed external link.
-6. Confirm no private credentials were committed.
-7. Publish using the deployment instructions in README.md.
-8. Check the live URL after publishing.
+The mailing-list section always explains what the list is.
 
-For local preview, run `python -m http.server 8000` from the project folder and open `http://localhost:8000`.
+- Before the connection is turned on, visitors see a link to the existing public signup page. That page does not ask for a region. The address is `listUrl` in `data/content.json`. The same address is written in `index.html` so it still works if the script does not run. Change both if the public page moves.
+- After the connection is turned on, that link is hidden and the form is shown. The form asks for an email address, a region, and consent. A hidden extra field is there to catch automated submissions. Region choices are North America, UK and Ireland, Europe, Australia and New Zealand, Asia, and Other. Changing those choices requires a developer, because the page and the server must match.
 
-## Ownership and maintenance
+The form does not appear just because `listUrl` is filled in. It appears only when the server reports that the mailing-list account is configured.
 
-The source files are intended to be delivered to the team for independent maintenance. Routine content changes are self-managed. Hosting, domains, mailing-list accounts and other service subscriptions should be controlled by the team. Changes to functionality or integrations may require a developer.
+## Configure the mailing list
+
+This needs the mailing-list account and the hosting project. Do not put the API key in a file.
+
+The public signup page already identifies the list: server prefix `us7`, audience id `e2b49520e8`. Confirm in the mailing-list account that this is the audience you want before using it.
+
+1. In that audience, add a merge field for region if it does not already exist. Text is the simplest type. Set the field tag to `REGION`. The form will send one of the six region names above.
+2. Create an API key in the mailing-list account. The key ends in `-us7`. That suffix must match the server prefix.
+3. In the hosting project, add these environment variables for Production and Preview:
+
+| Name | Value |
+| --- | --- |
+| `MAILCHIMP_API_KEY` | the key from the account |
+| `MAILCHIMP_SERVER_PREFIX` | `us7` |
+| `MAILCHIMP_AUDIENCE_ID` | `e2b49520e8` |
+| `MAILCHIMP_REGION_MERGE_FIELD` | `REGION`, unless the field tag is different |
+| `MAILCHIMP_STATUS_IF_NEW` | `pending` |
+
+`pending` means a new person must confirm by email before they are subscribed. Set `subscribed` only if the account owner explicitly wants people added immediately.
+
+4. Redeploy the site, or push a commit, so the new variables are picked up.
+5. Open the site. The form should be visible and the fallback link hidden.
+6. Submit an internal address and confirm the region arrives on that member. An address that is already subscribed is updated, not duplicated. An address that was removed is not added again.
+
+If the key's suffix and `MAILCHIMP_SERVER_PREFIX` disagree, the form stays hidden. If the region field tag does not exist, the signup fails with a message about the region field.
+
+The connection was not tried against the live account in this build, because no API key was available.
+
+## Preview
+
+1. Edit the data file.
+2. Commit the change on a branch, not directly on main, when you want to look first.
+3. Open the preview deployment the hosting project creates for that branch.
+4. Check the date, the ticket link, and the page on a phone-width window.
+5. Merge the branch into main when it is right.
+
+The main branch updates the public site. Do not create a second hosting project.
+
+## Publish
+
+Merging into main publishes. After it finishes, open `https://demostanhope.vercel.app/` and confirm the change. A show added for a future date should appear under Tour dates. A past date should appear under Archive.
+
+Local preview, for someone with the files on a computer:
+
+```bash
+cd doug-stanhope-concept
+python3 -m http.server 8000
+```
+
+Open `http://127.0.0.1:8000/`. The signup form stays on its fallback link in this preview, because the local server does not run the signup function. Dates and text still load.
+
+## Roll back
+
+Use either method:
+
+- In the hosting project, open the previous production deployment that was serving the right version and use Instant Rollback. Do not delete deployments.
+- Or revert the commit on main and push that revert. The next production deployment will match the reverted files.
+
+Rolling back files does not remove a person who already joined the mailing list.
+
+## What needs a developer
+
+- Creating or rotating the mailing-list environment variables, if the editor does not have the hosting project.
+- Connecting or changing the custom domain.
+- Adding a region choice, changing validation, or changing the event data rules.
+- Layout, navigation, and the scripts.
+- A production deployment that fails.

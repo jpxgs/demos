@@ -1,88 +1,52 @@
-# Doug Stanhope — website source
+# Doug Stanhope site
 
-A deliberately simple, text-first static website built with plain HTML, CSS, JSON and browser JavaScript. There is no framework, package manager, database or build step.
+A single text-first page. Shows and editorial copy live in JSON. One server function talks to Mailchimp when it is configured. There is no framework, no database, and no production build.
 
-## Project map
+## Map
 
 ```
-doug-stanhope-concept/
-├── index.html
-├── style.css
-├── api/
-│   └── subscribe.js
-├── data/
-│   └── shows.json
-├── js/
-│   ├── archive-search.js
-│   ├── mailing-list.js
-│   └── site.js
-├── docs/
-│   ├── OWNER-HANDOFF.md
-│   └── CONTENT-EDITING-GUIDE.md
-└── README.md
+index.html                 shell, form, canonical URL
+style.css
+data/shows.json            shows, including the transcribed past dates
+data/content.json          biography, podcast, press, footer
+api/subscribe.js           mailing-list endpoint
+api/mailchimp.js
+js/shows.js                dates, tickets, Event data
+js/content.js              editorial rendering
+js/site.js                 loads the data files
+js/mailing-list.js
+js/archive-search.js
+assets/press/              approved headshots only
+docs/OWNER-HANDOFF.md
+docs/CONTENT-EDITING-GUIDE.md
+docs/DEVELOPER-HANDOFF.md
+docs/REQUIREMENTS-CHECKLIST.md
+docs/CLIENT-REQUEST.md
 ```
 
-## File responsibilities
+`data/shows.json` has past dates only. Upcoming dates are empty on purpose. Do not add a show that was not confirmed.
 
-- `index.html` — page structure and editorial content that changes infrequently.
-- `style.css` — typography, spacing, color, responsive behavior and focus states.
-- `data/shows.json` — source of truth for confirmed upcoming shows.
-- `js/archive-search.js` — filters the historical tour archive by year, city, venue or text.
-- `js/site.js` — renders upcoming dates and creates Schema.org Event JSON-LD from complete event records.
-- `js/mailing-list.js` — enables the signup form only when its server-side provider connection is configured.
-- `api/subscribe.js` — validates email, region and consent, then forwards the signup to a team-configured HTTPS webhook.
-- `docs/OWNER-HANDOFF.md` — ownership, accounts and scope overview.
-- `docs/CONTENT-EDITING-GUIDE.md` — step-by-step editing instructions.
-
-The empty `shows.json` array is intentional until confirmed future dates, ticket URLs and venue details are supplied. No placeholder dates are published.
-
-## Add a show
-
-See [the content editing guide](docs/CONTENT-EDITING-GUIDE.md). Add a confirmed event to `data/shows.json` with an ISO 8601 local date/time, venue, full postal address and exact ticket URL. The display and structured event data use the same record.
-
-## Automated checks
-
-Run the dependency-free JavaScript checks with Node.js 18 or newer:
+## Checks
 
 ```bash
-node --test
+npm ci
+npm test
+npx playwright install --with-deps chromium
+npm run test:browser
 ```
-
-The tests cover archive search, show rendering and Event structured data, unsafe ticket URLs, malformed data, venue-local date display, timezone validation, and mailing-list endpoint configuration, region/consent validation and secure webhook forwarding. See [the compatibility and test checklist](docs/COMPATIBILITY-AND-TESTING.md) for the manual browser/device matrix. Automated tests do not replace a final visual check on physical devices.
-
-## Compatibility
-
-The site uses standard HTML, CSS and browser JavaScript without a framework or third-party runtime dependency. It is intended for current evergreen browsers on Windows, macOS, iOS, iPadOS, Android and ChromeOS. See the compatibility checklist for the supported browser families and manual checks.
 
 ## Local preview
 
-For a reliable preview with JSON fetch behavior, run a local static server from this folder:
-
 ```bash
-python -m http.server 8000
+python3 -m http.server 8000
 ```
 
-Then visit `http://localhost:8000`.
+Open `http://127.0.0.1:8000/`. This preview does not run `api/subscribe.js`, so the mailing-list form stays on its fallback link.
 
-## Deployment
+## Hosting
 
-The site can be hosted by any static host. For Vercel, import the repository and set the Root Directory to `doug-stanhope-concept`. Framework preset: Other. Leave build command and output directory blank. If the project is connected to GitHub, commits to its configured production branch may trigger deployment automatically.
+The existing project already deploys this folder from the main branch. Leave the build command empty. Do not create another project, and do not connect the custom domain until the site owner approves it.
 
-Do not connect or change the canonical custom domain until the team approves the site and hosting arrangement.
+Mailing-list variables, the show schema, and rollback are documented in [docs/CONTENT-EDITING-GUIDE.md](docs/CONTENT-EDITING-GUIDE.md) and [docs/DEVELOPER-HANDOFF.md](docs/DEVELOPER-HANDOFF.md).
 
-## Mailing-list integration
-
-The form and secure webhook adapter are included. To activate them, configure `MAILING_LIST_WEBHOOK_URL` and optionally `MAILING_LIST_WEBHOOK_TOKEN` as protected Vercel environment variables, then map the JSON fields to the team's provider. See [the editing guide](docs/CONTENT-EDITING-GUIDE.md). The form remains hidden until the provider endpoint is configured.
-- Approved biography copy and official headshots.
-- Confirmed future show dates, individual ticket URLs and full venue addresses.
-- Exact article URLs for press links.
-
-Never commit passwords, private API keys or secret tokens. The mailing-list integration should use a provider-approved public embed or a secure server-side function if a secret is required.
-
-## Content limitations
-
-The tour history is a partial transcription, not a complete archive. Some catalog and journal entries are also partial. These gaps are marked on the page and should be checked against the original site or a verified Wayback Machine capture before anyone describes the archive as complete.
-
-## Handoff model
-
-The source files are intended for delivery to the team for independent editing and deployment. Routine content changes are self-managed. Hosting, domain, mailing-list and other service accounts should be owned and administered by the team.
+Never commit an API key.
