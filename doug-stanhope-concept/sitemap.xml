@@ -1,12 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://dougstanhope.com/</loc></url>
-<url><loc>https://dougstanhope.com/tour/</loc></url>
-<url><loc>https://dougstanhope.com/recordings/</loc></url>
-<url><loc>https://dougstanhope.com/books/</loc></url>
-<url><loc>https://dougstanhope.com/podcast/</loc></url>
-<url><loc>https://dougstanhope.com/journal/</loc></url>
-<url><loc>https://dougstanhope.com/press/</loc></url>
-<url><loc>https://dougstanhope.com/store/</loc></url>
-<url><loc>https://dougstanhope.com/about/</loc></url>
+  <url><loc>https://demostanhope.vercel.app/</loc></url>
 </urlset>

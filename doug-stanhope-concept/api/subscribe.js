@@ -1,21 +1,17 @@
 /*
- * Provider-neutral mailing-list webhook adapter.
+ * Server-side Mailchimp signup.
  *
- * Configure MAILING_LIST_WEBHOOK_URL in the Vercel project environment.
- * Optionally configure MAILING_LIST_WEBHOOK_TOKEN for Bearer authentication.
- * The webhook receives JSON: { email, region, consent, source }.
- *
- * The webhook URL and token remain server-side; neither is exposed to visitors.
+ * Required environment variables:
+ *   MAILCHIMP_API_KEY
+ *   MAILCHIMP_SERVER_PREFIX
+ *   MAILCHIMP_AUDIENCE_ID
+ * Optional:
+ *   MAILCHIMP_REGION_MERGE_FIELD  (default REGION)
+ *   MAILCHIMP_STATUS_IF_NEW       (pending or subscribed; default pending)
  */
+"use strict";
 
-const ALLOWED_REGIONS = new Set([
-  "North America",
-  "UK and Ireland",
-  "Europe",
-  "Australia and New Zealand",
-  "Asia",
-  "Other"
-]);
+const mailchimp = require("./mailchimp");
 
 function send(res, status, body) {
   res.status(status).setHeader("Content-Type", "application/json; charset=utf-8");
@@ -23,13 +19,25 @@ function send(res, status, body) {
   res.end(JSON.stringify(body));
 }
 
+function readBody(req) {
+  if (!req || req.body == null) return {};
+  if (typeof req.body === "string") {
+    try {
+      return JSON.parse(req.body);
+    } catch {
+      return {};
+    }
+  }
+  return typeof req.body === "object" ? req.body : {};
+}
+
 module.exports = async function handler(req, res) {
-  res.setHeader("Cache-Control", "no-store");
+  const config = mailchimp.readConfig(process.env);
 
   if (req.method === "GET") {
-    return send(res, 200, {
-      configured: Boolean(process.env.MAILING_LIST_WEBHOOK_URL)
-    });
+    return send(res, 200, config.configured
+      ? { configured: true, provider: "mailchimp" }
+      : { configured: false });
   }
 
   if (req.method !== "POST") {
@@ -37,66 +45,36 @@ module.exports = async function handler(req, res) {
     return send(res, 405, { message: "Method not allowed." });
   }
 
-  const endpoint = process.env.MAILING_LIST_WEBHOOK_URL;
-  if (!endpoint) {
+  if (!config.configured) {
     return send(res, 503, { message: "The mailing list is not configured yet." });
   }
 
-  let destination;
-  try {
-    destination = new URL(endpoint);
-  } catch {
-    return send(res, 500, { message: "The mailing-list endpoint is misconfigured." });
-  }
-
-  if (destination.protocol !== "https:") {
-    return send(res, 500, { message: "The mailing-list endpoint must use HTTPS." });
-  }
-
-  const body = req.body && typeof req.body === "object" ? req.body : {};
-  if (String(body.website || "").trim()) {
-    return send(res, 200, { ok: true });
-  }
-
-  const email = String(body.email || "").trim().toLowerCase();
-  const region = String(body.region || "");
-  const consent = body.consent === true;
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return send(res, 400, { message: "Enter a valid email address." });
-  }
-  if (!ALLOWED_REGIONS.has(region)) {
-    return send(res, 400, { message: "Choose a region." });
-  }
-  if (!consent) {
-    return send(res, 400, { message: "Consent is required to subscribe." });
-  }
+  const submission = mailchimp.validateSubmission(readBody(req));
+  if (submission.honeypot) return send(res, 200, { ok: true });
+  if (submission.error) return send(res, 400, { message: submission.error });
 
   try {
-    const headers = { "Content-Type": "application/json", Accept: "application/json" };
-    if (process.env.MAILING_LIST_WEBHOOK_TOKEN) {
-      headers.Authorization = "Bearer " + process.env.MAILING_LIST_WEBHOOK_TOKEN;
-    }
-
-    const upstream = await fetch(destination.href, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        email,
-        region,
-        consent: true,
-        source: "Doug Stanhope website"
-      }),
+    const upstream = await fetch(mailchimp.memberUrl(config, submission.email), {
+      method: "PUT",
+      headers: {
+        Authorization: mailchimp.authorization(config),
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(mailchimp.memberBody(config, submission.email, submission.region)),
       signal: AbortSignal.timeout(10000)
     });
-
-    if (!upstream.ok) {
-      return send(res, 502, { message: "The mailing-list provider did not accept the signup." });
+    let payload = {};
+    try {
+      payload = await upstream.json();
+    } catch {
+      payload = {};
     }
-
-    return send(res, 200, { ok: true });
+    if (!upstream.ok) console.error("Mailchimp signup failed", upstream.status, payload && payload.title);
+    const result = mailchimp.interpret(upstream.status, payload);
+    return send(res, result.status, result.body);
   } catch (error) {
-    console.error("Mailing-list provider request failed:", error.message);
-    return send(res, 502, { message: "The mailing-list provider is temporarily unavailable." });
+    console.error("Mailchimp signup request failed", error && error.name);
+    return send(res, 502, { message: "The mailing list is temporarily unavailable." });
   }
 };

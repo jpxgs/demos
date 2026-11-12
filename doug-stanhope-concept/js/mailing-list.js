@@ -1,6 +1,5 @@
 /*
- * Mailing-list signup progressive enhancement.
- * The form is only exposed when the server confirms a webhook is configured.
+ * Shows the signup form only after the server reports Mailchimp is configured.
  */
 (() => {
   "use strict";
@@ -17,7 +16,7 @@
     fallback.hidden = false;
   };
 
-  fetch("./api/subscribe", { headers: { Accept: "application/json" } })
+  fetch("./api/subscribe/", { headers: { Accept: "application/json" } })
     .then((response) => {
       if (!response.ok) throw new Error("Signup configuration unavailable");
       return response.json();
@@ -35,17 +34,16 @@
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     status.textContent = "";
-
     if (!form.reportValidity()) return;
 
     const values = new FormData(form);
     if (String(values.get("website") || "").trim()) return;
 
     submitButton.disabled = true;
-    submitButton.textContent = "Submitting…";
+    submitButton.textContent = "Sending";
 
     try {
-      const response = await fetch("./api/subscribe", {
+      const response = await fetch("./api/subscribe/", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
@@ -57,9 +55,8 @@
       });
       const result = await response.json();
       if (!response.ok) throw new Error(result.message || "Signup could not be completed.");
-
       form.reset();
-      status.textContent = "Thanks. Your signup has been received.";
+      status.textContent = result.message || "Thanks. Your signup has been received.";
     } catch (error) {
       status.textContent = error.message || "Signup is temporarily unavailable. Please try again later.";
     } finally {
