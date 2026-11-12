@@ -9,9 +9,10 @@ const content = require("../js/content.js");
 const data = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "content.json"), "utf8"));
 const feed = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "podcast.json"), "utf8"));
 const sources = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "sources.json"), "utf8"));
+const site = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "site.json"), "utf8"));
 
 test("podcast, bio, work, press, and footer render from the data files", () => {
-  const rendered = content.renderAll(data, feed, sources);
+  const rendered = content.renderAll(data, feed, sources, site.siteUrl);
   assert.match(rendered.podcast, /Apple Podcasts/);
   assert.match(rendered.podcast, /https:\/\/www\.patreon\.com\/stanhopepodcast/);
   assert.doesNotMatch(rendered.podcast, /patreon\.com\/dougstanhope/);
@@ -44,12 +45,12 @@ test("headshots render only for approved local files with alt text", () => {
       { src: "assets/press/approved.jpg", alt: "" },
       { src: "assets/press/approved.jpg", alt: "Doug Stanhope, press photo", credit: "Photo: the team", width: 800, height: 1000 }
     ]
-  });
+  }, null, [], "https://shows.example");
   assert.match(rendered.bio, /assets\/press\/approved\.jpg/);
   assert.match(rendered.bio, /Doug Stanhope, press photo/);
   assert.match(rendered.bio, /Photo: the team/);
   assert.doesNotMatch(rendered.bio, /example\.com/);
-  assert.equal(rendered.person["@graph"][0].image, "https://demostanhope.vercel.app/assets/press/approved.jpg");
+  assert.equal(rendered.person["@graph"][0].image, "https://shows.example/assets/press/approved.jpg");
 });
 
 test("editorial HTML is escaped", () => {

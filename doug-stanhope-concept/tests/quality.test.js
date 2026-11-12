@@ -20,22 +20,28 @@ function walk(dir, files = []) {
 }
 
 test("canonical host is consistent across the public files", () => {
-  const content = JSON.parse(read("data/content.json"));
+  const site = JSON.parse(read("data/site.json"));
+  const origin = String(site.siteUrl).replace(/\/+$/, "");
+  const escaped = origin.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const html = read("index.html");
   const sitemap = read("sitemap.xml");
   const robots = read("robots.txt");
-  assert.equal(content.siteUrl, "https://demostanhope.vercel.app");
-  assert.match(html, /rel="canonical" href="https:\/\/demostanhope\.vercel\.app\/"/);
-  assert.match(html, /property="og:url" content="https:\/\/demostanhope\.vercel\.app\/"/);
-  assert.match(sitemap, /<loc>https:\/\/demostanhope\.vercel\.app\/<\/loc>/);
-  assert.match(robots, /Sitemap: https:\/\/demostanhope\.vercel\.app\/sitemap\.xml/);
+  assert.match(html, new RegExp(`rel="canonical" href="${escaped}/"`));
+  assert.match(html, new RegExp(`property="og:url" content="${escaped}/"`));
+  assert.match(sitemap, new RegExp(`<loc>${escaped}/</loc>`));
+  assert.match(robots, new RegExp(`Sitemap: ${escaped}/sitemap.xml`));
   assert.equal(sitemap.match(/<loc>/g).length, 1);
 });
 
-test("the signup fallback and region choices match the server", () => {
-  const content = JSON.parse(read("data/content.json"));
+test("the public form posts to the Mailchimp address in site.json", () => {
+  const site = JSON.parse(read("data/site.json"));
+  const embed = require("../js/mailchimp-form.js");
   const html = read("index.html");
-  assert.ok(html.includes(content.listUrl.replace(/&/g, "&amp;")) || html.includes(content.listUrl));
+  const action = embed.postAction(site.mailchimp).replace(/&/g, "&amp;");
+  assert.match(html, new RegExp(`action="${action.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`));
+  assert.match(html, /name="EMAIL"/);
+  assert.match(html, /name="REGION"/);
+  assert.match(html, new RegExp(`name="${embed.botField(site.mailchimp)}"`));
   for (const region of mailchimp.REGIONS) {
     assert.ok(html.includes(`value="${region}"`), region);
   }
@@ -52,7 +58,8 @@ test("internal pages point back at the single page and do not keep the old Patre
   for (const folder of ["tour", "podcast", "about", "press", "recordings", "books", "journal", "store"]) {
     const html = read(folder + "/index.html");
     assert.match(html, /noindex/);
-    assert.match(html, /rel="canonical" href="https:\/\/demostanhope\.vercel\.app\/#/);
+    const origin = JSON.parse(read("data/site.json")).siteUrl.replace(/\/+$/, "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    assert.match(html, new RegExp(`rel="canonical" href="${origin}/#`));
   }
 });
 

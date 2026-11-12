@@ -1,5 +1,7 @@
 # Doug Stanhope site
 
+Read `START-HERE.md` first. That file is the handoff. The preview host is optional. The files work on any static host.
+
 A single text-first page. Shows and editorial copy live in JSON. One server function talks to Mailchimp when it is configured. There is no framework, no database, and no production build.
 
 ## Map

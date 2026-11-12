@@ -167,24 +167,25 @@
     return paragraphs(contact.text ? [contact.text] : []) + (links ? `<ul>${links}</ul>` : "");
   }
 
-  function personGraph(content) {
+  function personGraph(content, siteUrl) {
     const description = Array.isArray(content.bio) ? content.bio[0] : "";
+    const origin = showsApi().canonicalBase(siteUrl || "");
     const sameAs = (Array.isArray(content.sameAs) ? content.sameAs : [])
       .map((href) => showsApi().safeHttpUrl(href))
       .filter(Boolean);
     const person = {
       "@type": "Person",
       name: "Doug Stanhope",
-      url: showsApi().canonicalBase(content.siteUrl) + "/",
       description
     };
+    if (origin) person.url = origin + "/";
     if (sameAs.length) person.sameAs = sameAs;
     const shot = Array.isArray(content.headshots) ? content.headshots.find((item) => item && safeImage(item.src) && item.alt) : null;
-    if (shot) person.image = showsApi().canonicalBase(content.siteUrl) + "/" + shot.src;
+    if (shot && origin) person.image = origin + "/" + shot.src;
     return { "@context": "https://schema.org", "@graph": [person] };
   }
 
-  function renderAll(content, feed, sources) {
+  function renderAll(content, feed, sources, siteUrl) {
     return {
       podcast: renderPodcast(content, feed),
       bio: renderBio(content),
@@ -192,7 +193,7 @@
       press: renderPress(content, sources),
       archive: renderArchiveIntro(content),
       footer: renderFooter(content),
-      person: personGraph(content)
+      person: personGraph(content, siteUrl)
     };
   }
 

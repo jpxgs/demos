@@ -11,10 +11,10 @@
   <meta property="og:description" content="Tour dates, The Doug Stanhope Podcast, mailing list, biography, and press.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://demostanhope.vercel.app/">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="/fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/ibm-plex-mono-500.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/ibm-plex-mono-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
@@ -38,7 +38,7 @@
       <ul>
         <li><a href="https://podcasts.apple.com/us/podcast/the-doug-stanhope-podcast/id610821246">Apple Podcasts</a></li>
         <li><a href="https://www.patreon.com/stanhopepodcast">Patreon</a></li>
-        <li><a href="https://dougstanhope.us7.list-manage.com/subscribe?u=99a44c5b158aed2fa397e1429&amp;id=e2b49520e8">Mailing list</a></li>
+        <li><a href="https://us7.list-manage.com/subscribe?u=99a44c5b158aed2fa397e1429&amp;id=e2b49520e8">Mailing list</a></li>
         <li><a href="https://www.dougstanhope.com/">Official site</a></li>
       </ul>
     </noscript>
@@ -54,13 +54,12 @@
     </section>
     <section id="list">
       <h2>No. 03 — Mailing list</h2>
-      <p>Tour announcements and news by email. A region is required. The form on this page appears when the mailing-list connection is turned on.</p>
-      <p id="signup-fallback">The on-site form is not connected yet. You can join the existing list on <a href="https://dougstanhope.us7.list-manage.com/subscribe?u=99a44c5b158aed2fa397e1429&amp;id=e2b49520e8">the list signup page</a>. That form asks for a postal address, not a region.</p>
-      <form id="mailing-list-form" class="signup" hidden>
+      <p>Tour announcements and news by email. A region is required. The form sends the signup directly to the mailing list. That list needs a text field tagged REGION, or the signup is rejected.</p>
+      <form id="mailing-list-form" class="signup" method="post" action="https://us7.list-manage.com/subscribe/post?u=99a44c5b158aed2fa397e1429&amp;id=e2b49520e8">
         <label for="signup-email">Email address</label>
-        <input id="signup-email" name="email" type="email" autocomplete="email" required>
+        <input id="signup-email" name="EMAIL" type="email" autocomplete="email" required>
         <label for="signup-region">Region</label>
-        <select id="signup-region" name="region" required>
+        <select id="signup-region" name="REGION" required>
           <option value="">Choose your region</option>
           <option value="North America">North America</option>
           <option value="UK and Ireland">UK and Ireland</option>
@@ -70,11 +69,11 @@
           <option value="Other">Other</option>
         </select>
         <label class="consent" for="signup-consent">
-          <input id="signup-consent" name="consent" type="checkbox" required>
+          <input id="signup-consent" type="checkbox" required>
           Send me email updates about shows and news. I can unsubscribe later.
         </label>
         <p class="hp" aria-hidden="true">
-          <label>Leave this field empty <input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+          <label>Leave this field empty <input name="b_99a44c5b158aed2fa397e1429_e2b49520e8" type="text" tabindex="-1" autocomplete="off" value=""></label>
         </p>
         <button type="submit">Sign up</button>
         <p id="signup-status" role="status" aria-live="polite"></p>
@@ -109,10 +108,11 @@
       <div id="footer-body"></div>
     </div>
   </footer>
-  <script src="/js/shows.js" defer></script>
-  <script src="/js/content.js" defer></script>
-  <script src="/js/site.js" defer></script>
-  <script src="/js/mailing-list.js" defer></script>
-  <script src="/js/archive-search.js" defer></script>
+  <script src="js/shows.js" defer></script>
+  <script src="js/content.js" defer></script>
+  <script src="js/mailchimp-form.js" defer></script>
+  <script src="js/site.js" defer></script>
+  <script src="js/mailing-list.js" defer></script>
+  <script src="js/archive-search.js" defer></script>
 </body>
 </html>

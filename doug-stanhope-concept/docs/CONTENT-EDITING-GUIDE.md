@@ -123,62 +123,27 @@ That rewrites `data/podcast.json`. Read the new titles, then commit the file. Th
 
 `press` is a list of groups. Each group has `heading` and `links`. Link an article to its own address, not to the publication's homepage.
 
-`recordings` and `books` are lists of `{ "title", "detail" }`. `social` and `contact.links` use `{ "label", "href" }`.
+`discography`, `books`, and `appearances` are lists of `{ "title", "detail" }`. `social` and `contact.links` use `{ "label", "href" }`.
 
 `contact.text` is the footer sentence. It currently says contact and booking details have not been supplied. Replace that sentence when a public contact or booking address is approved, and add the address as a link. Do not publish a private inbox.
 
-`siteUrl` is the public site address without a trailing slash. Leave it as `https://demostanhope.vercel.app` until the custom domain is intentionally connected. When it changes, a developer also updates the canonical link in `index.html`, `sitemap.xml`, and `robots.txt`.
+The public address lives in `data/site.json` as `siteUrl`, with `https://` and no final slash. After changing it, run `node scripts/apply-site-config.js`. That updates the page, the sitemap, `robots.txt`, and the short old-path pages. Do not edit those by hand.
 
 ## How signups work
 
-The mailing-list section always explains what the list is.
+The form is on the page for every visitor. It posts email and region to Mailchimp's own form address. No server is required. The address is built from `data/site.json` under `mailchimp` (`server`, `userId`, `audienceId`, `regionField`). After changing those, run `node scripts/apply-site-config.js`.
 
-- Before the connection is turned on, visitors see a link to the existing public signup page. That page does not ask for a region. The address is `listUrl` in `data/content.json`. The same address is written in `index.html` so it still works if the script does not run. Change both if the public page moves.
-- After the connection is turned on, that link is hidden and the form is shown. The form asks for an email address, a region, and consent. A hidden extra field is there to catch automated submissions. Region choices are North America, UK and Ireland, Europe, Australia and New Zealand, Asia, and Other. Changing those choices requires a developer, because the page and the server must match.
+The region choices are North America, UK and Ireland, Europe, Australia and New Zealand, Asia, and Other. The select is named `REGION`. A checkbox records consent and is not sent as a list field. An extra hidden field is left empty so automated signups are dropped.
 
-The form does not appear just because `listUrl` is filled in. It appears only when the server reports that the mailing-list account is configured.
+The audience must contain a text field tagged `REGION`. If it does not, Mailchimp rejects the signup. The page says so. This build has not completed a live signup, because that would add a person to the list.
 
-## Configure the mailing list
+`api/subscribe.js` is an optional later upgrade for a host that runs Node functions. It uses the empty names in `.env.example`. The public form does not need it.
 
-This needs the mailing-list account and the hosting project. Do not put the API key in a file.
+## Preview and publish
 
-The public signup page already identifies the list: server prefix `us7`, audience id `e2b49520e8`. Confirm in the mailing-list account that this is the audience you want before using it.
+Upload the changed files to whatever host is serving the site, or publish the folder the way `START-HERE.md` describes. Then open the public address and check the change. A future show appears under Tour dates. A past date appears under Archive.
 
-1. In that audience, add a merge field for region if it does not already exist. Text is the simplest type. Set the field tag to `REGION`. The form will send one of the six region names above.
-2. Create an API key in the mailing-list account. The key ends in `-us7`. That suffix must match the server prefix.
-3. In the hosting project, add these environment variables for Production and Preview:
-
-| Name | Value |
-| --- | --- |
-| `MAILCHIMP_API_KEY` | the key from the account |
-| `MAILCHIMP_SERVER_PREFIX` | `us7` |
-| `MAILCHIMP_AUDIENCE_ID` | `e2b49520e8` |
-| `MAILCHIMP_REGION_MERGE_FIELD` | `REGION`, unless the field tag is different |
-| `MAILCHIMP_STATUS_IF_NEW` | `pending` |
-
-`pending` means a new person must confirm by email before they are subscribed. Set `subscribed` only if the account owner explicitly wants people added immediately.
-
-4. Redeploy the site, or push a commit, so the new variables are picked up.
-5. Open the site. The form should be visible and the fallback link hidden.
-6. Submit an internal address and confirm the region arrives on that member. An address that is already subscribed is updated, not duplicated. An address that was removed is not added again.
-
-If the key's suffix and `MAILCHIMP_SERVER_PREFIX` disagree, the form stays hidden. If the region field tag does not exist, the signup fails with a message about the region field.
-
-The connection was not tried against the live account in this build, because no API key was available.
-
-## Preview
-
-1. Edit the data file.
-2. Commit the change on a branch, not directly on main, when you want to look first.
-3. Open the preview deployment the hosting project creates for that branch.
-4. Check the date, the ticket link, and the page on a phone-width window.
-5. Merge the branch into main when it is right.
-
-The main branch updates the public site. Do not create a second hosting project.
-
-## Publish
-
-Merging into main publishes. After it finishes, open `https://demostanhope.vercel.app/` and confirm the change. A show added for a future date should appear under Tour dates. A past date should appear under Archive.
+On a computer, the local check is:
 
 Local preview, for someone with the files on a computer:
 

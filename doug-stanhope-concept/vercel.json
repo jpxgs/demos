@@ -12,7 +12,7 @@
         { "key": "Strict-Transport-Security", "value": "max-age=15552000" },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; frame-src https://omny.fm; upgrade-insecure-requests"
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://*.list-manage.com; img-src 'self'; style-src 'self'; script-src 'self' https://*.list-manage.com; connect-src 'self'; frame-src https://omny.fm; upgrade-insecure-requests"
         }
       ]
     },

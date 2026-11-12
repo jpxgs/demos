@@ -9,7 +9,7 @@ The page is one document. The order is fixed in `index.html` and covered by `tes
 1. Header. The name and a compact section nav. It stays visible while scrolling so the long archive does not hide the rest of the page.
 2. Tour dates. This is the action most visitors need. With no confirmed shows, the section says none are announced and links to the list. It does not show sample dates.
 3. Podcast. Second, because it is the standing public work and was required to be prominent. Promotion is a short paragraph, text links, and the newest titles from the public RSS file.
-4. Mailing list. Next, including the empty-dates call to action. Region and consent are on the form. The form stays hidden until the server is configured.
+4. Mailing list. The form is always on the page and posts to Mailchimp's embedded endpoint using the public ids in `data/site.json`. `api/subscribe.js` is an optional Node upgrade and is not required for the form.
 5. About. Biography, then headshots. Photos exist only in this section.
 6. Work. Discography, books, and screen credits, as a ruled list.
 7. Press. Articles and interviews, then the source list.
@@ -122,7 +122,7 @@ No live call was made. The unit test that would ping Mailchimp skips when the th
 
 `data/content.json` is escaped on the way into the page. `data/podcast.json` is the newest RSS sample. `node scripts/refresh-podcast.js` rewrites it from the public feed. There is no build step, so a refresh is a committed file, not a request on each page view. `data/sources.json` is the source list rendered at the end of Press. Podcast embed hosts, if an embed is added again, are limited to `omny.fm`. The current page does not embed a player. The feed links are the episode list. Headshot `src` must match `assets/press/{filename}` and must have alt text. External or path-traversal sources are dropped. `Person.image` is added only for a headshot that passes those rules.
 
-`siteUrl` in that file is the origin used for the Person URL. The HTML canonical, Open Graph URL, sitemap, and robots file are still written by hand. `tests/quality.test.js` fails if they drift.
+`data/site.json` is the only place for the public origin and the public Mailchimp ids. `node scripts/apply-site-config.js` copies them into the page, sitemap, robots file, and old paths. `tests/quality.test.js` fails if those copies drift. The page script also reads `site.json` for Event and Person URLs.
 
 ## Commands
 
@@ -159,14 +159,14 @@ The workflow `.github/workflows/doug-stanhope-checks.yml` runs the unit tests, i
 - `tests/content.test.js` covers podcast links, the Patreon URL, headshots, and escaping.
 - `tests/subscribe.test.js` covers validation, the PUT body, the region merge field, duplicates, honeypot, a bad key suffix, and the skipped live ping.
 - `tests/quality.test.js` covers canonicals, regions, old paths, secrets, and header presence.
-- `tests/browser/site.spec.js` covers render, order, keyboard tab order, axe (the third-party player frame is excluded), overflow, the hidden form, and screenshots.
+- `tests/browser/site.spec.js` covers render, order, keyboard tab order, axe, overflow, the Mailchimp form action, and screenshots.
 
 Latest local run before this handoff: 29 unit tests passed, 1 skipped (no Mailchimp credentials, no live request), 8 browser tests passed. Re-run them rather than trusting this paragraph after further edits.
 
 ## Known limitations
 
 - No upcoming show can be marked complete, or verified in Google's rich results, until a real date is supplied with a time, timezone, venue, city, country, and preferably a street address and ticket URL.
-- The mailing list is not connected. The fallback page does not collect region.
+- The mailing list form posts to Mailchimp from the browser. A live signup was not completed. The audience still needs a `REGION` text field or Mailchimp will reject the post. `api/subscribe.js` and `vercel.json` are optional. `vercel.json` only matters on a Vercel-style preview host.
 - Headshots, a public booking contact, and a working Herald Scotland essay URL were not available. The essay was removed rather than left on the publication homepage. One candidate URL resolved to a different article and was not used.
 - All Things Comedy returned a bot challenge to a scripted fetch. The address is the one already used by the show's public listings. Apple, Spotify, Patreon, Omny, and the RSS feed were fetched directly. Patreon ` /dougstanhope` returns 404 and is not used.
 - The Internet Archive's CDX API lists captures of the old domain, including 1999, 2016, and 2025–2026. A full page download was rate-limited and was not reviewed, so no old page was copied into this repository.

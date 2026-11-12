@@ -1,0 +1,9 @@
+{
+  "siteUrl": "https://demostanhope.vercel.app",
+  "mailchimp": {
+    "server": "us7",
+    "userId": "99a44c5b158aed2fa397e1429",
+    "audienceId": "e2b49520e8",
+    "regionField": "REGION"
+  }
+}

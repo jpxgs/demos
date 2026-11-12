@@ -8,7 +8,7 @@ One text-first page. Visitors get, in this order: tour dates, the podcast, the m
 
 There is no separate tour page, store page, or admin screen. Older addresses such as `/podcast/` and `/press/` only send people back to the matching part of the front page.
 
-The page is served from the existing hosting project. The public address in use now is `https://demostanhope.vercel.app/`. The custom domain is not connected.
+A temporary preview can be on any host. The files themselves are what the team keeps. The public address is `siteUrl` in `data/site.json`. The custom domain is connected only when the team points DNS at the host they choose. See `START-HERE.md` and `docs/OWNERSHIP-TRANSFER.md`.
 
 ## What your team can change
 

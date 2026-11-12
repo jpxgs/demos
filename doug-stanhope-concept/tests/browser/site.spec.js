@@ -35,7 +35,8 @@ async function openHome(page) {
 test("homepage structure, dates, podcast, and metadata", async ({ page }, testInfo) => {
   const problems = await openHome(page);
   await expect(page).toHaveTitle("Doug Stanhope");
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://demostanhope.vercel.app/");
+  const site = await page.evaluate(async () => (await fetch("data/site.json")).json());
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", site.siteUrl.replace(/\/$/, "") + "/");
   const ids = await page.locator("main > section").evaluateAll((nodes) => nodes.map((node) => node.id));
   expect(ids).toEqual(["dates", "podcast", "list", "bio", "work", "press", "archive"]);
   await expect(page.locator("#upcoming-shows")).toContainText("No dates announced");
@@ -54,8 +55,9 @@ test("homepage structure, dates, podcast, and metadata", async ({ page }, testIn
   await expect(page.locator("#bio")).toContainText("Approved headshots have not been added yet");
   await expect(page.locator("#bio img")).toHaveCount(0);
   await expect(page.locator("#press")).toContainText("Los Angeles Times");
-  await expect(page.locator("#signup-fallback")).toBeVisible();
-  await expect(page.locator("#mailing-list-form")).toBeHidden();
+  await expect(page.locator("#mailing-list-form")).toBeVisible();
+  await expect(page.locator("#mailing-list-form")).toHaveAttribute("action", /list-manage\.com\/subscribe\/post/);
+  await expect(page.locator("#signup-region")).toHaveAttribute("name", "REGION");
   await expect(page.locator("#footer")).toContainText("Contact and booking");
   await expect(page.locator("#footer")).toContainText("Instagram");
   const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
@@ -108,7 +110,6 @@ test("old paths and the signup fields are present", async ({ page }) => {
     "Asia",
     "Other"
   ]);
-  await page.locator("#mailing-list-form").evaluate((form) => { form.hidden = false; });
   await page.locator("#signup-email").fill("not-an-email");
   const valid = await page.locator("#mailing-list-form").evaluate((form) => form.reportValidity());
   expect(valid).toBe(false);

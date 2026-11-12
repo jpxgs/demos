@@ -6,7 +6,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const shows = require("../js/shows.js");
 
-const SITE = "https://demostanhope.vercel.app/";
+const SITE = "https://shows.example/";
 const NOW = Date.parse("2026-11-12T18:00:00Z");
 
 function futureShow(overrides = {}) {
@@ -66,7 +66,7 @@ test("a complete future show renders the same facts as its Event markup", () => 
   assert.equal(event.offers.url, show.ticketUrl);
   assert.equal(event.offers.availability, "https://schema.org/InStock");
   assert.equal(event.url, event["@id"]);
-  assert.match(event.url, /^https:\/\/demostanhope\.vercel\.app\/#show-/);
+  assert.match(event.url, /^https:\/\/shows\.example\/#show-/);
   for (const fact of ["Test Theatre", "Test City", "123 Main Street", "90000", "US", show.ticketUrl, "Scheduled", "Doors at 7."]) {
     assert.ok(html.includes(fact), fact);
   }

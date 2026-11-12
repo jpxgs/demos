@@ -30,14 +30,22 @@
         if (!response.ok) throw new Error("Show data request failed");
         return response.json();
       })
-      .then((data) => {
+      .then(async (data) => {
         if (!Array.isArray(data)) throw new Error("Show data must be an array");
         const shows = data.map(showsApi.prepare).filter(Boolean);
         const now = Date.now();
         dates.innerHTML = showsApi.renderUpcomingList(shows, now);
         if (past) past.innerHTML = showsApi.renderArchive(shows, now);
-        const canonical = document.querySelector('link[rel="canonical"]');
-        const siteUrl = canonical ? canonical.href : window.location.origin;
+        let siteUrl = window.location.origin;
+        try {
+          const siteResponse = await fetch("./data/site.json", { headers: { Accept: "application/json" }, cache: "no-cache" });
+          if (siteResponse.ok) {
+            const site = await siteResponse.json();
+            if (site.siteUrl) siteUrl = site.siteUrl;
+          }
+        } catch {
+          siteUrl = window.location.origin;
+        }
         const graph = showsApi.buildEventGraph(shows, siteUrl, now);
         replaceJsonLd("event-jsonld", graph.length ? { "@context": "https://schema.org", "@graph": graph } : null);
       })
@@ -53,14 +61,16 @@
     Promise.all([
       fetch("./data/content.json", { headers: { Accept: "application/json" }, cache: "no-cache" }),
       fetch("./data/podcast.json", { headers: { Accept: "application/json" }, cache: "no-cache" }),
-      fetch("./data/sources.json", { headers: { Accept: "application/json" }, cache: "no-cache" })
+      fetch("./data/sources.json", { headers: { Accept: "application/json" }, cache: "no-cache" }),
+      fetch("./data/site.json", { headers: { Accept: "application/json" }, cache: "no-cache" })
     ])
-      .then(async ([contentResponse, feedResponse, sourceResponse]) => {
+      .then(async ([contentResponse, feedResponse, sourceResponse, siteResponse]) => {
         if (!contentResponse.ok) throw new Error("Content request failed");
         const content = await contentResponse.json();
         const feed = feedResponse.ok ? await feedResponse.json() : null;
         const sources = sourceResponse.ok ? await sourceResponse.json() : [];
-        return contentApi.renderAll(content, feed, sources);
+        const site = siteResponse.ok ? await siteResponse.json() : {};
+        return contentApi.renderAll(content, feed, sources, site.siteUrl);
       })
       .then((rendered) => {
         const mounts = {
