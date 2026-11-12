@@ -1,99 +1,167 @@
 /*
- * Doug Stanhope website
- * ---------------------
- * This file renders upcoming tour dates from /data/shows.json.
- *
- * To add a show:
- * 1. Open data/shows.json.
- * 2. Add one event object using the field guide in README.md.
- * 3. Include a real ticket URL and a complete venue address.
- * 4. Commit the JSON file. The page and Event structured data update together.
- *
- * No show data is hard-coded here. Keep editorial content in index.html and
- * frequently updated show data in the JSON file.
+ * Doug Stanhope website — show rendering
+ * --------------------------------------
+ * Upcoming show data lives in /data/shows.json.
+ * This script only renders confirmed future shows with a safe ticket URL.
+ * Complete event records also produce Schema.org Event structured data.
  */
-(async function renderUpcomingShows() {
+
+(() => {
+  "use strict";
+
   const container = document.querySelector("#upcoming-shows");
   if (!container) return;
 
-  const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
-  })[char]);
-
-  const dateLabel = (isoDate) => {
-    // Keep the calendar date as entered for the venue's local timezone.
-    const localDate = String(isoDate).slice(0, 10);
-    const date = new Date(localDate + "T12:00:00Z");
-    if (Number.isNaN(date.getTime())) return "";
-    return new Intl.DateTimeFormat("en-US", {
-      month: "short", day: "numeric", year: "numeric", timeZone: "UTC"
-    }).format(date);
+  const showUnavailable = () => {
+    container.textContent = "Show dates are temporarily unavailable. Please check back shortly.";
+    container.classList.add("notice");
   };
 
-  try {
-    const response = await fetch("/data/shows.json", { cache: "no-store" });
-    if (!response.ok) throw new Error("Show data could not be loaded.");
-    const events = await response.json();
-    const now = new Date();
-    const upcoming = events
-      .filter((event) => event.status !== "cancelled" && event.ticketUrl && new Date(event.startDate) >= now)
-      .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+  const escapeHtml = (value) =>
+    String(value ?? "").replace(/[&<>"']/g, (character) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[character]);
 
-    if (!upcoming.length) {
-      container.innerHTML = '<p class="notice">No upcoming dates are currently listed. Check back for announcements.</p>';
-      return;
+  const safeHttpUrl = (value) => {
+    try {
+      const url = new URL(String(value), window.location.href);
+      return ["http:", "https:"].includes(url.protocol) ? url.href : null;
+    } catch {
+      return null;
     }
+  };
 
-    container.innerHTML = upcoming.map((event) => {
-      const venue = [event.venue, event.location?.address?.addressLocality,
-        event.location?.address?.addressRegion].filter(Boolean).join(" — ");
-      const ticket = '<a class="ticket-link" href="' + escapeHtml(event.ticketUrl) + '" target="_blank" rel="noopener noreferrer">Tickets <span aria-hidden="true">↗</span></a>';
+  const parseDate = (value) => {
+    if (typeof value !== "string" || !value.trim()) return null;
+    const timestamp = Date.parse(value);
+    return Number.isFinite(timestamp) ? new Date(timestamp) : null;
+  };
 
-      return '<article class="entry show-entry">' +
-        '<time class="meta" datetime="' + escapeHtml(event.startDate) + '">' +
-        escapeHtml(dateLabel(event.startDate)) + '</time>' +
-        '<div><p>' + escapeHtml(venue) + '</p>' +
-        (event.note ? '<p class="show-note">' + escapeHtml(event.note) + '</p>' : '') +
-        ticket + '</div></article>';
-    }).join("");
+  const formatDate = (date) => new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric"
+  }).format(date);
 
-    // Emit Schema.org Event data only for confirmed events with required details.
-    const structuredEvents = upcoming
-      .filter((event) => event.name && event.startDate && event.location?.name &&
-        event.location?.address?.addressLocality && event.location?.address?.addressCountry)
-      .map((event) => ({
-        "@context": "https://schema.org",
-        "@type": "Event",
-        "name": event.name,
-        "startDate": event.startDate,
-        ...(event.endDate ? { "endDate": event.endDate } : {}),
-        "eventStatus": "https://schema.org/EventScheduled",
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "location": {
-          "@type": "Place",
-          "name": event.location.name,
-          "address": {
-            "@type": "PostalAddress",
-            ...event.location.address
-          }
-        },
-        "performer": { "@type": "Person", "name": "Doug Stanhope" },
-        ...(event.ticketUrl ? {
-          "offers": {
-            "@type": "Offer",
-            "url": event.ticketUrl
-          }
-        } : {})
-      }));
+  const isCompleteEvent = (event) =>
+    Boolean(
+      event.name &&
+      parseDate(event.startDate) &&
+      event.location?.name &&
+      event.location?.address?.addressLocality &&
+      event.location?.address?.addressCountry
+    );
 
-    if (structuredEvents.length) {
-      const script = document.createElement("script");
-      script.type = "application/ld+json";
-      script.textContent = JSON.stringify(structuredEvents);
-      document.head.appendChild(script);
+  const buildStructuredEvent = (event) => ({
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: event.name,
+    startDate: event.startDate,
+    ...(event.endDate ? { endDate: event.endDate } : {}),
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: {
+      "@type": "Place",
+      name: event.location.name,
+      address: {
+        "@type": "PostalAddress",
+        ...event.location.address
+      }
+    },
+    performer: {
+      "@type": "Person",
+      name: "Doug Stanhope"
+    },
+    ...(safeHttpUrl(event.ticketUrl) ? {
+      offers: {
+        "@type": "Offer",
+        url: safeHttpUrl(event.ticketUrl)
+      }
+    } : {})
+  });
+
+  const renderShow = (event) => {
+    const venue = [
+      event.venue || event.location?.name,
+      event.location?.address?.addressLocality,
+      event.location?.address?.addressRegion
+    ].filter(Boolean).join(" — ");
+
+    const date = parseDate(event.startDate);
+    const ticketUrl = safeHttpUrl(event.ticketUrl);
+
+    return `
+      <article class="entry show-entry">
+        <time class="meta" datetime="${escapeHtml(event.startDate)}">${escapeHtml(formatDate(date))}</time>
+        <div>
+          <p>${escapeHtml(venue || event.name)}</p>
+          ${event.note ? `<p class="show-note">${escapeHtml(event.note)}</p>` : ""}
+          <a class="ticket-link" href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener noreferrer">
+            Tickets <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+    `;
+  };
+
+  const loadShows = async () => {
+    try {
+      const response = await fetch("./data/shows.json", {
+        headers: { Accept: "application/json" },
+        cache: "no-cache"
+      });
+
+      if (!response.ok) {
+        throw new Error(`Show data request failed (${response.status}).`);
+      }
+
+      const events = await response.json();
+      if (!Array.isArray(events)) {
+        throw new TypeError("Show data must be a JSON array.");
+      }
+
+      const now = Date.now();
+      const upcoming = events
+        .filter((event) => {
+          if (!event || typeof event !== "object") return false;
+          const date = parseDate(event.startDate);
+          return event.status !== "cancelled" &&
+            date &&
+            date.getTime() >= now &&
+            safeHttpUrl(event.ticketUrl);
+        })
+        .sort((first, second) =>
+          parseDate(first.startDate).getTime() - parseDate(second.startDate).getTime()
+        );
+
+      if (upcoming.length === 0) {
+        container.textContent = "No upcoming dates are currently listed. Check back for announcements.";
+        container.classList.add("notice");
+        return;
+      }
+
+      container.innerHTML = upcoming.map(renderShow).join("");
+      container.classList.remove("notice");
+
+      const structuredEvents = upcoming
+        .filter(isCompleteEvent)
+        .map(buildStructuredEvent);
+
+      if (structuredEvents.length > 0) {
+        const script = document.createElement("script");
+        script.type = "application/ld+json";
+        script.textContent = JSON.stringify(structuredEvents);
+        document.head.appendChild(script);
+      }
+    } catch (error) {
+      console.error("Unable to load upcoming show data:", error);
+      showUnavailable();
     }
-  } catch (error) {
-    console.error("Upcoming dates:", error);
-    container.innerHTML = '<p class="notice">Show dates are temporarily unavailable. Please check back shortly.</p>';
-  }
+  };
+
+  loadShows();
 })();
