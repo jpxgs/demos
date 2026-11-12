@@ -41,4 +41,8 @@ Leave the previous site in place until the new one answers on the domain. Do not
 - Source access that belonged to the build and is not the team's own copy.
 - Any API key that was created for a preview and is no longer used. Make a new key in the team's own account instead of reusing a preview key.
 
-Do that only after the domain serves the new files and a test signup has been checked.
+Do that only after the domain serves the new files, a test email on the domain still arrives, and a test signup has been checked.
+
+## Take down the preview
+
+The preview address is only for review. After the team's own host is serving the site, remove that preview or leave it unpublished. Do not point the real domain at the preview unless the team has chosen that same host on purpose. Keep a copy of the zip before the preview is removed.

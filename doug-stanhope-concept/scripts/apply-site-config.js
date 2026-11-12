@@ -47,6 +47,15 @@ html = html.replace(
   `href="${page.replace(/&/g, "&amp;")}"`
 );
 html = html.replace(/name="b_[a-zA-Z0-9_]+"/, `name="${bot}"`);
+const signupOn = site.signupEnabled !== false;
+html = html.replace(/<form id="mailing-list-form"([^>]*)>/, (match, attrs) => {
+  const cleaned = attrs.replace(/\s+hidden\b/g, "");
+  return `<form id="mailing-list-form"${cleaned}${signupOn ? "" : " hidden"}>`;
+});
+html = html.replace(/<p id="signup-off"([^>]*)>/, (match, attrs) => {
+  const cleaned = attrs.replace(/\s+hidden\b/g, "");
+  return `<p id="signup-off"${cleaned}${signupOn ? " hidden" : ""}>`;
+});
 write("index.html", html);
 
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>

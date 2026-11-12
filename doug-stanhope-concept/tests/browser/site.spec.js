@@ -55,9 +55,15 @@ test("homepage structure, dates, podcast, and metadata", async ({ page }, testIn
   await expect(page.locator("#bio")).toContainText("Approved headshots have not been added yet");
   await expect(page.locator("#bio img")).toHaveCount(0);
   await expect(page.locator("#press")).toContainText("Los Angeles Times");
-  await expect(page.locator("#mailing-list-form")).toBeVisible();
   await expect(page.locator("#mailing-list-form")).toHaveAttribute("action", /list-manage\.com\/subscribe\/post/);
   await expect(page.locator("#signup-region")).toHaveAttribute("name", "REGION");
+  if (site.signupEnabled === false) {
+    await expect(page.locator("#mailing-list-form")).toBeHidden();
+    await expect(page.locator("#signup-off")).toBeVisible();
+  } else {
+    await expect(page.locator("#mailing-list-form")).toBeVisible();
+    await expect(page.locator("#signup-off")).toBeHidden();
+  }
   await expect(page.locator("#footer")).toContainText("Contact and booking");
   await expect(page.locator("#footer")).toContainText("Instagram");
   const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
@@ -110,7 +116,9 @@ test("old paths and the signup fields are present", async ({ page }) => {
     "Asia",
     "Other"
   ]);
-  await page.locator("#signup-email").fill("not-an-email");
-  const valid = await page.locator("#mailing-list-form").evaluate((form) => form.reportValidity());
+  const valid = await page.locator("#mailing-list-form").evaluate((form) => {
+    form.querySelector("#signup-email").value = "not-an-email";
+    return form.reportValidity();
+  });
   expect(valid).toBe(false);
 });

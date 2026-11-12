@@ -2,7 +2,7 @@
 
 Edits are made in data files, then published through the source repository. There is no login screen for content.
 
-The site folder is `doug-stanhope-concept/`. Paths below are inside that folder unless they start with `doug-stanhope-concept/`.
+Paths below start at the site folder, the folder that contains `index.html`. In the downloadable package that folder is the unzipped archive. In the preview repository it is `doug-stanhope-concept/`.
 
 ## Quick reference
 
@@ -16,9 +16,9 @@ The site folder is `doug-stanhope-concept/`. Paths below are inside that folder 
 | Recent podcast episodes | `data/podcast.json`, refreshed with the command below |
 | Headshots | an image in `assets/press/`, plus an entry in `data/content.json` `headshots` |
 | Podcast links, player, episode notes | `data/content.json`, field `podcast` |
-| Press, recordings, books | `data/content.json`, fields `press`, `recordings`, `books` |
+| Press links | `data/content.json`, field `press` |
 | Social, store, and contact links | `data/content.json`, fields `social` and `contact` |
-| Public mailing-list link used before the form is connected | `data/content.json` field `listUrl`, and the same address in `index.html` |
+| Public address and whether the form is on | `data/site.json`, then `node scripts/apply-site-config.js` |
 | Layout or behavior | a developer. Do not edit `style.css` or the scripts for a content change |
 
 Keep JSON valid. Use straight quotes. Put a comma between items, and do not put a comma after the last item.
@@ -78,6 +78,25 @@ Do not delete a show that was already announced unless it should disappear entir
 
 A show whose date is in the past leaves the tour-dates section and appears in the archive. Past archive rows do not offer tickets.
 
+## Remove a show
+
+Delete that whole object from the list in `data/shows.json`, including the comma that separated it from the next object. Do not leave a comma after the last object. Use this when the date should disappear. Use `canceled` or `postponed` when people should still see what happened to it.
+
+## What Google needs
+
+Google can list a show only when the page includes event data. This site adds that data for a future show that has all of these:
+
+- `name`
+- `date`, `startTime`, and `timezone`
+- `venue`, `city`, and `country`
+- `status` of `scheduled`, `sold out`, `canceled`, or `postponed`
+
+`address` and `postalCode` should be filled when you have them. `ticketUrl` should be the direct ticket page when one exists. A show with no start time is listed on the page and is not sent to Google.
+
+After the show is on the public site, open [Google's Rich Results Test](https://search.google.com/test/rich-results), paste the public page address, and run the test. Look for an Event. The preview copy has no future shows, so that test will not find an Event until a real one is published.
+
+More detail is in `docs/SHOWS.md`.
+
 ## Biography
 
 In `data/content.json`, `bio` is a list of paragraphs. Edit the sentences. Do not add a fact that has not been checked. The page does not interpret HTML in these paragraphs.
@@ -97,7 +116,9 @@ In `data/content.json`, `bio` is a list of paragraphs. Edit the sentences. Do no
 }
 ```
 
-`alt` is required. `credit` is the line under the photo. `width` and `height` are the pixel size of the file. Until this list has a valid entry, the page says that approved headshots have not been added.
+`alt` is required. It should say who is in the photo and, briefly, how they are framed. `credit` is the line under the photo, such as `Photo: studio name`. `width` and `height` are the pixel size of the file.
+
+Use JPEG or WebP. A long edge of about 1600 to 2400 pixels is enough. The page shows the picture at most 240 pixels wide, so a multi-megabyte original is wasted. Aim for under about 500 KB. sRGB is the safe color space. Do not add a stock photo or an unapproved file. Until `headshots` has a valid entry, the page says that approved headshots have not been added.
 
 ## Podcast
 
@@ -117,11 +138,27 @@ Recent episode titles come from the public RSS feed, not from this section. From
 node scripts/refresh-podcast.js
 ```
 
-That rewrites `data/podcast.json`. Read the new titles, then commit the file. The site does not fetch the feed on each visit.
+That rewrites `data/podcast.json`. Read the new titles, then publish the file. The site does not fetch the feed on each visit.
+
+Without Node, open `data/podcast.json` and edit the `episodes` list by hand. Each item needs `title`, `date` as `YYYY-MM-DD`, and `url` starting with `https://`. Set `retrieved` to today's date and `episodeCount` to the number the feed shows, if you know it. Copy one existing object and change the three fields. Keep the commas valid.
 
 ## Press and other links
 
-`press` is a list of groups. Each group has `heading` and `links`. Link an article to its own address, not to the publication's homepage.
+`press` is a list of groups. Each group has `heading` and `links`. Link an article to its own address, not to the publication's homepage. To add a link, copy one object inside the right group and change `label` and `href`.
+
+When you add a fact from a public page, add a line to `data/sources.json`:
+
+```json
+{
+  "id": "short-name",
+  "title": "Publication — article title",
+  "href": "https://example.com/the-article",
+  "retrieved": "2026-11-12",
+  "note": "What this source supports."
+}
+```
+
+Open the address before you save it. If it does not load, do not list it. The press section of the page prints this list under Sources.
 
 `discography`, `books`, and `appearances` are lists of `{ "title", "detail" }`. `social` and `contact.links` use `{ "label", "href" }`.
 

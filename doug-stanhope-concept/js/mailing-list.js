@@ -62,7 +62,14 @@
     let config = null;
     try {
       const response = await fetch("data/site.json", { headers: { Accept: "application/json" }, cache: "no-cache" });
-      if (response.ok) config = (await response.json()).mailchimp;
+      if (response.ok) {
+        const site = await response.json();
+        if (site.signupEnabled === false) {
+          status.textContent = "Signups are turned off on this copy.";
+          return;
+        }
+        config = site.mailchimp;
+      }
     } catch {
       config = null;
     }

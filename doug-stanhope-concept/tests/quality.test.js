@@ -42,6 +42,13 @@ test("the public form posts to the Mailchimp address in site.json", () => {
   assert.match(html, /name="EMAIL"/);
   assert.match(html, /name="REGION"/);
   assert.match(html, new RegExp(`name="${embed.botField(site.mailchimp)}"`));
+  if (site.signupEnabled === false) {
+    assert.match(html, /<form id="mailing-list-form"[^>]* hidden>/);
+    assert.doesNotMatch(html, /<p id="signup-off"[^>]* hidden>/);
+  } else {
+    assert.doesNotMatch(html, /<form id="mailing-list-form"[^>]* hidden>/);
+    assert.match(html, /<p id="signup-off"[^>]* hidden>/);
+  }
   for (const region of mailchimp.REGIONS) {
     assert.ok(html.includes(`value="${region}"`), region);
   }

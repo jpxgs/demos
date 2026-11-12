@@ -35,10 +35,9 @@
 
 :root {
   color-scheme: light;
-  --ink: #111;
-  --muted: #3a3a3a;
-  --line: #c8c8c8;
-  --paper: #fff;
+  --ink: #1c1b19;
+  --muted: #4f4b46;
+  --paper: #faf8f5;
   --sans: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --mono: "IBM Plex Mono", "Courier New", Courier, monospace;
 }
@@ -55,9 +54,9 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.65;
 }
 
 a {
@@ -72,7 +71,7 @@ a {
 }
 
 .wrap {
-  width: min(40rem, calc(100% - 2rem));
+  width: min(38rem, calc(100% - 2.5rem));
   margin-inline: auto;
 }
 
@@ -81,7 +80,6 @@ header {
   top: 0;
   z-index: 2;
   background: var(--paper);
-  border-bottom: 1px solid var(--ink);
 }
 
 .bar {
@@ -89,8 +87,8 @@ header {
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
-  gap: 0.25rem 1rem;
-  padding: 0.65rem 0;
+  gap: 0.75rem 1.5rem;
+  padding: 1.15rem 0 0.4rem;
 }
 
 h1, h2, h3 { font-weight: 600; letter-spacing: 0; }
@@ -102,9 +100,7 @@ h1 {
 }
 
 h2 {
-  margin: 0 0 0.85rem;
-  padding-bottom: 0.4rem;
-  border-bottom: 1px solid var(--ink);
+  margin: 0 0 1.15rem;
   font-family: var(--mono);
   font-size: 0.72rem;
   font-weight: 500;
@@ -122,13 +118,13 @@ h3 {
   text-transform: uppercase;
 }
 
-p { margin: 0 0 0.75rem; }
+p { margin: 0 0 0.9rem; }
 
-ul { margin: 0.4rem 0 1rem; padding-left: 1.2rem; }
+ul { margin: 0.6rem 0 1.25rem; padding-left: 1.15rem; }
 
-li { margin: 0.2rem 0; }
+li { margin: 0.35rem 0; }
 
-section { padding-top: 1.75rem; scroll-margin-top: 4.5rem; }
+section { padding-top: 2.75rem; scroll-margin-top: 4.5rem; }
 
 nav {
   font-family: var(--mono);
@@ -154,14 +150,12 @@ nav a {
 .skip:focus { top: 0.4rem; }
 
 .group {
-  border: 1px solid var(--line);
-  margin: 0.5rem 0 1rem;
-  padding: 0.6rem 0.9rem 0.6rem 1.6rem;
+  margin: 0.85rem 0 1.35rem;
+  padding: 0 0 0 0.15rem;
 }
 
 .show {
-  border-top: 1px solid var(--line);
-  padding: 0.85rem 0 0.35rem;
+  padding: 1.15rem 0 0.35rem;
 }
 
 .show-line {
@@ -180,8 +174,7 @@ nav a {
 .archive-year h3 { margin-bottom: 0.15rem; }
 
 .entry {
-  border-top: 1px solid #e6e6e6;
-  padding: 0.3rem 0;
+  padding: 0.45rem 0;
 }
 
 .entry p { margin: 0; }
@@ -211,10 +204,11 @@ time,
 .signup input[type="email"],
 .signup select {
   width: min(100%, 24rem);
-  padding: 0.4rem 0.3rem;
-  border: 1px solid var(--ink);
+  padding: 0.45rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
   border-radius: 0;
-  background: var(--paper);
+  background: transparent;
   color: inherit;
   font: inherit;
 }
@@ -235,11 +229,12 @@ time,
 .consent input { margin-top: 0.35rem; }
 
 .signup button {
-  margin-top: 0.9rem;
-  padding: 0.45rem 0.85rem;
-  border: 1px solid var(--ink);
-  background: var(--ink);
-  color: var(--paper);
+  margin-top: 1.1rem;
+  padding: 0.15rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
   font-family: var(--mono);
   font-size: 0.72rem;
   font-weight: 500;
@@ -248,7 +243,7 @@ time,
   cursor: pointer;
 }
 
-.signup button:hover { background: #333; }
+.signup button:hover { border-bottom-width: 2px; }
 
 .signup button:disabled { cursor: wait; opacity: 0.6; }
 
@@ -278,26 +273,24 @@ figcaption { color: var(--muted); font-size: 0.95rem; }
 .player iframe {
   width: 100%;
   height: 100%;
-  border: 1px solid var(--line);
+  border: 0;
 }
 
 .episode { margin-bottom: 0.85rem; }
 
 .catalog {
-  margin: 0.25rem 0 1rem;
+  margin: 0.4rem 0 1.4rem;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--line);
 }
 
 .catalog li {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.35rem 1rem;
+  gap: 0.2rem 1.5rem;
   align-items: baseline;
   margin: 0;
-  padding: 0.45rem 0;
-  border-bottom: 1px solid var(--line);
+  padding: 0.55rem 0;
 }
 
 .catalog .detail {
@@ -308,9 +301,8 @@ figcaption { color: var(--muted); font-size: 0.95rem; }
 }
 
 footer {
-  margin-top: 2rem;
-  border-top: 1px solid var(--ink);
-  padding: 1.4rem 0 2.5rem;
+  margin-top: 3.5rem;
+  padding: 0.5rem 0 3rem;
 }
 
 @media (max-width: 40rem) {
