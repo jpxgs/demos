@@ -35,7 +35,6 @@ async function runPage(fetchResult) {
   };
   const context = {
     document,
-    window: { location: { href: "https://example.test/" } },
     URL,
     Date,
     Intl,
@@ -114,4 +113,30 @@ test("failed data request displays a recoverable message", async () => {
     json: async () => []
   });
   assert.match(result.container.textContent, /temporarily unavailable/);
+});
+
+test("date display preserves the venue calendar date across visitor time zones", async () => {
+  const result = await runPage({
+    ok: true,
+    json: async () => [{
+      name: "Late show",
+      startDate: "2099-03-18T23:30:00-07:00",
+      venue: "Late Show Venue",
+      ticketUrl: "https://tickets.example.test/late-show",
+      status: "scheduled"
+    }]
+  });
+  assert.match(result.container.innerHTML, /Mar 18, 2099/);
+});
+
+test("date without an explicit timezone is rejected", async () => {
+  const result = await runPage({
+    ok: true,
+    json: async () => [{
+      name: "Ambiguous event",
+      startDate: "2099-03-18T20:00:00",
+      ticketUrl: "https://tickets.example.test/event"
+    }]
+  });
+  assert.match(result.container.textContent, /No upcoming dates/);
 });
