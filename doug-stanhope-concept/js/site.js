@@ -21,7 +21,9 @@
   })[char]);
 
   const dateLabel = (isoDate) => {
-    const date = new Date(isoDate);
+    // Keep the calendar date as entered for the venue's local timezone.
+    const localDate = String(isoDate).slice(0, 10);
+    const date = new Date(localDate + "T12:00:00Z");
     if (Number.isNaN(date.getTime())) return "";
     return new Intl.DateTimeFormat("en-US", {
       month: "short", day: "numeric", year: "numeric", timeZone: "UTC"
@@ -34,7 +36,7 @@
     const events = await response.json();
     const now = new Date();
     const upcoming = events
-      .filter((event) => event.status !== "cancelled" && new Date(event.startDate) >= now)
+      .filter((event) => event.status !== "cancelled" && event.ticketUrl && new Date(event.startDate) >= now)
       .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
 
     if (!upcoming.length) {
@@ -45,9 +47,7 @@
     container.innerHTML = upcoming.map((event) => {
       const venue = [event.venue, event.location?.address?.addressLocality,
         event.location?.address?.addressRegion].filter(Boolean).join(" — ");
-      const ticket = event.ticketUrl
-        ? '<a class="ticket-link" href="' + escapeHtml(event.ticketUrl) + '" target="_blank" rel="noopener noreferrer">Tickets <span aria-hidden="true">↗</span></a>'
-        : '<span class="meta">Ticket link pending</span>';
+      const ticket = '<a class="ticket-link" href="' + escapeHtml(event.ticketUrl) + '" target="_blank" rel="noopener noreferrer">Tickets <span aria-hidden="true">↗</span></a>';
 
       return '<article class="entry show-entry">' +
         '<time class="meta" datetime="' + escapeHtml(event.startDate) + '">' +
@@ -81,8 +81,7 @@
         ...(event.ticketUrl ? {
           "offers": {
             "@type": "Offer",
-            "url": event.ticketUrl,
-            "availability": "https://schema.org/InStock"
+            "url": event.ticketUrl
           }
         } : {})
       }));
