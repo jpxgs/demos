@@ -19,13 +19,14 @@ The handoff of source files does not itself transfer ownership of third-party ac
 - A data-driven upcoming-show list.
 - An individual ticket link for each show record when the exact ticket URL is supplied.
 - Schema.org Event structured data generated from complete event records.
+- A provider-neutral mailing-list signup form with email, region and consent fields, activated only after a team-owned webhook is configured.
 - A historical tour archive and editorial sections for recordings, books, journal, press, store and biography.
 - Routine text and show updates through clearly identified source files.
 
 ## What still needs team input before full integration
 
 1. **Tour data:** confirmed future dates, show times, venue names, full addresses, timezone offsets and exact ticket URLs.
-2. **Mailing list:** the provider name, approved signup embed or endpoint, required region field and options, consent wording, privacy-policy link and confirmation behavior.
+2. **Mailing list:** identify the provider, configure `MAILING_LIST_WEBHOOK_URL` and optional `MAILING_LIST_WEBHOOK_TOKEN` in Vercel, map the email and region fields in the provider's webhook/automation, and confirm consent, privacy-policy wording and double-opt-in behavior.
 3. **Biography and press materials:** approved biography text, official headshots and permission to publish them.
 4. **Press links:** exact article URLs, rather than general publisher homepages.
 5. **Legacy archive:** source records or verified Wayback Machine captures for any older tour, podcast, journal or press material to be migrated.
