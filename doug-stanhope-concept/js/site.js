@@ -37,7 +37,7 @@
 
   const parseDate = (value) => {
     if (typeof value !== "string" || !value.trim()) return null;
-    const isoWithOffset = /^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$/i;
+    const isoWithOffset = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d{1,3})?)?(?:Z|[+-]\d{2}:\d{2})$/i;
     if (!isoWithOffset.test(value)) return null;
 
     const calendarDate = new Date(value.slice(0, 10) + "T00:00:00Z");
