@@ -33,6 +33,16 @@ The empty `shows.json` array is intentional until confirmed future dates, ticket
 
 See [the content editing guide](docs/CONTENT-EDITING-GUIDE.md). Add a confirmed event to `data/shows.json` with an ISO 8601 local date/time, venue, full postal address and exact ticket URL. The display and structured event data use the same record.
 
+## Automated checks
+
+Run the dependency-free JavaScript checks with Node.js 18 or newer:
+
+```bash
+node --test tests/site.test.js
+```
+
+The tests cover the empty show list, valid future events, unsafe ticket URLs, malformed data, and generated Event structured data. They do not replace a final visual check in real browsers and devices.
+
 ## Local preview
 
 For a reliable preview with JSON fetch behavior, run a local static server from this folder:
