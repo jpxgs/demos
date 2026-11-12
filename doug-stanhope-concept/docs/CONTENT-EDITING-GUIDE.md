@@ -84,7 +84,7 @@ Do not put private API keys, passwords or secret tokens in HTML, JavaScript, JSO
 
 ## Bio and headshots
 
-The current biography is text-only. Add official headshots only after the team supplies the files and confirms which images may be used publicly. Place approved files in `assets/press/`, use descriptive filenames and add useful alt text. Do not substitute stock or AI-generated images.
+The homepage contains a concise biography based on the official press bio and a press-materials reference. The site is ready to host approved high-resolution headshots in `assets/press/`. Add only images supplied or approved by the team; use descriptive filenames, preserve original resolution, add useful alt text and confirm the permitted usage. Do not substitute stock or AI-generated images.
 
 ## Preview and publish
 
